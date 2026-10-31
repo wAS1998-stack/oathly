@@ -33,6 +33,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -62,6 +64,8 @@ fun OnboardingScreen(vm: AppViewModel) {
     var stateCode by rememberSaveable { mutableStateOf<String?>(null) }
     var repName by rememberSaveable { mutableStateOf<String?>(null) }
     val context = LocalContext.current
+    val keyboard = LocalSoftwareKeyboardController.current
+    val focusManager = LocalFocusManager.current
 
     fun finish(reminder: Pair<Int, Int>?) {
         vm.finishOnboarding(Country.from(country) ?: Country.US, version, senior, stateCode, repName, reminder)
@@ -139,6 +143,8 @@ fun OnboardingScreen(vm: AppViewModel) {
                 LazyColumn(verticalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.weight(1f)) {
                     items(places.filter { it.name.contains(query.trim(), ignoreCase = true) }, key = { it.code }) { p ->
                         MenuRow(p.name, onClick = {
+                            focusManager.clearFocus()
+                            keyboard?.hide()
                             stateCode = p.code
                             repName = null
                             step = if (p.isState && p.representatives.size > 1) STEP_REP else STEP_REMINDER

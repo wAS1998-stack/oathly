@@ -43,6 +43,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
@@ -64,6 +65,7 @@ fun InterviewScreen(vm: AppViewModel) {
     val feedback = vm.feedback
     val context = LocalContext.current
     val focus = LocalFocusManager.current
+    val keyboard = LocalSoftwareKeyboardController.current
     val canSpeak = remember { SpeechRecognizer.isRecognitionAvailable(context) }
 
     val recognizer = rememberLauncherForActivityResult(ActivityResultContracts.StartActivityForResult()) { res ->
@@ -108,6 +110,7 @@ fun InterviewScreen(vm: AppViewModel) {
                 var typed by rememberSaveable(q.id) { mutableStateOf("") }
                 val submit = {
                     focus.clearFocus()
+                    keyboard?.hide()
                     if (typed.isBlank()) vm.revealAnswer() else vm.submitAnswer(listOf(typed))
                 }
                 OutlinedTextField(

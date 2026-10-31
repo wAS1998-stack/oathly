@@ -108,10 +108,6 @@ class StoreScreenshotsTest {
         shot("04_interview_result")
         tap("Done")
 
-        // Home again, now with a personal chance-of-passing estimate
-        waitFor("Start mock interview")
-        compose.waitUntil(20_000) { compose.onAllNodesWithText("%", substring = true).fetchSemanticsNodes().isNotEmpty() }
-        shot("01_home_us")
 
         // Answers that change (state-specific)
         tap("Answers that change")
@@ -119,13 +115,24 @@ class StoreScreenshotsTest {
         shot("05_answers_that_change")
         tapIcon("Back")
 
-        // Study cards
+        // Study cards: learn most of the questions, like a user after a few days of practice
         tap("Study cards")
         tap("All questions")
         tap("Show answer")
         shot("06_study_card")
+        tap("I knew it")
+        repeat(75) {
+            tap("Show answer")
+            tap("I knew it")
+        }
         tapIcon("Close")
         tapIcon("Back")
+
+        // Home, now with a personal chance-of-passing estimate
+        waitFor("Start mock interview")
+        compose.waitUntil(20_000) { compose.onAllNodesWithText("%", substring = true).fetchSemanticsNodes().isNotEmpty() }
+        Thread.sleep(1500) // let the estimate refresh
+        shot("01_home_us")
 
         // Progress
         tap("Your progress")

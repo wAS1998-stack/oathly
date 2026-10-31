@@ -32,6 +32,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.oathly.app.data.Country
@@ -186,6 +188,8 @@ private fun PickDialog(title: String, options: List<Pair<String, String>>, onPic
 fun PickStateScreen(vm: AppViewModel) {
     val officials by vm.officials.collectAsStateWithLifecycle()
     var query by rememberSaveable { mutableStateOf("") }
+    val keyboard = LocalSoftwareKeyboardController.current
+    val focusManager = LocalFocusManager.current
     Scaffold(
         topBar = { AppBar("Choose your state", onBack = { vm.back() }) },
         containerColor = MaterialTheme.colorScheme.background,
@@ -199,6 +203,8 @@ fun PickStateScreen(vm: AppViewModel) {
             LazyColumn(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                 items(officials?.places.orEmpty().filter { it.name.contains(query.trim(), ignoreCase = true) }, key = { it.code }) { p ->
                     MenuRow(p.name, onClick = {
+                        focusManager.clearFocus()
+                        keyboard?.hide()
                         vm.setState(p.code)
                         vm.back()
                         if (p.isState && p.representatives.size > 1) vm.navigate(Screen.PickRep)
