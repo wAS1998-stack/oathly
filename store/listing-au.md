@@ -19,7 +19,7 @@ Oathly's practice questions are written from the official resource book, "Austra
 • Australian values
 
 PRACTISE LIKE THE REAL TEST
-• Practice tests with 20 multiple-choice questions, including 5 on Australian values
+• 213 practice questions and full practice tests: 20 multiple-choice questions, including 5 on Australian values
 • The real pass rule: 75% overall AND every values question correct
 • Clear explanations after each answer
 • Hear questions read aloud
@@ -36,4 +36,4 @@ Free with ads. One optional purchase removes ads forever; every study feature st
 IMPORTANT
 Oathly is an independent study app. It is not affiliated with, endorsed by, or connected to the Australian Government Department of Home Affairs or any government agency, and it is not legal advice. The questions in the real test are not public; Oathly's practice questions are original and based only on the official booklet.
 Official source: https://immi.homeaffairs.gov.au/citizenship/test-and-interview/our-common-bond
-Practice questions are based on "Australian Citizenship: Our Common Bond" © Commonwealth of Australia, used under a Creative Commons Attribution licence.
+Practice questions are based on "Australian Citizenship: Our Common Bond" by the Department of Home Affairs (© Commonwealth of Australia), adapted under the Creative Commons Attribution 4.0 licence (CC BY 4.0).

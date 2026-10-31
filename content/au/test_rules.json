@@ -1,0 +1,18 @@
+{
+  "questions": 20,
+  "valuesQuestions": 5,
+  "passMarkPercent": 75,
+  "passMarkQuestions": 15,
+  "valuesRule": "You must answer all 5 Australian values questions correctly (5/5, 100%) and achieve an overall mark of at least 15/20 (75%).",
+  "timeLimitMinutes": 45,
+  "language": "English",
+  "format": "Computer-based, multiple choice",
+  "notes": "Official wording: to pass you must answer 20 multiple choice questions, answer 5/5 (100%) of the Australian values questions correctly and achieve an overall mark of at least 15/20 (75%); you have 45 minutes; the test is conducted in English only; all test questions are based on the Our Common Bond booklet, whose testable section has all the information needed to pass. The count of 5 values questions comes from '5/5' on the rules page and from the booklet's statement that, as of 15 November 2020, the test includes five questions on Australian values. The Home Affairs pages do not say in so many words that these 5 are part of the 20; the booklet's wording and the 20-question total imply they are, and the app treats them that way. The official pages checked do not state how many attempts are allowed or the exemption rules, so those are left out. Checked 31 October 2026.",
+  "sources": [
+    "https://immi.homeaffairs.gov.au/citizenship/test-and-interview/learn-about-citizenship-interview-and-test/learn-about-citizenship-test",
+    "https://citizenshippracticetest.homeaffairs.gov.au/",
+    "https://immi.homeaffairs.gov.au/citizenship/test-and-interview/our-common-bond",
+    "https://immi.homeaffairs.gov.au/citizenship/test-and-interview/prepare-for-test/practice-test-new",
+    "https://immi.homeaffairs.gov.au/citizenship-subsite/files/our-common-bond-testable.pdf"
+  ]
+}

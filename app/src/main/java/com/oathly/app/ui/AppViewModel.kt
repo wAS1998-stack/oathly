@@ -128,11 +128,14 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
     private val rnd = Random(System.nanoTime())
 
     init {
-        viewModelScope.launch { loadBanks(settings.value) }
+        viewModelScope.launch {
+            loadBanks(settings.value)
+            readiness = computeReadiness(settings.value)
+        }
         viewModelScope.launch {
             combine(stats, settings) { _, s -> s }.collectLatest { s ->
                 delay(250)
-                readiness = computeReadiness(s)
+                readiness = withContext(Dispatchers.Default) { computeReadiness(s) }
             }
         }
     }
