@@ -11,6 +11,9 @@ concurrency:
   group: android-${{ github.ref }}
   cancel-in-progress: true
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -36,6 +39,10 @@ jobs:
       - name: Unit tests, lint and debug build
         run: ./gradlew --no-daemon testDebugUnitTest lintDebug assembleDebug
 
+      - name: Summarise tests and lint
+        if: always()
+        run: python3 pipeline/ci_summary.py
+
       - name: Upload test and lint reports
         if: always()
         uses: actions/upload-artifact@v4
@@ -52,3 +59,16 @@ jobs:
           name: oathly-debug-apk
           path: app/build/outputs/apk/debug/*.apk
           retention-days: 14
+
+      # A direct download link for the latest test build:
+      # https://github.com/<owner>/oathly/releases/download/test-build/oathly-test.apk
+      - name: Publish test APK
+        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          cp app/build/outputs/apk/debug/app-debug.apk oathly-test.apk
+          gh release delete test-build --yes --cleanup-tag || true
+          gh release create test-build oathly-test.apk --prerelease --target "$GITHUB_SHA" \
+            --title "Test build (not for Google Play)" \
+            --notes "Latest test build of Oathly from commit $GITHUB_SHA. Uses Google's test ads. Install on an Android phone to try it; the Play Store version is built separately."
