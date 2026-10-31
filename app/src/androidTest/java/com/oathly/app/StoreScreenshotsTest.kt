@@ -1,6 +1,8 @@
 package com.oathly.app
 
 import android.graphics.Bitmap
+import androidx.compose.ui.test.hasSetTextAction
+import androidx.compose.ui.test.hasText
 import androidx.compose.ui.test.junit4.createEmptyComposeRule
 import androidx.compose.ui.test.onAllNodesWithTag
 import androidx.compose.ui.test.onAllNodesWithText
@@ -45,15 +47,18 @@ class StoreScreenshotsTest {
         File(dir, "$name.png").outputStream().use { bitmap.compress(Bitmap.CompressFormat.PNG, 100, it) }
     }
 
+    /** Text on screen, ignoring what's typed into text fields. */
+    private fun shown(text: String, substring: Boolean) = hasText(text, substring = substring) and !hasSetTextAction()
+
     private fun waitFor(text: String, substring: Boolean = false, timeoutMs: Long = 20_000) {
         compose.waitUntil(timeoutMs) {
-            compose.onAllNodesWithText(text, substring = substring).fetchSemanticsNodes().isNotEmpty()
+            compose.onAllNodes(shown(text, substring)).fetchSemanticsNodes().isNotEmpty()
         }
     }
 
     private fun tap(text: String, substring: Boolean = false) {
         waitFor(text, substring)
-        compose.onAllNodesWithText(text, substring = substring)[0].performClick()
+        compose.onAllNodes(shown(text, substring))[0].performClick()
         compose.waitForIdle()
     }
 
