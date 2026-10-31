@@ -1,0 +1,18 @@
+Copyright (c) 2026 Oathly. All rights reserved.
+
+The source code, design, original practice questions and explanations in this
+repository may not be copied, modified, published or distributed without
+written permission.
+
+Third-party material included here keeps its own terms:
+- USCIS civics questions and answers (content/us/source, app assets): works of
+  the U.S. Government, public domain (17 U.S.C. 105). The source banks were
+  transcribed by the civics-test-kit project (MIT licence).
+- Australian practice questions are original works by Oathly, based on
+  "Australian Citizenship: Our Common Bond" by the Australian Government
+  Department of Home Affairs, (c) Commonwealth of Australia, used under the
+  Creative Commons Attribution 4.0 International licence.
+- Officeholder data: unitedstates/congress-legislators (public domain) and
+  Wikidata (CC0).
+- Icons in app/src/main/res/drawable/ic_back, ic_close, ic_settings, ic_volume
+  and ic_mic are Material Icons (Apache License 2.0).
