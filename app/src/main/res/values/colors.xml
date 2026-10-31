@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="window_bg">#FFF8F6F1</color>
+    <color name="brand_navy">#FF1F3A5F</color>
+    <color name="brand_gold">#FFE0B04A</color>
+    <color name="ic_launcher_background">#FF1F3A5F</color>
+</resources>

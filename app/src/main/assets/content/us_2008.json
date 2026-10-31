@@ -1,0 +1,1601 @@
+{
+ "schema": 1,
+ "country": "US",
+ "version": "2008",
+ "title": "2008 civics test",
+ "source": {
+  "name": "U.S. Citizenship and Immigration Services (USCIS)",
+  "url": "https://www.uscis.gov/sites/default/files/document/questions-and-answers/100q.pdf",
+  "note": "Questions and answers are works of the U.S. Government (public domain). Oathly is not affiliated with USCIS or any government agency.",
+  "updatesUrl": "https://www.uscis.gov/citizenship/testupdates"
+ },
+ "rules": {
+  "asked": 10,
+  "passAt": 6,
+  "failAt": 5,
+  "seniorAsked": 10,
+  "seniorPassAt": 6
+ },
+ "questions": [
+  {
+   "id": "us2008-001",
+   "n": 1,
+   "cat": "government",
+   "catTitle": "American Government",
+   "sub": "Principles of American Democracy",
+   "q": "What is the supreme law of the land?",
+   "a": [
+    "the Constitution"
+   ],
+   "need": 1,
+   "senior": false,
+   "exp": "The Constitution is the highest law in the country, so every federal and state law must follow it. Courts can rule that a law that goes against the Constitution is not valid."
+  },
+  {
+   "id": "us2008-002",
+   "n": 2,
+   "cat": "government",
+   "catTitle": "American Government",
+   "sub": "Principles of American Democracy",
+   "q": "What does the Constitution do?",
+   "a": [
+    "sets up the government",
+    "defines the government",
+    "protects basic rights of Americans"
+   ],
+   "need": 1,
+   "senior": false,
+   "exp": "Written in 1787, the Constitution sets up the three branches of government and explains what each can do. Its amendments, including the Bill of Rights, protect people's rights."
+  },
+  {
+   "id": "us2008-003",
+   "n": 3,
+   "cat": "government",
+   "catTitle": "American Government",
+   "sub": "Principles of American Democracy",
+   "q": "The idea of self-government is in the first three words of the Constitution. What are these words?",
+   "a": [
+    "We the People"
+   ],
+   "need": 1,
+   "senior": false,
+   "exp": "These opening words of the Constitution show that the government's power comes from the people, not from a king. Citizens choose their leaders, which is the idea of self-government."
+  },
+  {
+   "id": "us2008-004",
+   "n": 4,
+   "cat": "government",
+   "catTitle": "American Government",
+   "sub": "Principles of American Democracy",
+   "q": "What is an amendment?",
+   "a": [
+    "a change (to the Constitution)",
+    "an addition (to the Constitution)"
+   ],
+   "need": 1,
+   "senior": false,
+   "exp": "To amend means to change. An amendment usually needs votes from two-thirds of both the House and the Senate, then approval from three-fourths of the states."
+  },
+  {
+   "id": "us2008-005",
+   "n": 5,
+   "cat": "government",
+   "catTitle": "American Government",
+   "sub": "Principles of American Democracy",
+   "q": "What do we call the first ten amendments to the Constitution?",
+   "a": [
+    "the Bill of Rights"
+   ],
+   "need": 1,
+   "senior": false,
+   "exp": "Some Americans worried that the new Constitution did not do enough to protect individual rights, so James Madison proposed amendments. The first ten were added in 1791."
+  },
+  {
+   "id": "us2008-006",
+   "n": 6,
+   "cat": "government",
+   "catTitle": "American Government",
+   "sub": "Principles of American Democracy",
+   "q": "What is one right or freedom from the First Amendment?",
+   "a": [
+    "speech",
+    "religion",
+    "assembly",
+    "press",
+    "petition the government"
+   ],
+   "need": 1,
+   "senior": true,
+   "exp": "To remember the five First Amendment freedoms, think RAPPS: Religion, Assembly, Press, Petition, and Speech. The First Amendment is part of the Bill of Rights, added in 1791."
+  },
+  {
+   "id": "us2008-007",
+   "n": 7,
+   "cat": "government",
+   "catTitle": "American Government",
+   "sub": "Principles of American Democracy",
+   "q": "How many amendments does the Constitution have?",
+   "a": [
+    "twenty-seven (27)"
+   ],
+   "need": 1,
+   "senior": false,
+   "exp": "Changing the Constitution is hard, so it has been amended only 27 times since it was written in 1787. The most recent amendment was added in 1992."
+  },
+  {
+   "id": "us2008-008",
+   "n": 8,
+   "cat": "government",
+   "catTitle": "American Government",
+   "sub": "Principles of American Democracy",
+   "q": "What did the Declaration of Independence do?",
+   "a": [
+    "announced our independence (from Great Britain)",
+    "declared our independence (from Great Britain)",
+    "said that the United States is free (from Great Britain)"
+   ],
+   "need": 1,
+   "senior": false,
+   "exp": "Adopted on July 4, 1776, the Declaration explained why the 13 colonies were breaking away from Great Britain. It listed the colonists' complaints against the British king."
+  },
+  {
+   "id": "us2008-009",
+   "n": 9,
+   "cat": "government",
+   "catTitle": "American Government",
+   "sub": "Principles of American Democracy",
+   "q": "What are two rights in the Declaration of Independence?",
+   "a": [
+    "life",
+    "liberty",
+    "pursuit of happiness"
+   ],
+   "need": 2,
+   "senior": false,
+   "exp": "The Declaration says all people are born with rights that cannot be taken away, including 'Life, Liberty and the pursuit of Happiness.' It says governments exist to protect these rights."
+  },
+  {
+   "id": "us2008-010",
+   "n": 10,
+   "cat": "government",
+   "catTitle": "American Government",
+   "sub": "Principles of American Democracy",
+   "q": "What is freedom of religion?",
+   "a": [
+    "You can practice any religion, or not practice a religion."
+   ],
+   "need": 1,
+   "senior": false,
+   "exp": "The First Amendment protects this freedom and says Congress cannot set up an official national religion. Many early colonists came to America so they could worship freely."
+  },
+  {
+   "id": "us2008-011",
+   "n": 11,
+   "cat": "government",
+   "catTitle": "American Government",
+   "sub": "Principles of American Democracy",
+   "q": "What is the economic system in the United States?",
+   "a": [
+    "capitalist economy",
+    "market economy"
+   ],
+   "need": 1,
+   "senior": true,
+   "exp": "In a market economy, people and private companies, not the government, own most businesses. They decide what to make, buy, and sell."
+  },
+  {
+   "id": "us2008-012",
+   "n": 12,
+   "cat": "government",
+   "catTitle": "American Government",
+   "sub": "Principles of American Democracy",
+   "q": "What is the “rule of law”?",
+   "a": [
+    "Everyone must follow the law.",
+    "Leaders must obey the law.",
+    "Government must obey the law.",
+    "No one is above the law."
+   ],
+   "need": 1,
+   "senior": false,
+   "exp": "The rule of law means the same laws apply to everyone equally. Even presidents, members of Congress, and judges can be held responsible if they break the law."
+  },
+  {
+   "id": "us2008-013",
+   "n": 13,
+   "cat": "government",
+   "catTitle": "American Government",
+   "sub": "System of Government",
+   "q": "Name one branch or part of the government.",
+   "a": [
+    "Congress",
+    "legislative",
+    "President",
+    "executive",
+    "the courts",
+    "judicial"
+   ],
+   "need": 1,
+   "senior": true,
+   "exp": "There are three branches. Congress (legislative) makes laws, the President (executive) carries them out, and the courts (judicial) explain them."
+  },
+  {
+   "id": "us2008-014",
+   "n": 14,
+   "cat": "government",
+   "catTitle": "American Government",
+   "sub": "System of Government",
+   "q": "What stops one branch of government from becoming too powerful?",
+   "a": [
+    "checks and balances",
+    "separation of powers"
+   ],
+   "need": 1,
+   "senior": false,
+   "exp": "Power is split among three branches, and each can limit the others. For example, the President can veto a bill, but Congress can override the veto with a two-thirds vote in both houses."
+  },
+  {
+   "id": "us2008-015",
+   "n": 15,
+   "cat": "government",
+   "catTitle": "American Government",
+   "sub": "System of Government",
+   "q": "Who is in charge of the executive branch?",
+   "a": [
+    "the President"
+   ],
+   "need": 1,
+   "senior": false,
+   "exp": "The executive branch carries out and enforces the laws. The President leads it, with help from the Vice President, the Cabinet, and federal agencies."
+  },
+  {
+   "id": "us2008-016",
+   "n": 16,
+   "cat": "government",
+   "catTitle": "American Government",
+   "sub": "System of Government",
+   "q": "Who makes federal laws?",
+   "a": [
+    "Congress",
+    "Senate and House (of Representatives)",
+    "(U.S. or national) legislature"
+   ],
+   "need": 1,
+   "senior": false,
+   "exp": "Congress is the legislative branch, made up of the Senate and the House of Representatives. A bill must pass both before it goes to the President to sign."
+  },
+  {
+   "id": "us2008-017",
+   "n": 17,
+   "cat": "government",
+   "catTitle": "American Government",
+   "sub": "System of Government",
+   "q": "What are the two parts of the U.S. Congress?",
+   "a": [
+    "the Senate and House (of Representatives)"
+   ],
+   "need": 1,
+   "senior": true,
+   "exp": "The Senate has 100 members, two from each state. The House has 435 voting members, and states with more people get more of them."
+  },
+  {
+   "id": "us2008-018",
+   "n": 18,
+   "cat": "government",
+   "catTitle": "American Government",
+   "sub": "System of Government",
+   "q": "How many U.S. Senators are there?",
+   "a": [
+    "one hundred (100)"
+   ],
+   "need": 1,
+   "senior": false,
+   "exp": "Each of the 50 states has two senators, so 50 times 2 equals 100 senators."
+  },
+  {
+   "id": "us2008-019",
+   "n": 19,
+   "cat": "government",
+   "catTitle": "American Government",
+   "sub": "System of Government",
+   "q": "We elect a U.S. Senator for how many years?",
+   "a": [
+    "six (6)"
+   ],
+   "need": 1,
+   "senior": false,
+   "exp": "Senators serve six-year terms. Their elections are spread out, so only about one-third of Senate seats are up for election every two years."
+  },
+  {
+   "id": "us2008-020",
+   "n": 20,
+   "cat": "government",
+   "catTitle": "American Government",
+   "sub": "System of Government",
+   "q": "Who is one of your state’s U.S. Senators now?",
+   "a": [],
+   "need": 1,
+   "senior": true,
+   "dyn": "senators",
+   "dynNote": "Answers will vary. [District of Columbia residents and residents of U.S. territories should answer that D.C. (or the territory where the applicant lives) has no U.S. Senators.]",
+   "exp": "Every state has two U.S. senators, elected by voters from the whole state for six-year terms. Washington, D.C., and the U.S. territories do not have senators."
+  },
+  {
+   "id": "us2008-021",
+   "n": 21,
+   "cat": "government",
+   "catTitle": "American Government",
+   "sub": "System of Government",
+   "q": "The House of Representatives has how many voting members?",
+   "a": [
+    "four hundred thirty-five (435)"
+   ],
+   "need": 1,
+   "senior": false,
+   "exp": "After each census, taken every 10 years, the 435 House seats are divided among the states by population. Every state gets at least one representative."
+  },
+  {
+   "id": "us2008-022",
+   "n": 22,
+   "cat": "government",
+   "catTitle": "American Government",
+   "sub": "System of Government",
+   "q": "We elect a U.S. Representative for how many years?",
+   "a": [
+    "two (2)"
+   ],
+   "need": 1,
+   "senior": false,
+   "exp": "All 435 House seats are up for election every two years, in even-numbered years. Short terms keep representatives closely connected to what voters in their district want."
+  },
+  {
+   "id": "us2008-023",
+   "n": 23,
+   "cat": "government",
+   "catTitle": "American Government",
+   "sub": "System of Government",
+   "q": "Name your U.S. Representative.",
+   "a": [],
+   "need": 1,
+   "senior": false,
+   "dyn": "representative",
+   "dynNote": "Answers will vary. [Residents of territories with nonvoting Delegates or Resident Commissioners may provide the name of that Delegate or Commissioner. Also acceptable is any statement that the territory has no (voting) Representatives in Congress.]",
+   "exp": "Your U.S. representative is the member of the House elected by voters in your congressional district for a two-year term. You can look up yours by your home address."
+  },
+  {
+   "id": "us2008-024",
+   "n": 24,
+   "cat": "government",
+   "catTitle": "American Government",
+   "sub": "System of Government",
+   "q": "Who does a U.S. Senator represent?",
+   "a": [
+    "all people of the state"
+   ],
+   "need": 1,
+   "senior": false,
+   "exp": "A senator represents everyone in their whole state, not just one district. That is why senators are chosen in statewide elections."
+  },
+  {
+   "id": "us2008-025",
+   "n": 25,
+   "cat": "government",
+   "catTitle": "American Government",
+   "sub": "System of Government",
+   "q": "Why do some states have more Representatives than other states?",
+   "a": [
+    "(because of) the state’s population",
+    "(because) they have more people",
+    "(because) some states have more people"
+   ],
+   "need": 1,
+   "senior": false,
+   "exp": "The census counts the population every 10 years. After each count, the 435 House seats are divided again, so a state that grows faster than others can gain seats."
+  },
+  {
+   "id": "us2008-026",
+   "n": 26,
+   "cat": "government",
+   "catTitle": "American Government",
+   "sub": "System of Government",
+   "q": "We elect a President for how many years?",
+   "a": [
+    "four (4)"
+   ],
+   "need": 1,
+   "senior": false,
+   "exp": "Presidential elections are held every four years, and a president can be elected no more than twice. A new presidential term begins on January 20."
+  },
+  {
+   "id": "us2008-027",
+   "n": 27,
+   "cat": "government",
+   "catTitle": "American Government",
+   "sub": "System of Government",
+   "q": "In what month do we vote for President?",
+   "a": [
+    "November"
+   ],
+   "need": 1,
+   "senior": true,
+   "exp": "Election Day is the Tuesday after the first Monday in November, so it always falls between November 2 and 8. Presidential elections happen every four years."
+  },
+  {
+   "id": "us2008-028",
+   "n": 28,
+   "cat": "government",
+   "catTitle": "American Government",
+   "sub": "System of Government",
+   "q": "What is the name of the President of the United States now?",
+   "a": [],
+   "need": 1,
+   "senior": true,
+   "dyn": "president",
+   "dynNote": "Visit uscis.gov/citizenship/testupdates for the name of the President of the United States.",
+   "exp": "The President leads the executive branch and is Commander in Chief of the military. Presidents are elected every four years and can be elected no more than twice."
+  },
+  {
+   "id": "us2008-029",
+   "n": 29,
+   "cat": "government",
+   "catTitle": "American Government",
+   "sub": "System of Government",
+   "q": "What is the name of the Vice President of the United States now?",
+   "a": [],
+   "need": 1,
+   "senior": false,
+   "dyn": "vice_president",
+   "dynNote": "Visit uscis.gov/citizenship/testupdates for the name of the Vice President of the United States.",
+   "exp": "The Vice President is elected with the President and becomes President if the President can no longer serve. The Vice President also serves as President of the Senate and can break tie votes there."
+  },
+  {
+   "id": "us2008-030",
+   "n": 30,
+   "cat": "government",
+   "catTitle": "American Government",
+   "sub": "System of Government",
+   "q": "If the President can no longer serve, who becomes President?",
+   "a": [
+    "the Vice President"
+   ],
+   "need": 1,
+   "senior": false,
+   "exp": "The Vice President is first in line to take over. The 25th Amendment says the Vice President becomes President if the President dies, resigns, or is removed from office."
+  },
+  {
+   "id": "us2008-031",
+   "n": 31,
+   "cat": "government",
+   "catTitle": "American Government",
+   "sub": "System of Government",
+   "q": "If both the President and the Vice President can no longer serve, who becomes President?",
+   "a": [
+    "the Speaker of the House"
+   ],
+   "need": 1,
+   "senior": false,
+   "exp": "A law called the Presidential Succession Act sets the order. After the Vice President comes the Speaker, who leads the House of Representatives and is chosen by its members."
+  },
+  {
+   "id": "us2008-032",
+   "n": 32,
+   "cat": "government",
+   "catTitle": "American Government",
+   "sub": "System of Government",
+   "q": "Who is the Commander in Chief of the military?",
+   "a": [
+    "the President"
+   ],
+   "need": 1,
+   "senior": false,
+   "exp": "The Constitution makes the President, an elected civilian, the head of the armed forces. This keeps the military under civilian control, while only Congress can declare war."
+  },
+  {
+   "id": "us2008-033",
+   "n": 33,
+   "cat": "government",
+   "catTitle": "American Government",
+   "sub": "System of Government",
+   "q": "Who signs bills to become laws?",
+   "a": [
+    "the President"
+   ],
+   "need": 1,
+   "senior": false,
+   "exp": "After a bill passes both the House and the Senate, it goes to the President. When the President signs it, the bill becomes a law."
+  },
+  {
+   "id": "us2008-034",
+   "n": 34,
+   "cat": "government",
+   "catTitle": "American Government",
+   "sub": "System of Government",
+   "q": "Who vetoes bills?",
+   "a": [
+    "the President"
+   ],
+   "need": 1,
+   "senior": false,
+   "exp": "'Veto' is Latin for 'I forbid.' The President can veto, or reject, a bill from Congress, but two-thirds of both houses can vote to override the veto."
+  },
+  {
+   "id": "us2008-035",
+   "n": 35,
+   "cat": "government",
+   "catTitle": "American Government",
+   "sub": "System of Government",
+   "q": "What does the President’s Cabinet do?",
+   "a": [
+    "advises the President"
+   ],
+   "need": 1,
+   "senior": false,
+   "exp": "Most Cabinet members lead departments, like State or Treasury, and give the President advice about their areas. George Washington's first Cabinet had only four members."
+  },
+  {
+   "id": "us2008-036",
+   "n": 36,
+   "cat": "government",
+   "catTitle": "American Government",
+   "sub": "System of Government",
+   "q": "What are two Cabinet-level positions?",
+   "a": [
+    "Secretary of Agriculture",
+    "Secretary of Commerce",
+    "Secretary of Defense",
+    "Secretary of Education",
+    "Secretary of Energy",
+    "Secretary of Health and Human Services",
+    "Secretary of Homeland Security",
+    "Secretary of Housing and Urban Development",
+    "Secretary of the Interior",
+    "Secretary of Labor",
+    "Secretary of State",
+    "Secretary of Transportation",
+    "Secretary of the Treasury",
+    "Secretary of Veterans Affairs",
+    "Attorney General",
+    "Vice President"
+   ],
+   "need": 2,
+   "senior": false,
+   "exp": "Most Cabinet members lead a federal department and have the title Secretary, like the Secretary of State. The head of the Justice Department is called the Attorney General instead."
+  },
+  {
+   "id": "us2008-037",
+   "n": 37,
+   "cat": "government",
+   "catTitle": "American Government",
+   "sub": "System of Government",
+   "q": "What does the judicial branch do?",
+   "a": [
+    "reviews laws",
+    "explains laws",
+    "resolves disputes (disagreements)",
+    "decides if a law goes against the Constitution"
+   ],
+   "need": 1,
+   "senior": false,
+   "exp": "Courts decide what laws mean and settle disagreements about them. The power to decide that a law goes against the Constitution is called judicial review."
+  },
+  {
+   "id": "us2008-038",
+   "n": 38,
+   "cat": "government",
+   "catTitle": "American Government",
+   "sub": "System of Government",
+   "q": "What is the highest court in the United States?",
+   "a": [
+    "the Supreme Court"
+   ],
+   "need": 1,
+   "senior": false,
+   "exp": "The Supreme Court has the final say on cases about federal law and the Constitution. All lower courts must follow its decisions."
+  },
+  {
+   "id": "us2008-039",
+   "n": 39,
+   "cat": "government",
+   "catTitle": "American Government",
+   "sub": "System of Government",
+   "q": "How many justices are on the Supreme Court?",
+   "a": [],
+   "need": 1,
+   "senior": false,
+   "dyn": "justices_count",
+   "dynNote": "Visit uscis.gov/citizenship/testupdates for the number of justices on the Supreme Court.",
+   "exp": "The Constitution does not say how many justices there are, so Congress sets the number by law. The Court is led by the Chief Justice, and the others are called Associate Justices."
+  },
+  {
+   "id": "us2008-040",
+   "n": 40,
+   "cat": "government",
+   "catTitle": "American Government",
+   "sub": "System of Government",
+   "q": "Who is the Chief Justice of the United States now?",
+   "a": [],
+   "need": 1,
+   "senior": false,
+   "dyn": "chief_justice",
+   "dynNote": "Visit uscis.gov/citizenship/testupdates for the name of the Chief Justice of the United States.",
+   "exp": "The Chief Justice leads the Supreme Court and the federal court system. Like all justices, the Chief Justice is appointed by the President, approved by the Senate, and can serve for life."
+  },
+  {
+   "id": "us2008-041",
+   "n": 41,
+   "cat": "government",
+   "catTitle": "American Government",
+   "sub": "System of Government",
+   "q": "Under our Constitution, some powers belong to the federal government. What is one power of the federal government?",
+   "a": [
+    "to print money",
+    "to declare war",
+    "to create an army",
+    "to make treaties"
+   ],
+   "need": 1,
+   "senior": false,
+   "exp": "These powers belong to the national government so the country acts as one nation, with one kind of money and one voice with other countries. States cannot print money or make treaties."
+  },
+  {
+   "id": "us2008-042",
+   "n": 42,
+   "cat": "government",
+   "catTitle": "American Government",
+   "sub": "System of Government",
+   "q": "Under our Constitution, some powers belong to the states. What is one power of the states?",
+   "a": [
+    "provide schooling and education",
+    "provide protection (police)",
+    "provide safety (fire departments)",
+    "give a driver’s license",
+    "approve zoning and land use"
+   ],
+   "need": 1,
+   "senior": false,
+   "exp": "Sharing power between the national government and the states is called federalism. It is why rules for schools and driver's licenses can differ from state to state."
+  },
+  {
+   "id": "us2008-043",
+   "n": 43,
+   "cat": "government",
+   "catTitle": "American Government",
+   "sub": "System of Government",
+   "q": "Who is the Governor of your state now?",
+   "a": [],
+   "need": 1,
+   "senior": false,
+   "dyn": "governor",
+   "dynNote": "Answers will vary. [District of Columbia residents should answer that D.C. does not have a Governor.]",
+   "exp": "The governor leads a state's executive branch, a bit like a president for the state, and is elected by the state's voters. Washington, D.C., has a mayor instead of a governor."
+  },
+  {
+   "id": "us2008-044",
+   "n": 44,
+   "cat": "government",
+   "catTitle": "American Government",
+   "sub": "System of Government",
+   "q": "What is the capital of your state?",
+   "a": [],
+   "need": 1,
+   "senior": true,
+   "dyn": "capital",
+   "dynNote": "Answers will vary. [District of Columbia residents should answer that D.C. is not a state and does not have a capital. Residents of U.S. territories should name the capital of the territory.]",
+   "exp": "A state capital is the city where the state government is based, including the governor's office and the state legislature. Often, it is not the state's largest city."
+  },
+  {
+   "id": "us2008-045",
+   "n": 45,
+   "cat": "government",
+   "catTitle": "American Government",
+   "sub": "System of Government",
+   "q": "What are the two major political parties in the United States?",
+   "a": [
+    "Democratic and Republican"
+   ],
+   "need": 1,
+   "senior": true,
+   "exp": "The Democratic Party is the older of the two, and the Republican Party was founded in 1854. Smaller parties exist too, but these two have been the largest for more than 150 years."
+  },
+  {
+   "id": "us2008-046",
+   "n": 46,
+   "cat": "government",
+   "catTitle": "American Government",
+   "sub": "System of Government",
+   "q": "What is the political party of the President now?",
+   "a": [],
+   "need": 1,
+   "senior": false,
+   "dyn": "president_party",
+   "dynNote": "Visit uscis.gov/citizenship/testupdates for the political party of the President.",
+   "exp": "Which party holds the presidency can change after each presidential election, held every four years. In modern times, every president has been either a Democrat or a Republican."
+  },
+  {
+   "id": "us2008-047",
+   "n": 47,
+   "cat": "government",
+   "catTitle": "American Government",
+   "sub": "System of Government",
+   "q": "What is the name of the Speaker of the House of Representatives now?",
+   "a": [],
+   "need": 1,
+   "senior": false,
+   "dyn": "speaker",
+   "dynNote": "Visit uscis.gov/citizenship/testupdates for the name of the Speaker of the House of Representatives.",
+   "exp": "The Speaker leads the House of Representatives and is chosen by its members. The Speaker is second in line to become President, after the Vice President."
+  },
+  {
+   "id": "us2008-048",
+   "n": 48,
+   "cat": "government",
+   "catTitle": "American Government",
+   "sub": "Rights and Responsibilities",
+   "q": "There are four amendments to the Constitution about who can vote. Describe one of them.",
+   "a": [
+    "Citizens eighteen (18) and older (can vote).",
+    "You don’t have to pay (a poll tax) to vote.",
+    "Any citizen can vote. (Women and men can vote.)",
+    "A male citizen of any race (can vote)."
+   ],
+   "need": 1,
+   "senior": false,
+   "exp": "The 15th Amendment protects voting for citizens of any race, the 19th for women, and the 26th for citizens 18 and older. The 24th bans poll taxes (fees to vote) in federal elections."
+  },
+  {
+   "id": "us2008-049",
+   "n": 49,
+   "cat": "government",
+   "catTitle": "American Government",
+   "sub": "Rights and Responsibilities",
+   "q": "What is one responsibility that is only for United States citizens?",
+   "a": [
+    "serve on a jury",
+    "vote in a federal election"
+   ],
+   "need": 1,
+   "senior": true,
+   "exp": "A jury is a group of citizens who hear the evidence in a trial and help decide the case. Permanent residents cannot serve on juries or vote in federal elections."
+  },
+  {
+   "id": "us2008-050",
+   "n": 50,
+   "cat": "government",
+   "catTitle": "American Government",
+   "sub": "Rights and Responsibilities",
+   "q": "Name one right only for United States citizens.",
+   "a": [
+    "vote in a federal election",
+    "run for federal office"
+   ],
+   "need": 1,
+   "senior": false,
+   "exp": "Permanent residents share many rights, but only citizens can vote in federal elections. The Constitution also requires the President and members of Congress to be citizens."
+  },
+  {
+   "id": "us2008-051",
+   "n": 51,
+   "cat": "government",
+   "catTitle": "American Government",
+   "sub": "Rights and Responsibilities",
+   "q": "What are two rights of everyone living in the United States?",
+   "a": [
+    "freedom of expression",
+    "freedom of speech",
+    "freedom of assembly",
+    "freedom to petition the government",
+    "freedom of religion",
+    "the right to bear arms"
+   ],
+   "need": 2,
+   "senior": false,
+   "exp": "These rights come from the First and Second Amendments in the Bill of Rights. They protect everyone living in the United States, not only citizens."
+  },
+  {
+   "id": "us2008-052",
+   "n": 52,
+   "cat": "government",
+   "catTitle": "American Government",
+   "sub": "Rights and Responsibilities",
+   "q": "What do we show loyalty to when we say the Pledge of Allegiance?",
+   "a": [
+    "the United States",
+    "the flag"
+   ],
+   "need": 1,
+   "senior": false,
+   "exp": "The Pledge begins, 'I pledge allegiance to the Flag of the United States of America, and to the Republic for which it stands.' Allegiance means loyalty."
+  },
+  {
+   "id": "us2008-053",
+   "n": 53,
+   "cat": "government",
+   "catTitle": "American Government",
+   "sub": "Rights and Responsibilities",
+   "q": "What is one promise you make when you become a United States citizen?",
+   "a": [
+    "give up loyalty to other countries",
+    "defend the Constitution and laws of the United States",
+    "obey the laws of the United States",
+    "serve in the U.S. military (if needed)",
+    "serve (do important work for) the nation (if needed)",
+    "be loyal to the United States"
+   ],
+   "need": 1,
+   "senior": false,
+   "exp": "New citizens make these promises when they say the Oath of Allegiance at a naturalization ceremony. Taking the oath is the final step to becoming a U.S. citizen."
+  },
+  {
+   "id": "us2008-054",
+   "n": 54,
+   "cat": "government",
+   "catTitle": "American Government",
+   "sub": "Rights and Responsibilities",
+   "q": "How old do citizens have to be to vote for President?",
+   "a": [
+    "eighteen (18) and older"
+   ],
+   "need": 1,
+   "senior": true,
+   "exp": "The 26th Amendment, added in 1971, lowered the voting age to 18 across the country. Before that, most states required voters to be 21."
+  },
+  {
+   "id": "us2008-055",
+   "n": 55,
+   "cat": "government",
+   "catTitle": "American Government",
+   "sub": "Rights and Responsibilities",
+   "q": "What are two ways that Americans can participate in their democracy?",
+   "a": [
+    "vote",
+    "join a political party",
+    "help with a campaign",
+    "join a civic group",
+    "join a community group",
+    "give an elected official your opinion on an issue",
+    "call Senators and Representatives",
+    "publicly support or oppose an issue or policy",
+    "run for office",
+    "write to a newspaper"
+   ],
+   "need": 2,
+   "senior": false,
+   "exp": "In a democracy, people take part in government in many ways, not only by voting. Sharing your opinion with elected officials helps them know what the people they represent want."
+  },
+  {
+   "id": "us2008-056",
+   "n": 56,
+   "cat": "government",
+   "catTitle": "American Government",
+   "sub": "Rights and Responsibilities",
+   "q": "When is the last day you can send in federal income tax forms?",
+   "a": [
+    "April 15"
+   ],
+   "need": 1,
+   "senior": true,
+   "exp": "April 15 has been the usual federal tax deadline since 1955. Each year's tax return reports the income you earned in the year before."
+  },
+  {
+   "id": "us2008-057",
+   "n": 57,
+   "cat": "government",
+   "catTitle": "American Government",
+   "sub": "Rights and Responsibilities",
+   "q": "When must all men register for the Selective Service?",
+   "a": [
+    "at age eighteen (18)",
+    "between eighteen (18) and twenty-six (26)"
+   ],
+   "need": 1,
+   "senior": false,
+   "exp": "Men must register within 30 days of turning 18, and they can still register until their 26th birthday. Most immigrant men who live in the U.S. must register too."
+  },
+  {
+   "id": "us2008-058",
+   "n": 58,
+   "cat": "history",
+   "catTitle": "American History",
+   "sub": "Colonial Period and Independence",
+   "q": "What is one reason colonists came to America?",
+   "a": [
+    "freedom",
+    "political liberty",
+    "religious freedom",
+    "economic opportunity",
+    "practice their religion",
+    "escape persecution"
+   ],
+   "need": 1,
+   "senior": false,
+   "exp": "Many early colonists, like the Pilgrims who came on the Mayflower in 1620, wanted religious freedom. Others came for economic opportunity, such as the chance to own land."
+  },
+  {
+   "id": "us2008-059",
+   "n": 59,
+   "cat": "history",
+   "catTitle": "American History",
+   "sub": "Colonial Period and Independence",
+   "q": "Who lived in America before the Europeans arrived?",
+   "a": [
+    "American Indians",
+    "Native Americans"
+   ],
+   "need": 1,
+   "senior": false,
+   "exp": "Native Americans, also called American Indians, lived across North America for thousands of years before Europeans arrived. They formed many nations with different languages and cultures."
+  },
+  {
+   "id": "us2008-060",
+   "n": 60,
+   "cat": "history",
+   "catTitle": "American History",
+   "sub": "Colonial Period and Independence",
+   "q": "What group of people was taken to America and sold as slaves?",
+   "a": [
+    "Africans",
+    "people from Africa"
+   ],
+   "need": 1,
+   "senior": false,
+   "exp": "Millions of Africans were captured, taken by ship across the Atlantic Ocean, and sold into slavery in the Americas. Slavery in the United States ended in 1865 with the 13th Amendment."
+  },
+  {
+   "id": "us2008-061",
+   "n": 61,
+   "cat": "history",
+   "catTitle": "American History",
+   "sub": "Colonial Period and Independence",
+   "q": "Why did the colonists fight the British?",
+   "a": [
+    "because of high taxes (taxation without representation)",
+    "because the British army stayed in their houses (boarding, quartering)",
+    "because they didn’t have self-government"
+   ],
+   "need": 1,
+   "senior": false,
+   "exp": "Colonists had no representatives in the British Parliament, yet Parliament taxed them anyway. Fighting began in 1775, and the colonies declared independence the next year."
+  },
+  {
+   "id": "us2008-062",
+   "n": 62,
+   "cat": "history",
+   "catTitle": "American History",
+   "sub": "Colonial Period and Independence",
+   "q": "Who wrote the Declaration of Independence?",
+   "a": [
+    "(Thomas) Jefferson"
+   ],
+   "need": 1,
+   "senior": false,
+   "exp": "Thomas Jefferson of Virginia wrote the first draft in 1776, and the Continental Congress adopted it on July 4. Jefferson later became the third President."
+  },
+  {
+   "id": "us2008-063",
+   "n": 63,
+   "cat": "history",
+   "catTitle": "American History",
+   "sub": "Colonial Period and Independence",
+   "q": "When was the Declaration of Independence adopted?",
+   "a": [
+    "July 4, 1776"
+   ],
+   "need": 1,
+   "senior": false,
+   "exp": "The Continental Congress adopted the Declaration of Independence on July 4, 1776, in Philadelphia. That is why Americans celebrate Independence Day every July 4."
+  },
+  {
+   "id": "us2008-064",
+   "n": 64,
+   "cat": "history",
+   "catTitle": "American History",
+   "sub": "Colonial Period and Independence",
+   "q": "There were 13 original states. Name three.",
+   "a": [
+    "New Hampshire",
+    "Massachusetts",
+    "Rhode Island",
+    "Connecticut",
+    "New York",
+    "New Jersey",
+    "Pennsylvania",
+    "Delaware",
+    "Maryland",
+    "Virginia",
+    "North Carolina",
+    "South Carolina",
+    "Georgia"
+   ],
+   "need": 3,
+   "senior": false,
+   "exp": "The 13 original states began as British colonies along the Atlantic coast, from New England south to Georgia. The 13 stripes on the flag stand for them."
+  },
+  {
+   "id": "us2008-065",
+   "n": 65,
+   "cat": "history",
+   "catTitle": "American History",
+   "sub": "Colonial Period and Independence",
+   "q": "What happened at the Constitutional Convention?",
+   "a": [
+    "The Constitution was written.",
+    "The Founding Fathers wrote the Constitution."
+   ],
+   "need": 1,
+   "senior": false,
+   "exp": "In 1787, delegates from 12 states met in Philadelphia to fix the weak Articles of Confederation. Instead, they wrote a new plan of government, the Constitution."
+  },
+  {
+   "id": "us2008-066",
+   "n": 66,
+   "cat": "history",
+   "catTitle": "American History",
+   "sub": "Colonial Period and Independence",
+   "q": "When was the Constitution written?",
+   "a": [
+    "1787"
+   ],
+   "need": 1,
+   "senior": false,
+   "exp": "Delegates met in Philadelphia from May to September 1787 and signed the Constitution on September 17. The new government began in 1789, after enough states approved it."
+  },
+  {
+   "id": "us2008-067",
+   "n": 67,
+   "cat": "history",
+   "catTitle": "American History",
+   "sub": "Colonial Period and Independence",
+   "q": "The Federalist Papers supported the passage of the U.S. Constitution. Name one of the writers.",
+   "a": [
+    "(James) Madison",
+    "(Alexander) Hamilton",
+    "(John) Jay",
+    "Publius"
+   ],
+   "need": 1,
+   "senior": false,
+   "exp": "Madison, Hamilton, and Jay wrote 85 essays in 1787 and 1788 to convince New Yorkers to support the new Constitution. They signed them with one shared pen name, 'Publius.'"
+  },
+  {
+   "id": "us2008-068",
+   "n": 68,
+   "cat": "history",
+   "catTitle": "American History",
+   "sub": "Colonial Period and Independence",
+   "q": "What is one thing Benjamin Franklin is famous for?",
+   "a": [
+    "U.S. diplomat",
+    "oldest member of the Constitutional Convention",
+    "first Postmaster General of the United States",
+    "writer of “Poor Richard’s Almanac”",
+    "started the first free libraries"
+   ],
+   "need": 1,
+   "senior": false,
+   "exp": "At 81, Franklin was the oldest delegate at the Constitutional Convention in 1787. Earlier, as a U.S. diplomat in France, he helped win French support during the Revolutionary War."
+  },
+  {
+   "id": "us2008-069",
+   "n": 69,
+   "cat": "history",
+   "catTitle": "American History",
+   "sub": "Colonial Period and Independence",
+   "q": "Who is the “Father of Our Country”?",
+   "a": [
+    "(George) Washington"
+   ],
+   "need": 1,
+   "senior": false,
+   "exp": "Washington led the Continental Army to victory in the Revolutionary War and became the first President in 1789. Because of his role in founding the nation, he is called the 'Father of Our Country.'"
+  },
+  {
+   "id": "us2008-070",
+   "n": 70,
+   "cat": "history",
+   "catTitle": "American History",
+   "sub": "Colonial Period and Independence",
+   "q": "Who was the first President?",
+   "a": [
+    "(George) Washington"
+   ],
+   "need": 1,
+   "senior": true,
+   "exp": "George Washington became the first President in 1789 and served two terms. He chose to step down after eight years, which started a two-term tradition."
+  },
+  {
+   "id": "us2008-071",
+   "n": 71,
+   "cat": "history",
+   "catTitle": "American History",
+   "sub": "1800s",
+   "q": "What territory did the United States buy from France in 1803?",
+   "a": [
+    "the Louisiana Territory",
+    "Louisiana"
+   ],
+   "need": 1,
+   "senior": false,
+   "exp": "In 1803, under President Jefferson, the U.S. paid France about $15 million for the Louisiana Territory, west of the Mississippi River. It doubled the size of the country."
+  },
+  {
+   "id": "us2008-072",
+   "n": 72,
+   "cat": "history",
+   "catTitle": "American History",
+   "sub": "1800s",
+   "q": "Name one war fought by the United States in the 1800s.",
+   "a": [
+    "War of 1812",
+    "Mexican-American War",
+    "Civil War",
+    "Spanish-American War"
+   ],
+   "need": 1,
+   "senior": false,
+   "exp": "The War of 1812 was against Britain, the Mexican-American War (1846-1848) against Mexico, and the Spanish-American War (1898) against Spain. The Civil War (1861-1865) was between the North and the South."
+  },
+  {
+   "id": "us2008-073",
+   "n": 73,
+   "cat": "history",
+   "catTitle": "American History",
+   "sub": "1800s",
+   "q": "Name the U.S. war between the North and the South.",
+   "a": [
+    "the Civil War",
+    "the War between the States"
+   ],
+   "need": 1,
+   "senior": false,
+   "exp": "Eleven Southern states tried to leave the United States and formed the Confederacy. The war lasted from 1861 to 1865, and the North (the Union) won, keeping the country together."
+  },
+  {
+   "id": "us2008-074",
+   "n": 74,
+   "cat": "history",
+   "catTitle": "American History",
+   "sub": "1800s",
+   "q": "Name one problem that led to the Civil War.",
+   "a": [
+    "slavery",
+    "economic reasons",
+    "states’ rights"
+   ],
+   "need": 1,
+   "senior": false,
+   "exp": "The North and South disagreed about slavery, including whether it could spread to new western territories. The South's farm economy depended on enslaved labor, while the North had more factories."
+  },
+  {
+   "id": "us2008-075",
+   "n": 75,
+   "cat": "history",
+   "catTitle": "American History",
+   "sub": "1800s",
+   "q": "What was one important thing that Abraham Lincoln did?",
+   "a": [
+    "freed the slaves (Emancipation Proclamation)",
+    "saved (or preserved) the Union",
+    "led the United States during the Civil War"
+   ],
+   "need": 1,
+   "senior": true,
+   "exp": "Lincoln was President during the Civil War and worked to keep the country united. In 1863 he issued the Emancipation Proclamation, which declared enslaved people in the Confederate states free."
+  },
+  {
+   "id": "us2008-076",
+   "n": 76,
+   "cat": "history",
+   "catTitle": "American History",
+   "sub": "1800s",
+   "q": "What did the Emancipation Proclamation do?",
+   "a": [
+    "freed the slaves",
+    "freed slaves in the Confederacy",
+    "freed slaves in the Confederate states",
+    "freed slaves in most Southern states"
+   ],
+   "need": 1,
+   "senior": false,
+   "exp": "President Lincoln issued it on January 1, 1863, during the Civil War, to free enslaved people in the Confederate states. The 13th Amendment ended slavery in the whole country in 1865."
+  },
+  {
+   "id": "us2008-077",
+   "n": 77,
+   "cat": "history",
+   "catTitle": "American History",
+   "sub": "1800s",
+   "q": "What did Susan B. Anthony do?",
+   "a": [
+    "fought for women’s rights",
+    "fought for civil rights"
+   ],
+   "need": 1,
+   "senior": false,
+   "exp": "Anthony spent decades working for women's right to vote and was arrested for voting in 1872. The 19th Amendment, which protects women's right to vote, was added in 1920, after her death."
+  },
+  {
+   "id": "us2008-078",
+   "n": 78,
+   "cat": "history",
+   "catTitle": "American History",
+   "sub": "Recent American History and Other Important Historical Information",
+   "q": "Name one war fought by the United States in the 1900s.",
+   "a": [
+    "World War I",
+    "World War II",
+    "Korean War",
+    "Vietnam War",
+    "(Persian) Gulf War"
+   ],
+   "need": 1,
+   "senior": true,
+   "exp": "The U.S. fought in both world wars, then in Korea and Vietnam during the Cold War. The Persian Gulf War, in 1991, forced Iraq's army out of Kuwait."
+  },
+  {
+   "id": "us2008-079",
+   "n": 79,
+   "cat": "history",
+   "catTitle": "American History",
+   "sub": "Recent American History and Other Important Historical Information",
+   "q": "Who was President during World War I?",
+   "a": [
+    "(Woodrow) Wilson"
+   ],
+   "need": 1,
+   "senior": false,
+   "exp": "Woodrow Wilson was President from 1913 to 1921. He asked Congress to declare war on Germany in 1917, after German submarines attacked American ships."
+  },
+  {
+   "id": "us2008-080",
+   "n": 80,
+   "cat": "history",
+   "catTitle": "American History",
+   "sub": "Recent American History and Other Important Historical Information",
+   "q": "Who was President during the Great Depression and World War II?",
+   "a": [
+    "(Franklin) Roosevelt"
+   ],
+   "need": 1,
+   "senior": false,
+   "exp": "Franklin D. Roosevelt (FDR) was elected four times, more than any other president, and served from 1933 until his death in 1945. His New Deal programs were created to fight the Depression."
+  },
+  {
+   "id": "us2008-081",
+   "n": 81,
+   "cat": "history",
+   "catTitle": "American History",
+   "sub": "Recent American History and Other Important Historical Information",
+   "q": "Who did the United States fight in World War II?",
+   "a": [
+    "Japan, Germany, and Italy"
+   ],
+   "need": 1,
+   "senior": false,
+   "exp": "Japan, Germany, and Italy were called the Axis Powers. The U.S. entered the war after Japan attacked Pearl Harbor, Hawaii, on December 7, 1941."
+  },
+  {
+   "id": "us2008-082",
+   "n": 82,
+   "cat": "history",
+   "catTitle": "American History",
+   "sub": "Recent American History and Other Important Historical Information",
+   "q": "Before he was President, Eisenhower was a general. What war was he in?",
+   "a": [
+    "World War II"
+   ],
+   "need": 1,
+   "senior": false,
+   "exp": "As a general in World War II, Eisenhower led the D-Day invasion of France on June 6, 1944. He later served as President from 1953 to 1961."
+  },
+  {
+   "id": "us2008-083",
+   "n": 83,
+   "cat": "history",
+   "catTitle": "American History",
+   "sub": "Recent American History and Other Important Historical Information",
+   "q": "During the Cold War, what was the main concern of the United States?",
+   "a": [
+    "Communism"
+   ],
+   "need": 1,
+   "senior": false,
+   "exp": "During the Cold War, the U.S. and the communist Soviet Union competed for power around the world. The U.S. worked to stop communism from spreading to other countries."
+  },
+  {
+   "id": "us2008-084",
+   "n": 84,
+   "cat": "history",
+   "catTitle": "American History",
+   "sub": "Recent American History and Other Important Historical Information",
+   "q": "What movement tried to end racial discrimination?",
+   "a": [
+    "civil rights (movement)"
+   ],
+   "need": 1,
+   "senior": false,
+   "exp": "In the 1950s and 1960s, people used peaceful protests to fight segregation (separating people by race). Their work helped pass the Civil Rights Act of 1964 and the Voting Rights Act of 1965."
+  },
+  {
+   "id": "us2008-085",
+   "n": 85,
+   "cat": "history",
+   "catTitle": "American History",
+   "sub": "Recent American History and Other Important Historical Information",
+   "q": "What did Martin Luther King, Jr. do?",
+   "a": [
+    "fought for civil rights",
+    "worked for equality for all Americans"
+   ],
+   "need": 1,
+   "senior": true,
+   "exp": "King, a minister, led peaceful protests against racial discrimination. At the 1963 March on Washington, he gave his famous 'I Have a Dream' speech."
+  },
+  {
+   "id": "us2008-086",
+   "n": 86,
+   "cat": "history",
+   "catTitle": "American History",
+   "sub": "Recent American History and Other Important Historical Information",
+   "q": "What major event happened on September 11, 2001, in the United States?",
+   "a": [
+    "Terrorists attacked the United States."
+   ],
+   "need": 1,
+   "senior": false,
+   "exp": "On September 11, 2001, terrorists took over four airplanes. They crashed two into the World Trade Center in New York City, one into the Pentagon, and one in a Pennsylvania field."
+  },
+  {
+   "id": "us2008-087",
+   "n": 87,
+   "cat": "history",
+   "catTitle": "American History",
+   "sub": "Recent American History and Other Important Historical Information",
+   "q": "Name one American Indian tribe in the United States.",
+   "a": [
+    "Cherokee",
+    "Navajo",
+    "Sioux",
+    "Chippewa",
+    "Choctaw",
+    "Pueblo",
+    "Apache",
+    "Iroquois",
+    "Creek",
+    "Blackfeet",
+    "Seminole",
+    "Cheyenne",
+    "Arawak",
+    "Shawnee",
+    "Mohegan",
+    "Huron",
+    "Oneida",
+    "Lakota",
+    "Crow",
+    "Teton",
+    "Hopi",
+    "Inuit"
+   ],
+   "need": 1,
+   "senior": false,
+   "exp": "There are hundreds of American Indian tribes in the United States, each with its own history, culture, and government. The Cherokee and the Navajo are two of the largest."
+  },
+  {
+   "id": "us2008-088",
+   "n": 88,
+   "cat": "civics",
+   "catTitle": "Integrated Civics",
+   "sub": "Geography",
+   "q": "Name one of the two longest rivers in the United States.",
+   "a": [
+    "Missouri (River)",
+    "Mississippi (River)"
+   ],
+   "need": 1,
+   "senior": false,
+   "exp": "The Mississippi flows from Minnesota south to Louisiana, and the Missouri River joins it near St. Louis. Together they form one of the largest river systems in the world."
+  },
+  {
+   "id": "us2008-089",
+   "n": 89,
+   "cat": "civics",
+   "catTitle": "Integrated Civics",
+   "sub": "Geography",
+   "q": "What ocean is on the West Coast of the United States?",
+   "a": [
+    "Pacific (Ocean)"
+   ],
+   "need": 1,
+   "senior": false,
+   "exp": "The Pacific is the largest ocean in the world. California, Oregon, Washington, Alaska, and Hawaii all have Pacific coastlines."
+  },
+  {
+   "id": "us2008-090",
+   "n": 90,
+   "cat": "civics",
+   "catTitle": "Integrated Civics",
+   "sub": "Geography",
+   "q": "What ocean is on the East Coast of the United States?",
+   "a": [
+    "Atlantic (Ocean)"
+   ],
+   "need": 1,
+   "senior": false,
+   "exp": "The East Coast runs along the Atlantic Ocean from Maine to Florida. All 13 original colonies were in this eastern part of the country."
+  },
+  {
+   "id": "us2008-091",
+   "n": 91,
+   "cat": "civics",
+   "catTitle": "Integrated Civics",
+   "sub": "Geography",
+   "q": "Name one U.S. territory.",
+   "a": [
+    "Puerto Rico",
+    "U.S. Virgin Islands",
+    "American Samoa",
+    "Northern Mariana Islands",
+    "Guam"
+   ],
+   "need": 1,
+   "senior": false,
+   "exp": "Territories belong to the United States but are not states. Puerto Rico and the U.S. Virgin Islands are in the Caribbean, and Guam, American Samoa, and the Northern Mariana Islands are in the Pacific."
+  },
+  {
+   "id": "us2008-092",
+   "n": 92,
+   "cat": "civics",
+   "catTitle": "Integrated Civics",
+   "sub": "Geography",
+   "q": "Name one state that borders Canada.",
+   "a": [
+    "Maine",
+    "New Hampshire",
+    "Vermont",
+    "New York",
+    "Pennsylvania",
+    "Ohio",
+    "Michigan",
+    "Minnesota",
+    "North Dakota",
+    "Montana",
+    "Idaho",
+    "Washington",
+    "Alaska"
+   ],
+   "need": 1,
+   "senior": false,
+   "exp": "The U.S.-Canada border is the longest border between two countries in the world. Thirteen states touch it, including Alaska and some states whose border runs through the Great Lakes."
+  },
+  {
+   "id": "us2008-093",
+   "n": 93,
+   "cat": "civics",
+   "catTitle": "Integrated Civics",
+   "sub": "Geography",
+   "q": "Name one state that borders Mexico.",
+   "a": [
+    "California",
+    "Arizona",
+    "New Mexico",
+    "Texas"
+   ],
+   "need": 1,
+   "senior": false,
+   "exp": "Four states, from California in the west to Texas in the east, border Mexico. Part of the border follows the Rio Grande, the river between Texas and Mexico."
+  },
+  {
+   "id": "us2008-094",
+   "n": 94,
+   "cat": "civics",
+   "catTitle": "Integrated Civics",
+   "sub": "Geography",
+   "q": "What is the capital of the United States?",
+   "a": [
+    "Washington, D.C."
+   ],
+   "need": 1,
+   "senior": true,
+   "exp": "D.C. stands for District of Columbia, a federal district that is not part of any state. The city is named after George Washington and has been the capital since 1800."
+  },
+  {
+   "id": "us2008-095",
+   "n": 95,
+   "cat": "civics",
+   "catTitle": "Integrated Civics",
+   "sub": "Geography",
+   "q": "Where is the Statue of Liberty?",
+   "a": [
+    "New York (Harbor)",
+    "Liberty Island",
+    "New Jersey",
+    "near New York City",
+    "on the Hudson (River)"
+   ],
+   "need": 1,
+   "senior": true,
+   "exp": "The Statue of Liberty was a gift from the people of France, dedicated in 1886. It stands on Liberty Island in New York Harbor and became a symbol of welcome for immigrants."
+  },
+  {
+   "id": "us2008-096",
+   "n": 96,
+   "cat": "civics",
+   "catTitle": "Integrated Civics",
+   "sub": "Symbols",
+   "q": "Why does the flag have 13 stripes?",
+   "a": [
+    "because there were 13 original colonies",
+    "because the stripes represent the original colonies"
+   ],
+   "need": 1,
+   "senior": false,
+   "exp": "The 13 red and white stripes stand for the 13 colonies that declared independence in 1776. The stripes stay at 13, but a star is added for each new state."
+  },
+  {
+   "id": "us2008-097",
+   "n": 97,
+   "cat": "civics",
+   "catTitle": "Integrated Civics",
+   "sub": "Symbols",
+   "q": "Why does the flag have 50 stars?",
+   "a": [
+    "because there is one star for each state",
+    "because each star represents a state",
+    "because there are 50 states"
+   ],
+   "need": 1,
+   "senior": true,
+   "exp": "Each of the 50 stars stands for one state. The 50-star flag has been used since 1960, after Hawaii became the 50th state in 1959."
+  },
+  {
+   "id": "us2008-098",
+   "n": 98,
+   "cat": "civics",
+   "catTitle": "Integrated Civics",
+   "sub": "Symbols",
+   "q": "What is the name of the national anthem?",
+   "a": [
+    "The Star-Spangled Banner"
+   ],
+   "need": 1,
+   "senior": false,
+   "exp": "Francis Scott Key wrote the words during the War of 1812, when he saw the flag still flying over Fort McHenry after a British attack in 1814. It became the national anthem in 1931."
+  },
+  {
+   "id": "us2008-099",
+   "n": 99,
+   "cat": "civics",
+   "catTitle": "Integrated Civics",
+   "sub": "Holidays",
+   "q": "When do we celebrate Independence Day?",
+   "a": [
+    "July 4"
+   ],
+   "need": 1,
+   "senior": true,
+   "exp": "On July 4, 1776, the Continental Congress adopted the Declaration of Independence. Americans celebrate the nation's birthday with parades, picnics, and fireworks."
+  },
+  {
+   "id": "us2008-100",
+   "n": 100,
+   "cat": "civics",
+   "catTitle": "Integrated Civics",
+   "sub": "Holidays",
+   "q": "Name two national U.S. holidays.",
+   "a": [
+    "New Year’s Day",
+    "Martin Luther King, Jr. Day",
+    "Presidents’ Day",
+    "Memorial Day",
+    "Independence Day",
+    "Labor Day",
+    "Columbus Day",
+    "Veterans Day",
+    "Thanksgiving",
+    "Christmas"
+   ],
+   "need": 2,
+   "senior": false,
+   "exp": "These are federal holidays, when most federal offices close. Some fall on a fixed date, like Independence Day on July 4, while others fall on a set Monday, like Labor Day in September."
+  }
+ ]
+}

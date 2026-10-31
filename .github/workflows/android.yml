@@ -1,0 +1,54 @@
+name: Android build
+
+on:
+  push:
+    branches: [main]
+    paths-ignore: ["public/**", "pipeline/state/**", "store/**", "docs/**", "*.md"]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: android-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - uses: gradle/actions/setup-gradle@v4
+
+      - name: Check content files are up to date
+        run: |
+          python3 pipeline/build_content.py
+          git diff --exit-code app/src/main/assets/content || (echo "::error::Run pipeline/build_content.py and commit the result" && exit 1)
+
+      - name: Refresh officials snapshot bundled in the test build
+        run: python3 pipeline/build_officials.py
+
+      - name: Unit tests, lint and debug build
+        run: ./gradlew --no-daemon testDebugUnitTest lintDebug assembleDebug
+
+      - name: Upload test and lint reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: reports
+          path: |
+            app/build/reports/
+            app/build/test-results/
+          retention-days: 14
+
+      - name: Upload debug APK (install this on your phone to test)
+        uses: actions/upload-artifact@v4
+        with:
+          name: oathly-debug-apk
+          path: app/build/outputs/apk/debug/*.apk
+          retention-days: 14
