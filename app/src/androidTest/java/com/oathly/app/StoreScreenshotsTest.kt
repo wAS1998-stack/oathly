@@ -8,6 +8,7 @@ import androidx.compose.ui.test.onAllNodesWithTag
 import androidx.compose.ui.test.onAllNodesWithText
 import androidx.compose.ui.test.onAllNodesWithContentDescription
 import androidx.compose.ui.test.performClick
+import androidx.compose.ui.test.performScrollTo
 import androidx.compose.ui.test.performTextInput
 import androidx.test.core.app.ActivityScenario
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -57,7 +58,9 @@ class StoreScreenshotsTest {
 
     private fun tap(text: String, substring: Boolean = false) {
         waitFor(text, substring)
-        compose.onAllNodes(shown(text, substring))[0].performClick()
+        val node = compose.onAllNodes(shown(text, substring))[0]
+        runCatching { node.performScrollTo() } // only works inside scrolling screens
+        node.performClick()
         compose.waitForIdle()
     }
 

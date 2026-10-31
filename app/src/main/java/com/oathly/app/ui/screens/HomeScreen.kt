@@ -80,13 +80,18 @@ fun HomeScreen(vm: AppViewModel) {
             InfoCard(container = MaterialTheme.colorScheme.primaryContainer) {
                 Text("Chance of passing today", style = MaterialTheme.typography.labelLarge)
                 val r = vm.readiness
+                val started = ids.any { stats[it]?.seen == true }
                 Text(
-                    if (r == null) "…" else percent(r),
+                    when {
+                        !started -> "—"
+                        r == null -> "…"
+                        else -> percent(r)
+                    },
                     style = MaterialTheme.typography.displayMedium,
                     color = MaterialTheme.colorScheme.onPrimaryContainer,
                 )
                 Text(
-                    if (stats.isEmpty()) "Answer a few questions and this estimate becomes personal."
+                    if (!started) "Answer a few questions to see your personal estimate."
                     else "Estimated from your answers so far.",
                     style = MaterialTheme.typography.bodyMedium,
                 )

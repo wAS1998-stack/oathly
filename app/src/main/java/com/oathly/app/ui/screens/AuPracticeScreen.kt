@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -19,6 +20,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -42,6 +44,18 @@ fun AuPracticeScreen(vm: AppViewModel) {
     val t = vm.auTest
     Scaffold(
         topBar = { AppBar("Practice test", onBack = { vm.quitTest() }, close = true) },
+        bottomBar = {
+            if (t != null && !t.finished && t.currentAnswered) {
+                Surface(color = MaterialTheme.colorScheme.background, tonalElevation = 3.dp, shadowElevation = 6.dp) {
+                    Button(
+                        onClick = { vm.nextAu() },
+                        modifier = Modifier.fillMaxWidth().navigationBarsPadding().padding(horizontal = 16.dp, vertical = 10.dp).height(52.dp),
+                    ) {
+                        Text(if (t.index + 1 >= t.questions.size) "See your result" else "Next question")
+                    }
+                }
+            }
+        },
         containerColor = MaterialTheme.colorScheme.background,
     ) { padding ->
         Column(
@@ -104,9 +118,6 @@ fun AuPracticeScreen(vm: AppViewModel) {
                         "In the real test you must answer every values question correctly.",
                         style = MaterialTheme.typography.bodyMedium, color = dangerColor(),
                     )
-                }
-                Button(onClick = { vm.nextAu() }, modifier = Modifier.fillMaxWidth().height(52.dp)) {
-                    Text(if (t.index + 1 >= t.questions.size) "See your result" else "Next question")
                 }
             }
             Spacer(Modifier.height(24.dp))

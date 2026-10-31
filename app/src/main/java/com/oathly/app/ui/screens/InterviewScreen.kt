@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.imePadding
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -28,6 +29,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -71,6 +73,9 @@ fun InterviewScreen(vm: AppViewModel) {
 
     Scaffold(
         topBar = { AppBar("Mock interview", onBack = { vm.quitTest() }, close = true) },
+        bottomBar = {
+            if (iv != null && feedback != null) FeedbackActions(feedback, finished = iv.finished, vm = vm)
+        },
         containerColor = MaterialTheme.colorScheme.background,
     ) { padding ->
         Column(
@@ -156,7 +161,7 @@ private fun FeedbackPanel(f: Feedback, finished: Boolean, vm: AppViewModel) {
         null -> Text("Did you know it?", style = MaterialTheme.typography.headlineSmall)
     }
     if (f.given != null) {
-        Text("You said: “${f.given}”", style = MaterialTheme.typography.bodyLarge)
+        Text("You said: \u201C${f.given}\u201D", style = MaterialTheme.typography.bodyLarge)
     }
     val q = vm.usQuestion(f.questionId)
     AnswerCard(
@@ -168,23 +173,40 @@ private fun FeedbackPanel(f: Feedback, finished: Boolean, vm: AppViewModel) {
         ).joinToString("\n\n").ifBlank { null },
         onSpeak = { vm.speak(f.answers.joinToString(". ")) },
     )
-    if (f.correct == null) {
-        Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-            OutlinedButton(onClick = { vm.selfGrade(false) }, modifier = Modifier.weight(1f).height(52.dp)) { Text("No") }
-            FilledTonalButton(onClick = { vm.selfGrade(true) }, modifier = Modifier.weight(1f).height(52.dp)) { Text("Yes, I knew it") }
-        }
-    } else {
-        if (f.canOverride) {
-            TextButton(onClick = { vm.overrideCorrect() }) { Text("My answer means the same, count it as right") }
-        }
-        Button(onClick = { vm.nextInterviewQuestion() }, modifier = Modifier.fillMaxWidth().height(52.dp)) {
-            Text(if (finished) "See your result" else "Next question")
-        }
+    if (finished && f.correct != null) {
+        Text("The officer would stop here.", style = MaterialTheme.typography.bodyMedium)
     }
     InfoCard(container = MaterialTheme.colorScheme.surfaceVariant) {
         Text(
             "Tip: at the real interview, the officer asks out loud and you answer out loud. Practise saying the answer.",
             style = MaterialTheme.typography.bodySmall,
         )
+    }
+}
+
+/** Always visible at the bottom, so the next step never hides below a long answer. */
+@Composable
+private fun FeedbackActions(f: Feedback, finished: Boolean, vm: AppViewModel) {
+    Surface(color = MaterialTheme.colorScheme.background, tonalElevation = 3.dp, shadowElevation = 6.dp) {
+        Column(
+            Modifier.fillMaxWidth().navigationBarsPadding().padding(horizontal = 16.dp, vertical = 10.dp),
+            verticalArrangement = Arrangement.spacedBy(6.dp),
+        ) {
+            if (f.correct == null) {
+                Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+                    OutlinedButton(onClick = { vm.selfGrade(false) }, modifier = Modifier.weight(1f).height(52.dp)) { Text("No") }
+                    FilledTonalButton(onClick = { vm.selfGrade(true) }, modifier = Modifier.weight(1f).height(52.dp)) { Text("Yes, I knew it") }
+                }
+            } else {
+                if (f.canOverride) {
+                    TextButton(onClick = { vm.overrideCorrect() }, modifier = Modifier.fillMaxWidth()) {
+                        Text("My answer means the same, count it as right")
+                    }
+                }
+                Button(onClick = { vm.nextInterviewQuestion() }, modifier = Modifier.fillMaxWidth().height(52.dp)) {
+                    Text(if (finished) "See your result" else "Next question")
+                }
+            }
+        }
     }
 }

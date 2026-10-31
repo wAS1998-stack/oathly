@@ -19,6 +19,7 @@ import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -77,6 +78,26 @@ fun StudyScreen(vm: AppViewModel) {
     val deck = vm.deck
     Scaffold(
         topBar = { AppBar(deck?.title ?: "Study", onBack = { vm.back() }, close = true) },
+        bottomBar = {
+            if (deck != null && !deck.done) {
+                Surface(color = MaterialTheme.colorScheme.background, tonalElevation = 3.dp, shadowElevation = 6.dp) {
+                    Column(
+                        Modifier.fillMaxWidth().navigationBarsPadding().padding(horizontal = 16.dp, vertical = 10.dp),
+                        verticalArrangement = Arrangement.spacedBy(6.dp),
+                    ) {
+                        if (!deck.revealed) {
+                            Button(onClick = { vm.revealCard() }, modifier = Modifier.fillMaxWidth().height(52.dp)) { Text("Show answer") }
+                        } else {
+                            Text("Did you know it?", style = MaterialTheme.typography.titleMedium)
+                            Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+                                OutlinedButton(onClick = { vm.gradeCard(false) }, modifier = Modifier.weight(1f).height(52.dp)) { Text("Not yet") }
+                                FilledTonalButton(onClick = { vm.gradeCard(true) }, modifier = Modifier.weight(1f).height(52.dp)) { Text("I knew it") }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         containerColor = MaterialTheme.colorScheme.background,
     ) { padding ->
         Column(
@@ -124,15 +145,6 @@ fun StudyScreen(vm: AppViewModel) {
                 }
             }
 
-            if (!deck.revealed) {
-                Button(onClick = { vm.revealCard() }, modifier = Modifier.fillMaxWidth().height(52.dp)) { Text("Show answer") }
-            } else {
-                Text("Did you know it?", style = MaterialTheme.typography.titleMedium)
-                Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-                    OutlinedButton(onClick = { vm.gradeCard(false) }, modifier = Modifier.weight(1f).height(52.dp)) { Text("Not yet") }
-                    FilledTonalButton(onClick = { vm.gradeCard(true) }, modifier = Modifier.weight(1f).height(52.dp)) { Text("I knew it") }
-                }
-            }
             Spacer(Modifier.height(16.dp))
         }
     }
