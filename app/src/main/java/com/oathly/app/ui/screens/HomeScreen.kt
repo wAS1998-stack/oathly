@@ -48,6 +48,7 @@ fun HomeScreen(vm: AppViewModel) {
         Country.AU -> vm.auBank?.questions?.map { it.id }.orEmpty()
     }
     val mastered = ids.count { stats[it]?.mastered == true }
+    val known = ids.count { stats[it]?.let { s -> s.seen && s.lastCorrect } == true }
     val due = ids.count { Srs.isDue(stats[it], today) }
     val todayCount = days[today] ?: 0
     val streak = vm.graph.progress.streak()
@@ -97,11 +98,14 @@ fun HomeScreen(vm: AppViewModel) {
                 )
                 Spacer(Modifier.height(12.dp))
                 LinearProgressIndicator(
-                    progress = { if (ids.isEmpty()) 0f else mastered.toFloat() / ids.size },
+                    progress = { if (ids.isEmpty()) 0f else known.toFloat() / ids.size },
                     modifier = Modifier.fillMaxWidth().height(8.dp),
                 )
                 Spacer(Modifier.height(6.dp))
-                Text("$mastered of ${ids.size} questions learned", style = MaterialTheme.typography.bodySmall)
+                Text(
+                    "$known of ${ids.size} questions known" + if (mastered > 0) " · $mastered mastered" else "",
+                    style = MaterialTheme.typography.bodySmall,
+                )
             }
 
             Button(
@@ -128,8 +132,11 @@ fun HomeScreen(vm: AppViewModel) {
                     Text("day streak", style = MaterialTheme.typography.bodySmall)
                 }
                 InfoCard(Modifier.weight(1f)) {
-                    Text("$todayCount / ${settings.dailyGoal}", style = MaterialTheme.typography.headlineMedium)
-                    Text("answered today", style = MaterialTheme.typography.bodySmall)
+                    Text("$todayCount", style = MaterialTheme.typography.headlineMedium)
+                    Text(
+                        if (todayCount >= settings.dailyGoal) "answered today · goal met" else "answered today · goal ${settings.dailyGoal}",
+                        style = MaterialTheme.typography.bodySmall,
+                    )
                 }
             }
             Text(
