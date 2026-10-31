@@ -1,0 +1,14 @@
+{
+ "failures": {
+  "au-booklet": 1,
+  "au-test": 1,
+  "uscis-2025-test": 0,
+  "uscis-study": 0,
+  "uscis-test-updates": 0
+ },
+ "hashes": {
+  "uscis-2025-test": "58293011219d9fc5adfe6787f3f242b6f7f050c3070ebd87252e33c39dffd9f7",
+  "uscis-study": "dcb9f24336ca569c431ea54d3bbd7b831329a6f446ecb7981541b5516ff663fa",
+  "uscis-test-updates": "39dd23a6ae2c9788d637f66d09a6c3bdfc6b08b6f5c4bfb98d48a6a8cb2054a9"
+ }
+}

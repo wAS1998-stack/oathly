@@ -1,6 +1,6 @@
 {
  "schema": 1,
- "generatedAt": "2026-10-30T19:50:15+00:00",
+ "generatedAt": "2026-10-31T07:41:50+00:00",
  "federal": {
   "president": {
    "name": "Donald Trump",
@@ -28,7 +28,10 @@
    "type": "state",
    "capital": "Montgomery",
    "capitalAlt": [],
-   "governor": null,
+   "governor": {
+    "name": "Kay Ivey",
+    "short": "Ivey"
+   },
    "senators": [
     {
      "name": "Katie Boyd Britt",
@@ -93,7 +96,10 @@
    "type": "state",
    "capital": "Juneau",
    "capitalAlt": [],
-   "governor": null,
+   "governor": {
+    "name": "Mike J. Dunleavy",
+    "short": "Dunleavy"
+   },
    "senators": [
     {
      "name": "Lisa Murkowski",
@@ -122,7 +128,10 @@
    "type": "state",
    "capital": "Phoenix",
    "capitalAlt": [],
-   "governor": null,
+   "governor": {
+    "name": "Katie Hobbs",
+    "short": "Hobbs"
+   },
    "senators": [
     {
      "name": "Ruben Gallego",
@@ -199,7 +208,10 @@
    "type": "state",
    "capital": "Little Rock",
    "capitalAlt": [],
-   "governor": null,
+   "governor": {
+    "name": "Sarah Huckabee Sanders",
+    "short": "Huckabee"
+   },
    "senators": [
     {
      "name": "John Boozman",
@@ -246,7 +258,10 @@
    "type": "state",
    "capital": "Sacramento",
    "capitalAlt": [],
-   "governor": null,
+   "governor": {
+    "name": "Gavin Newsom",
+    "short": "Newsom"
+   },
    "senators": [
     {
      "name": "Alex Padilla",
@@ -581,7 +596,10 @@
    "type": "state",
    "capital": "Denver",
    "capitalAlt": [],
-   "governor": null,
+   "governor": {
+    "name": "Jared Polis",
+    "short": "Polis"
+   },
    "senators": [
     {
      "name": "Michael F. Bennet",
@@ -652,7 +670,10 @@
    "type": "state",
    "capital": "Hartford",
    "capitalAlt": [],
-   "governor": null,
+   "governor": {
+    "name": "Ned Lamont",
+    "short": "Lamont"
+   },
    "senators": [
     {
      "name": "Richard Blumenthal",
@@ -705,7 +726,10 @@
    "type": "state",
    "capital": "Dover",
    "capitalAlt": [],
-   "governor": null,
+   "governor": {
+    "name": "Matt Meyer",
+    "short": "Meyer"
+   },
    "senators": [
     {
      "name": "Lisa Blunt Rochester",
@@ -734,7 +758,10 @@
    "type": "state",
    "capital": "Tallahassee",
    "capitalAlt": [],
-   "governor": null,
+   "governor": {
+    "name": "Ron DeSantis",
+    "short": "DeSantis"
+   },
    "senators": [
     {
      "name": "Ashley Moody",
@@ -919,7 +946,10 @@
    "type": "state",
    "capital": "Atlanta",
    "capitalAlt": [],
-   "governor": null,
+   "governor": {
+    "name": "Brian Kemp",
+    "short": "Kemp"
+   },
    "senators": [
     {
      "name": "Jon Ossoff",
@@ -1026,7 +1056,10 @@
    "type": "state",
    "capital": "Honolulu",
    "capitalAlt": [],
-   "governor": null,
+   "governor": {
+    "name": "Josh Green",
+    "short": "Green"
+   },
    "senators": [
     {
      "name": "Mazie K. Hirono",
@@ -1061,7 +1094,10 @@
    "type": "state",
    "capital": "Boise",
    "capitalAlt": [],
-   "governor": null,
+   "governor": {
+    "name": "Brad Little",
+    "short": "Little"
+   },
    "senators": [
     {
      "name": "Mike Crapo",
@@ -1096,7 +1132,10 @@
    "type": "state",
    "capital": "Springfield",
    "capitalAlt": [],
-   "governor": null,
+   "governor": {
+    "name": "JB Pritzker",
+    "short": "Pritzker"
+   },
    "senators": [
     {
      "name": "Tammy Duckworth",
@@ -1221,7 +1260,10 @@
    "type": "state",
    "capital": "Indianapolis",
    "capitalAlt": [],
-   "governor": null,
+   "governor": {
+    "name": "Eric Holcomb",
+    "short": "Holcomb"
+   },
    "senators": [
     {
      "name": "Jim Banks",
@@ -1298,7 +1340,10 @@
    "type": "state",
    "capital": "Des Moines",
    "capitalAlt": [],
-   "governor": null,
+   "governor": {
+    "name": "Kim Reynolds",
+    "short": "Reynolds"
+   },
    "senators": [
     {
      "name": "Joni Ernst",
@@ -1345,7 +1390,10 @@
    "type": "state",
    "capital": "Topeka",
    "capitalAlt": [],
-   "governor": null,
+   "governor": {
+    "name": "Laura Kelly",
+    "short": "Kelly"
+   },
    "senators": [
     {
      "name": "Roger Marshall",
@@ -1392,7 +1440,10 @@
    "type": "state",
    "capital": "Frankfort",
    "capitalAlt": [],
-   "governor": null,
+   "governor": {
+    "name": "Andy Beshear",
+    "short": "Beshear"
+   },
    "senators": [
     {
      "name": "Mitch McConnell",
@@ -1451,7 +1502,10 @@
    "type": "state",
    "capital": "Baton Rouge",
    "capitalAlt": [],
-   "governor": null,
+   "governor": {
+    "name": "Jeff Landry",
+    "short": "Landry"
+   },
    "senators": [
     {
      "name": "Bill Cassidy",
@@ -1510,7 +1564,10 @@
    "type": "state",
    "capital": "Augusta",
    "capitalAlt": [],
-   "governor": null,
+   "governor": {
+    "name": "Janet T. Mills",
+    "short": "Mills"
+   },
    "senators": [
     {
      "name": "Susan M. Collins",
@@ -1545,7 +1602,10 @@
    "type": "state",
    "capital": "Annapolis",
    "capitalAlt": [],
-   "governor": null,
+   "governor": {
+    "name": "Wes Moore",
+    "short": "Moore"
+   },
    "senators": [
     {
      "name": "Angela D. Alsobrooks",
@@ -1616,7 +1676,10 @@
    "type": "state",
    "capital": "Boston",
    "capitalAlt": [],
-   "governor": null,
+   "governor": {
+    "name": "Maura Healey",
+    "short": "Healey"
+   },
    "senators": [
     {
      "name": "Edward J. Markey",
@@ -1693,7 +1756,10 @@
    "type": "state",
    "capital": "Lansing",
    "capitalAlt": [],
-   "governor": null,
+   "governor": {
+    "name": "Gretchen Whitmer",
+    "short": "Whitmer"
+   },
    "senators": [
     {
      "name": "Gary C. Peters",
@@ -1796,7 +1862,10 @@
    "capitalAlt": [
     "St. Paul"
    ],
-   "governor": null,
+   "governor": {
+    "name": "Tim Walz",
+    "short": "Walz"
+   },
    "senators": [
     {
      "name": "Amy Klobuchar",
@@ -1867,7 +1936,10 @@
    "type": "state",
    "capital": "Jackson",
    "capitalAlt": [],
-   "governor": null,
+   "governor": {
+    "name": "Tate Reeves",
+    "short": "Reeves"
+   },
    "senators": [
     {
      "name": "Cindy Hyde-Smith",
@@ -1914,7 +1986,10 @@
    "type": "state",
    "capital": "Jefferson City",
    "capitalAlt": [],
-   "governor": null,
+   "governor": {
+    "name": "Mike Kehoe",
+    "short": "Kehoe"
+   },
    "senators": [
     {
      "name": "Josh Hawley",
@@ -1985,7 +2060,10 @@
    "type": "state",
    "capital": "Helena",
    "capitalAlt": [],
-   "governor": null,
+   "governor": {
+    "name": "Greg Gianforte",
+    "short": "Gianforte"
+   },
    "senators": [
     {
      "name": "Steve Daines",
@@ -2020,7 +2098,10 @@
    "type": "state",
    "capital": "Lincoln",
    "capitalAlt": [],
-   "governor": null,
+   "governor": {
+    "name": "Jim Pillen",
+    "short": "Pillen"
+   },
    "senators": [
     {
      "name": "Deb Fischer",
@@ -2061,7 +2142,10 @@
    "type": "state",
    "capital": "Carson City",
    "capitalAlt": [],
-   "governor": null,
+   "governor": {
+    "name": "Joe Lombardo",
+    "short": "Lombardo"
+   },
    "senators": [
     {
      "name": "Catherine Cortez Masto",
@@ -2108,7 +2192,10 @@
    "type": "state",
    "capital": "Concord",
    "capitalAlt": [],
-   "governor": null,
+   "governor": {
+    "name": "Chris Sununu",
+    "short": "Sununu"
+   },
    "senators": [
     {
      "name": "Margaret Wood Hassan",
@@ -2143,7 +2230,10 @@
    "type": "state",
    "capital": "Trenton",
    "capitalAlt": [],
-   "governor": null,
+   "governor": {
+    "name": "Mikie Sherrill",
+    "short": "Sherrill"
+   },
    "senators": [
     {
      "name": "Cory A. Booker",
@@ -2238,7 +2328,10 @@
    "type": "state",
    "capital": "Santa Fe",
    "capitalAlt": [],
-   "governor": null,
+   "governor": {
+    "name": "Michelle Lujan Grisham",
+    "short": "Grisham"
+   },
    "senators": [
     {
      "name": "Martin Heinrich",
@@ -2279,7 +2372,10 @@
    "type": "state",
    "capital": "Albany",
    "capitalAlt": [],
-   "governor": null,
+   "governor": {
+    "name": "Kathy Hochul",
+    "short": "Courtney"
+   },
    "senators": [
     {
      "name": "Kirsten E. Gillibrand",
@@ -2458,7 +2554,10 @@
    "type": "state",
    "capital": "Raleigh",
    "capitalAlt": [],
-   "governor": null,
+   "governor": {
+    "name": "Josh Stein",
+    "short": "Stein"
+   },
    "senators": [
     {
      "name": "Ted Budd",
@@ -2565,7 +2664,10 @@
    "type": "state",
    "capital": "Bismarck",
    "capitalAlt": [],
-   "governor": null,
+   "governor": {
+    "name": "Doug Burgum",
+    "short": "Burgum"
+   },
    "senators": [
     {
      "name": "Kevin Cramer",
@@ -2594,7 +2696,10 @@
    "type": "state",
    "capital": "Columbus",
    "capitalAlt": [],
-   "governor": null,
+   "governor": {
+    "name": "Mike DeWine",
+    "short": "DeWine"
+   },
    "senators": [
     {
      "name": "Jon Husted",
@@ -2707,7 +2812,10 @@
    "type": "state",
    "capital": "Oklahoma City",
    "capitalAlt": [],
-   "governor": null,
+   "governor": {
+    "name": "Kevin Stitt",
+    "short": "Stitt"
+   },
    "senators": [
     {
      "name": "Alan Armstrong",
@@ -2760,7 +2868,10 @@
    "type": "state",
    "capital": "Salem",
    "capitalAlt": [],
-   "governor": null,
+   "governor": {
+    "name": "Tina Kotek",
+    "short": "Kotek"
+   },
    "senators": [
     {
      "name": "Jeff Merkley",
@@ -2819,7 +2930,10 @@
    "type": "state",
    "capital": "Harrisburg",
    "capitalAlt": [],
-   "governor": null,
+   "governor": {
+    "name": "Josh Shapiro",
+    "short": "Shapiro"
+   },
    "senators": [
     {
      "name": "John Fetterman",
@@ -2944,7 +3058,10 @@
    "type": "state",
    "capital": "Providence",
    "capitalAlt": [],
-   "governor": null,
+   "governor": {
+    "name": "Daniel McKee",
+    "short": "McKee"
+   },
    "senators": [
     {
      "name": "Jack Reed",
@@ -2979,7 +3096,10 @@
    "type": "state",
    "capital": "Columbia",
    "capitalAlt": [],
-   "governor": null,
+   "governor": {
+    "name": "Henry McMaster",
+    "short": "McMaster"
+   },
    "senators": [
     {
      "name": "Darline Graham",
@@ -3044,7 +3164,10 @@
    "type": "state",
    "capital": "Pierre",
    "capitalAlt": [],
-   "governor": null,
+   "governor": {
+    "name": "Larry Rhoden",
+    "short": "Rhoden"
+   },
    "senators": [
     {
      "name": "Mike Rounds",
@@ -3073,7 +3196,10 @@
    "type": "state",
    "capital": "Nashville",
    "capitalAlt": [],
-   "governor": null,
+   "governor": {
+    "name": "Bill Lee",
+    "short": "Lee"
+   },
    "senators": [
     {
      "name": "Marsha Blackburn",
@@ -3150,7 +3276,10 @@
    "type": "state",
    "capital": "Austin",
    "capitalAlt": [],
-   "governor": null,
+   "governor": {
+    "name": "Greg Abbott",
+    "short": "Abbott"
+   },
    "senators": [
     {
      "name": "John Cornyn",
@@ -3395,7 +3524,10 @@
    "type": "state",
    "capital": "Salt Lake City",
    "capitalAlt": [],
-   "governor": null,
+   "governor": {
+    "name": "Spencer Cox",
+    "short": "Cox"
+   },
    "senators": [
     {
      "name": "John R. Curtis",
@@ -3442,7 +3574,10 @@
    "type": "state",
    "capital": "Montpelier",
    "capitalAlt": [],
-   "governor": null,
+   "governor": {
+    "name": "Phil Scott",
+    "short": "Scott"
+   },
    "senators": [
     {
      "name": "Bernard Sanders",
@@ -3471,7 +3606,10 @@
    "type": "state",
    "capital": "Richmond",
    "capitalAlt": [],
-   "governor": null,
+   "governor": {
+    "name": "Abigail Spanberger",
+    "short": "Davis"
+   },
    "senators": [
     {
      "name": "Tim Kaine",
@@ -3560,7 +3698,10 @@
    "type": "state",
    "capital": "Olympia",
    "capitalAlt": [],
-   "governor": null,
+   "governor": {
+    "name": "Bob Ferguson",
+    "short": "Ferguson"
+   },
    "senators": [
     {
      "name": "Maria Cantwell",
@@ -3643,7 +3784,10 @@
    "type": "state",
    "capital": "Charleston",
    "capitalAlt": [],
-   "governor": null,
+   "governor": {
+    "name": "Patrick Morrisey",
+    "short": "Morrisey"
+   },
    "senators": [
     {
      "name": "Shelley Moore Capito",
@@ -3678,7 +3822,10 @@
    "type": "state",
    "capital": "Madison",
    "capitalAlt": [],
-   "governor": null,
+   "governor": {
+    "name": "Tony Evers",
+    "short": "Evers"
+   },
    "senators": [
     {
      "name": "Tammy Baldwin",
@@ -3749,7 +3896,10 @@
    "type": "state",
    "capital": "Cheyenne",
    "capitalAlt": [],
-   "governor": null,
+   "governor": {
+    "name": "Mark Gordon",
+    "short": "Gordon"
+   },
    "senators": [
     {
      "name": "John Barrasso",
@@ -3794,7 +3944,10 @@
    "type": "territory",
    "capital": "San Juan",
    "capitalAlt": [],
-   "governor": null,
+   "governor": {
+    "name": "Jenniffer González",
+    "short": "Gonzalez"
+   },
    "senators": [],
    "representatives": [],
    "delegate": {
@@ -3813,7 +3966,10 @@
     "Hagatna",
     "Agana"
    ],
-   "governor": null,
+   "governor": {
+    "name": "Lou Leon Guerrero",
+    "short": "Leon"
+   },
    "senators": [],
    "representatives": [],
    "delegate": {
@@ -3829,7 +3985,10 @@
    "type": "territory",
    "capital": "Charlotte Amalie",
    "capitalAlt": [],
-   "governor": null,
+   "governor": {
+    "name": "Albert Bryan Jr.",
+    "short": "Bryan"
+   },
    "senators": [],
    "representatives": [],
    "delegate": {
@@ -3845,7 +4004,10 @@
    "type": "territory",
    "capital": "Pago Pago",
    "capitalAlt": [],
-   "governor": null,
+   "governor": {
+    "name": "Pula Nikolao Pula",
+    "short": "Pula"
+   },
    "senators": [],
    "representatives": [],
    "delegate": {
@@ -3863,7 +4025,10 @@
    "capitalAlt": [
     "Capitol Hill"
    ],
-   "governor": null,
+   "governor": {
+    "name": "David M. Apatang",
+    "short": "Apatang"
+   },
    "senators": [],
    "representatives": [],
    "delegate": {
@@ -3888,64 +4053,5 @@
    "url": "https://www.uscis.gov/citizenship/testupdates"
   }
  ],
- "warnings": [
-  "Wikidata governors query failed: <urlopen error Tunnel connection failed: 403 Forbidden>",
-  "Wikidata chief justice query failed: <urlopen error Tunnel connection failed: 403 Forbidden>",
-  "AL: governor not refreshed",
-  "AK: governor not refreshed",
-  "AZ: governor not refreshed",
-  "AR: governor not refreshed",
-  "CA: governor not refreshed",
-  "CO: governor not refreshed",
-  "CT: governor not refreshed",
-  "DE: governor not refreshed",
-  "FL: governor not refreshed",
-  "GA: governor not refreshed",
-  "HI: governor not refreshed",
-  "ID: governor not refreshed",
-  "IL: governor not refreshed",
-  "IN: governor not refreshed",
-  "IA: governor not refreshed",
-  "KS: governor not refreshed",
-  "KY: governor not refreshed",
-  "LA: governor not refreshed",
-  "ME: governor not refreshed",
-  "MD: governor not refreshed",
-  "MA: governor not refreshed",
-  "MI: governor not refreshed",
-  "MN: governor not refreshed",
-  "MS: governor not refreshed",
-  "MO: governor not refreshed",
-  "MT: governor not refreshed",
-  "NE: governor not refreshed",
-  "NV: governor not refreshed",
-  "NH: governor not refreshed",
-  "NJ: governor not refreshed",
-  "NM: governor not refreshed",
-  "NY: governor not refreshed",
-  "NC: governor not refreshed",
-  "ND: governor not refreshed",
-  "OH: governor not refreshed",
-  "OK: governor not refreshed",
-  "OR: governor not refreshed",
-  "PA: governor not refreshed",
-  "RI: governor not refreshed",
-  "SC: governor not refreshed",
-  "SD: governor not refreshed",
-  "TN: governor not refreshed",
-  "TX: governor not refreshed",
-  "UT: governor not refreshed",
-  "VT: governor not refreshed",
-  "VA: governor not refreshed",
-  "WA: governor not refreshed",
-  "WV: governor not refreshed",
-  "WI: governor not refreshed",
-  "WY: governor not refreshed",
-  "PR: governor not refreshed",
-  "GU: governor not refreshed",
-  "VI: governor not refreshed",
-  "AS: governor not refreshed",
-  "MP: governor not refreshed",
-  "only 0 governors found and no previous data"
- ]
+ "warnings": []
 }
