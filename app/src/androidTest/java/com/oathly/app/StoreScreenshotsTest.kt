@@ -87,10 +87,8 @@ class StoreScreenshotsTest {
         tap("District", substring = true)
         tap("No reminders")
 
-        // Home
+        // Home (a new user sees no estimate yet; the home screenshot is taken after practice)
         waitFor("Start mock interview")
-        compose.waitUntil(20_000) { compose.onAllNodesWithText("%", substring = true).fetchSemanticsNodes().isNotEmpty() }
-        shot("01_home_us")
 
         // Mock interview, answered by self-check until the officer stops
         tap("Start mock interview")
@@ -109,6 +107,11 @@ class StoreScreenshotsTest {
         waitFor("You passed!")
         shot("04_interview_result")
         tap("Done")
+
+        // Home again, now with a personal chance-of-passing estimate
+        waitFor("Start mock interview")
+        compose.waitUntil(20_000) { compose.onAllNodesWithText("%", substring = true).fetchSemanticsNodes().isNotEmpty() }
+        shot("01_home_us")
 
         // Answers that change (state-specific)
         tap("Answers that change")
