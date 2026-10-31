@@ -11,7 +11,8 @@ Launch markets: **United States** (USCIS civics test, 2025 and 2008 versions) an
 | Publish the data feed (`public/v1/officials.json`, privacy page, app-ads.txt) | Cloudflare Pages, deploys `public/` on every push | Automatic |
 | Watch USCIS and Home Affairs pages; open a GitHub issue (you get an email) if a test page changes or an officeholder doesn't match USCIS | `pipeline/watch_sources.py` | Daily |
 | App downloads the feed and notifies users whose answers changed | `UpdateWorker` in the app | Daily, battery friendly |
-| Build, test and lint every commit; downloadable debug APK | `.github/workflows/android.yml` | Every push |
+| Build, test and lint every commit; publish the test APK (release `test-build`) | `.github/workflows/android.yml` | Every push |
+| Tap through the whole app on an emulator (crash check) and capture Play Store screenshots (release `screenshots`) | `.github/workflows/ui-test.yml` | Every app change |
 | Signed release bundle for Google Play | `.github/workflows/release.yml` | When you run it |
 
 Bad upstream data can't reach users: the pipeline validates every section and keeps the last good value, and the app refuses any download that fails its own checks.

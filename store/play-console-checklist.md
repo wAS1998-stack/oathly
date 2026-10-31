@@ -48,7 +48,10 @@ Answers that match the SDKs used:
 - Default listing (United States): text in `store/listing-us.md`
 - Custom store listing (target country **Australia**): text in `store/listing-au.md`
 - Graphics: `store/graphics/icon-512.png`, `store/graphics/feature-graphic-1024x500.png`
-- Phone screenshots (2 to 8): install the debug APK from the latest *Android build* run (Actions → artifact `oathly-debug-apk`) and capture: Home, Mock interview, Answers that change, Results, Study card. Use the same set for Australia after switching the test in Settings.
+- Phone screenshots (2 to 8 per listing): captured automatically by the *UI walkthrough* workflow on every app change. Download them from https://github.com/wAS1998-stack/oathly/releases/tag/screenshots
+  - United States listing: `01_home_us`, `02_interview_question`, `03_interview_answer`, `04_interview_result`, `05_answers_that_change`, `06_study_card`, `07_progress`
+  - Australia listing: `08_home_au`, `09_au_question`, `10_au_feedback`, `11_au_result`
+- Test build to install on your phone: https://github.com/wAS1998-stack/oathly/releases/download/test-build/oathly-test.apk
 - Contact details: support email, website `https://oathly.pages.dev`
 
 ## 6. Monetisation
