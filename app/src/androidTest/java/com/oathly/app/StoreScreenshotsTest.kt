@@ -7,7 +7,6 @@ import androidx.compose.ui.test.junit4.createEmptyComposeRule
 import androidx.compose.ui.test.onAllNodesWithTag
 import androidx.compose.ui.test.onAllNodesWithText
 import androidx.compose.ui.test.onAllNodesWithContentDescription
-import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performTextInput
 import androidx.test.core.app.ActivityScenario
@@ -79,8 +78,8 @@ class StoreScreenshotsTest {
         tap("U.S. citizenship test")
         tap("On or after October 20, 2025")
         tap("No")
-        waitFor("Search")
-        compose.onNodeWithText("Search").performTextInput("California")
+        compose.waitUntil(20_000) { compose.onAllNodes(hasSetTextAction()).fetchSemanticsNodes().isNotEmpty() }
+        compose.onAllNodes(hasSetTextAction())[0].performTextInput("California")
         tap("California")
         tap("District", substring = true)
         tap("No reminders")
