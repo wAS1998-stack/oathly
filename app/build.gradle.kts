@@ -33,6 +33,7 @@ android {
         targetSdk = 36
         versionCode = prop("OATHLY_VERSION_CODE", "1").toInt()
         versionName = "1.0.0"
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField("String", "DATA_BASE_URL", "\"${prop("OATHLY_DATA_BASE_URL", "https://oathly.pages.dev/v1/")}\"")
     }
 
@@ -114,4 +115,10 @@ dependencies {
 
     testImplementation(libs.junit)
     testImplementation(libs.org.json)
+
+    androidTestImplementation(platform(libs.androidx.compose.bom))
+    androidTestImplementation(libs.androidx.compose.ui.test.junit4)
+    androidTestImplementation(libs.androidx.test.ext.junit)
+    androidTestImplementation(libs.androidx.test.runner)
+    debugImplementation(libs.androidx.compose.ui.test.manifest)
 }

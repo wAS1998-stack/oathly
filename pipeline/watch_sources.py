@@ -31,16 +31,25 @@ WATCHED = {
     "uscis-2025-test": "https://www.uscis.gov/citizenship-resource-center/naturalization-test-and-study-resources/2025-civics-test",
     "uscis-study": "https://www.uscis.gov/citizenship/find-study-materials-and-resources/study-for-the-test",
     "uscis-test-updates": TEST_UPDATES,
-    "au-test": "https://immi.homeaffairs.gov.au/citizenship/test-and-interview/prepare-for-test",
+    "au-test": "https://immi.homeaffairs.gov.au/citizenship/test-and-interview/learn-about-citizenship-interview-and-test/learn-about-citizenship-test",
     "au-booklet": "https://immi.homeaffairs.gov.au/citizenship/test-and-interview/our-common-bond",
+    "au-booklet-pdf": "https://immi.homeaffairs.gov.au/citizenship-subsite/files/our-common-bond-testable.pdf",
 }
 FAIL_DAYS_BEFORE_ALERT = 7
 
 
 def fetch_text(url: str) -> str:
-    req = urllib.request.Request(url, headers={"User-Agent": UA, "Accept": "text/html"})
+    req = urllib.request.Request(url, headers={
+        "User-Agent": UA,
+        "Accept": "text/html,application/xhtml+xml,application/pdf;q=0.9,*/*;q=0.8",
+        "Accept-Language": "en-AU,en;q=0.9",
+    })
     with urllib.request.urlopen(req, timeout=60) as resp:
-        raw = resp.read().decode("utf-8", errors="replace")
+        body = resp.read()
+        if url.endswith(".pdf") or "pdf" in resp.headers.get("Content-Type", ""):
+            # Hash the PDF itself: any edit to the booklet changes it.
+            return hashlib.sha256(body).hexdigest()
+        raw = body.decode("utf-8", errors="replace")
     raw = re.sub(r"(?is)<(script|style|noscript)[^>]*>.*?</\1>", " ", raw)
     main = re.search(r"(?is)<main[^>]*>(.*?)</main>", raw)
     text = html.unescape(re.sub(r"(?s)<[^>]+>", "\n", main.group(1) if main else raw))
@@ -76,7 +85,7 @@ def main() -> int:
         except Exception as exc:
             n = state["failures"].get(key, 0) + 1
             state["failures"][key] = n
-            print(f"WARNING: could not fetch {key} ({exc}); failure {n}")
+            print(f"::warning title=Source watch::could not fetch {key} ({exc}); failure {n} in a row")
             if n == FAIL_DAYS_BEFORE_ALERT:
                 open_issue(f"Source unreachable for {n} days: {key}",
                            f"{url}\n\nThe daily check could not read this page. Please open it and confirm "

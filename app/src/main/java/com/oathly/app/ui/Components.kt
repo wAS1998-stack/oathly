@@ -4,7 +4,6 @@ import android.app.Activity
 import android.content.Context
 import android.content.ContextWrapper
 import android.content.Intent
-import android.net.Uri
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
@@ -29,12 +28,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalWindowInfo
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
+import androidx.core.net.toUri
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdSize
@@ -121,7 +122,8 @@ fun AdBanner(vm: AppViewModel, modifier: Modifier = Modifier) {
     val allowed by vm.bannersAllowed.collectAsStateWithLifecycle()
     val pro by vm.isPro.collectAsStateWithLifecycle()
     if (!allowed || pro) return
-    val width = LocalConfiguration.current.screenWidthDp
+    val widthPx = LocalWindowInfo.current.containerSize.width
+    val width = with(LocalDensity.current) { widthPx.toDp().value.toInt() }
     AndroidView(
         modifier = modifier.fillMaxWidth(),
         factory = { ctx ->
@@ -151,7 +153,7 @@ fun Context.findActivity(): Activity? {
 }
 
 fun Context.openUrl(url: String) {
-    runCatching { startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)) }
+    runCatching { startActivity(Intent(Intent.ACTION_VIEW, url.toUri()).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)) }
 }
 
 @Composable

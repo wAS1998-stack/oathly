@@ -28,6 +28,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.role
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.oathly.app.ui.AppBar
@@ -83,7 +84,8 @@ fun AuPracticeScreen(vm: AppViewModel) {
                         disabledContainerColor = MaterialTheme.colorScheme.surface,
                         disabledContentColor = MaterialTheme.colorScheme.onSurface,
                     ),
-                    modifier = Modifier.fillMaxWidth().heightIn(min = 56.dp).semantics { role = Role.Button },
+                    modifier = Modifier.fillMaxWidth().heightIn(min = 56.dp).semantics { role = Role.Button }
+                        .testTag(if (isAnswer) "option_correct" else "option_wrong_$i"),
                 ) {
                     Text("$prefix$option", style = MaterialTheme.typography.bodyLarge, modifier = Modifier.padding(16.dp))
                 }

@@ -1,0 +1,68 @@
+name: UI walkthrough and store screenshots
+
+# Boots an Android emulator, taps through every main screen like a new user (a crash fails
+# the run) and publishes phone screenshots for the Play Store listing as a release:
+# https://github.com/<owner>/oathly/releases/tag/screenshots
+on:
+  push:
+    branches: [main]
+    paths: ["app/**", "gradle/**", ".github/workflows/ui-test.yml", "pipeline/run_ui_test.sh"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ui-test
+  cancel-in-progress: true
+
+jobs:
+  walkthrough:
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - uses: gradle/actions/setup-gradle@v4
+
+      - name: Enable KVM for the emulator
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+
+      - name: Build app and test APKs
+        run: |
+          python3 pipeline/build_officials.py
+          ./gradlew --no-daemon assembleDebug assembleDebugAndroidTest
+
+      - name: Walk through the app on an emulator
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 34
+          target: google_apis
+          arch: x86_64
+          profile: pixel_2
+          disable-animations: true
+          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
+          script: bash pipeline/run_ui_test.sh
+
+      - name: Summarise
+        if: always()
+        run: python3 pipeline/ui_summary.py
+
+      - name: Publish screenshots
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          ls screenshots/*.png >/dev/null 2>&1 || exit 0
+          gh release delete screenshots --yes --cleanup-tag || true
+          gh release create screenshots screenshots/*.png --prerelease --target "$GITHUB_SHA" \
+            --title "Store screenshots (automatic)" \
+            --notes "Phone screenshots captured on an emulator (1080x1920) by the UI walkthrough. Use them for the Google Play listing."
