@@ -1,6 +1,6 @@
 {
  "schema": 1,
- "generatedAt": "2026-10-31T07:41:50+00:00",
+ "generatedAt": "2026-11-01T13:17:48+00:00",
  "federal": {
   "president": {
    "name": "Donald Trump",
@@ -210,7 +210,7 @@
    "capitalAlt": [],
    "governor": {
     "name": "Sarah Huckabee Sanders",
-    "short": "Huckabee"
+    "short": "Sanders"
    },
    "senators": [
     {
@@ -2374,7 +2374,7 @@
    "capitalAlt": [],
    "governor": {
     "name": "Kathy Hochul",
-    "short": "Courtney"
+    "short": "Hochul"
    },
    "senators": [
     {

@@ -1,7 +1,8 @@
 {
  "failures": {
-  "au-booklet": 1,
-  "au-test": 1,
+  "au-booklet": 2,
+  "au-booklet-pdf": 1,
+  "au-test": 2,
   "uscis-2025-test": 0,
   "uscis-study": 0,
   "uscis-test-updates": 0
