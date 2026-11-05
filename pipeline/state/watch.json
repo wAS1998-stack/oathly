@@ -1,11 +1,11 @@
 {
  "failures": {
-  "au-booklet": 5,
-  "au-booklet-pdf": 4,
-  "au-test": 5,
-  "uscis-2025-test": 0,
-  "uscis-study": 0,
-  "uscis-test-updates": 0
+  "au-booklet": 6,
+  "au-booklet-pdf": 5,
+  "au-test": 6,
+  "uscis-2025-test": 1,
+  "uscis-study": 1,
+  "uscis-test-updates": 1
  },
  "hashes": {
   "uscis-2025-test": "58293011219d9fc5adfe6787f3f242b6f7f050c3070ebd87252e33c39dffd9f7",
