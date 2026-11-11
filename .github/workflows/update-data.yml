@@ -1,7 +1,7 @@
 name: Daily data update
 
 # Refreshes the answers that change (officeholders) and watches the official test pages.
-# Pushing public/ redeploys the data feed on Cloudflare Pages automatically.
+# Pushing public/ redeploys the website and the data feed on Cloudflare Pages automatically.
 on:
   schedule:
     - cron: "17 6 * * *"
@@ -25,6 +25,14 @@ jobs:
       - name: Refresh officeholders
         run: python3 pipeline/build_officials.py
 
+      # The website shows the same answers, so rebuild it whenever they change.
+      # A failure here keeps the previous site and never blocks the answer update.
+      - name: Rebuild the website
+        continue-on-error: true
+        env:
+          OATHLY_SITE_URL: ${{ vars.OATHLY_SITE_URL }}
+        run: python3 pipeline/build_site.py
+
       - name: Watch official sources
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -34,7 +42,7 @@ jobs:
         run: |
           git config user.name "oathly-data-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add public/v1/officials.json app/src/main/assets/officials.json pipeline/state/watch.json
+          git add public app/src/main/assets/officials.json pipeline/state/watch.json
           if git diff --cached --quiet; then
             echo "Nothing changed."
           else

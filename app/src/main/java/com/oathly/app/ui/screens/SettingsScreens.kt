@@ -44,8 +44,10 @@ import com.oathly.app.ui.InfoCard
 import com.oathly.app.ui.MenuRow
 import com.oathly.app.ui.Screen
 import com.oathly.app.ui.SectionTitle
+import com.oathly.app.ui.openStorePage
 import com.oathly.app.ui.openUrl
 import com.oathly.app.ui.rememberActivity
+import com.oathly.app.ui.shareApp
 
 @Composable
 fun SettingsScreen(vm: AppViewModel) {
@@ -114,6 +116,8 @@ fun SettingsScreen(vm: AppViewModel) {
             if (vm.privacyOptionsRequired() && activity != null) {
                 MenuRow("Privacy choices", subtitle = "Change your ad consent", onClick = { vm.showPrivacyOptions(activity) })
             }
+            MenuRow("Rate Oathly", subtitle = "Help others find the app on Google Play", onClick = { context.openStorePage() })
+            MenuRow("Share Oathly", subtitle = "Send the app to a friend who is studying", onClick = { context.shareApp() })
             MenuRow("Privacy policy", onClick = { context.openUrl(PRIVACY_URL) })
             MenuRow("About & sources", subtitle = "Disclaimer, official sources, licences", onClick = { vm.navigate(Screen.About) })
             MenuRow("Reset progress", subtitle = "Clear your answers for this test", onClick = { dialog = "reset" })

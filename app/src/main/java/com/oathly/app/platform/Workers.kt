@@ -77,7 +77,7 @@ class ReminderWorker(context: Context, params: WorkerParameters) : CoroutineWork
             val streak = graph.progress.streak()
             val text = if (streak > 0) "Keep your $streak-day streak going: 5 minutes is enough."
             else "A few questions a day is the easiest way to pass."
-            Notifier.show(applicationContext, Notifier.CHANNEL_REMINDERS, Notifier.ID_REMINDER, "Time to practise", text)
+            Notifier.show(applicationContext, Notifier.CHANNEL_REMINDERS, Notifier.ID_REMINDER, "Time to study", text)
         }
         schedule(applicationContext, s.reminderHour, s.reminderMinute)
         return Result.success()

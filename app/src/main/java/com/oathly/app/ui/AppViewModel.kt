@@ -454,12 +454,22 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
         replaceTop(Screen.Results)
     }
 
-    fun retryFromResults() {
-        when (result?.retry) {
-            Screen.Interview -> startInterview()
-            Screen.AuPractice -> startAuTest()
-            else -> Unit
+    /** Starting another test is also the end of the last one, so it gets the same (rate-limited) ad break. */
+    fun retryFromResults(activity: Activity?) {
+        val restart: () -> Unit = {
+            when (result?.retry) {
+                Screen.Interview -> startInterview()
+                Screen.AuPractice -> startAuTest()
+                else -> Unit
+            }
         }
+        if (activity != null) graph.ads.afterTest(activity, restart) else restart()
+    }
+
+    /** Leaving a finished deck. A full study session (10+ cards) counts as a natural break for an ad. */
+    fun leaveDeck(activity: Activity?) {
+        val d = deck
+        if (activity != null && d != null && d.done && d.ids.size >= 10) graph.ads.afterTest(activity) { back() } else back()
     }
 
     fun leaveResults(activity: Activity) {

@@ -156,6 +156,24 @@ fun Context.openUrl(url: String) {
     runCatching { startActivity(Intent(Intent.ACTION_VIEW, url.toUri()).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)) }
 }
 
+const val SITE_URL = "https://oathly.pages.dev"
+private const val STORE_PACKAGE = "com.oathly.app"
+private const val STORE_URL = "https://play.google.com/store/apps/details?id=$STORE_PACKAGE"
+
+/** Opens Oathly's Google Play page (in the Play Store app when there is one). */
+fun Context.openStorePage() {
+    val market = Intent(Intent.ACTION_VIEW, "market://details?id=$STORE_PACKAGE".toUri()).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+    runCatching { startActivity(market) }.onFailure { openUrl(STORE_URL) }
+}
+
+/** Lets the user send a link to the app to a friend. */
+fun Context.shareApp() {
+    val send = Intent(Intent.ACTION_SEND)
+        .setType("text/plain")
+        .putExtra(Intent.EXTRA_TEXT, "I'm studying for my citizenship test with Oathly. It's free: $STORE_URL")
+    runCatching { startActivity(Intent.createChooser(send, "Share Oathly").addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)) }
+}
+
 @Composable
 fun rememberActivity(): Activity? = LocalContext.current.findActivity()
 

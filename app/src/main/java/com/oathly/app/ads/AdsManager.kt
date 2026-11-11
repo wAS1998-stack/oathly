@@ -26,8 +26,9 @@ import java.util.concurrent.atomic.AtomicBoolean
  * Ads, done politely:
  *  - Google's consent form (UMP) runs first wherever the law requires it.
  *  - One banner on menu screens; never on a question.
- *  - A full-screen ad only after a finished practice test, at most every 4 minutes and
- *    never after the user's first test.
+ *  - A full-screen ad only at a natural break (leaving or restarting a finished practice
+ *    test, or closing a finished study deck), at most every 4 minutes and never at the
+ *    user's first break.
  *  - Nothing at all for Pro users.
  */
 class AdsManager(private val context: Context, private val settings: SettingsStore, private val scope: CoroutineScope) {
@@ -103,7 +104,7 @@ class AdsManager(private val context: Context, private val settings: SettingsSto
         )
     }
 
-    /** Called when the user leaves a results screen. [then] always runs, ad or not. */
+    /** Called at a natural break (a finished test or study deck). [then] always runs, ad or not. */
     fun afterTest(activity: Activity, then: () -> Unit) {
         val count = settings.testsSinceInterstitial + 1
         settings.testsSinceInterstitial = count

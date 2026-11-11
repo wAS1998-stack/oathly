@@ -40,6 +40,8 @@ fun HomeScreen(vm: AppViewModel) {
     val settings by vm.settings.collectAsStateWithLifecycle()
     val stats by vm.stats.collectAsStateWithLifecycle()
     val days by vm.days.collectAsStateWithLifecycle()
+    val tests by vm.tests.collectAsStateWithLifecycle()
+    val isPro by vm.isPro.collectAsStateWithLifecycle()
     val country = settings.country ?: Country.US
     val today = vm.graph.progress.today()
 
@@ -138,6 +140,9 @@ fun HomeScreen(vm: AppViewModel) {
                         style = MaterialTheme.typography.bodySmall,
                     )
                 }
+            }
+            if (!isPro && tests.isNotEmpty()) {
+                MenuRow("Study without ads", subtitle = "One-time purchase, no subscription", onClick = { vm.navigate(Screen.Pro) })
             }
             Text(
                 "Independent study app. Not affiliated with any government agency.",

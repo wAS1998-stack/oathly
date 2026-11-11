@@ -25,7 +25,7 @@ object Notifier {
         val nm = context.getSystemService(NotificationManager::class.java)
         nm.createNotificationChannel(
             NotificationChannel(CHANNEL_REMINDERS, "Study reminders", NotificationManager.IMPORTANCE_DEFAULT)
-                .apply { description = "A daily nudge to practise" }
+                .apply { description = "A daily study reminder" }
         )
         nm.createNotificationChannel(
             NotificationChannel(CHANNEL_UPDATES, "Answer updates", NotificationManager.IMPORTANCE_DEFAULT)

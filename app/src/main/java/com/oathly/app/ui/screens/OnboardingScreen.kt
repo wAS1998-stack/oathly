@@ -213,7 +213,7 @@ private fun Welcome(onStart: () -> Unit, onPrivacy: () -> Unit) {
         Image(painterResource(R.drawable.ic_logo), contentDescription = null, modifier = Modifier.size(96.dp))
         Text("Oathly", style = MaterialTheme.typography.displaySmall)
         Text(
-            "Practise for your citizenship test with the official questions, a realistic mock interview, and answers that stay up to date.",
+            "Get ready for your citizenship test with the official questions, a realistic mock interview, and answers that stay up to date.",
             style = MaterialTheme.typography.bodyLarge,
             textAlign = TextAlign.Center,
         )

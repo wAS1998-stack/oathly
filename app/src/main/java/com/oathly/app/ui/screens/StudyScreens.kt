@@ -42,6 +42,7 @@ import com.oathly.app.ui.AppViewModel
 import com.oathly.app.ui.InfoCard
 import com.oathly.app.ui.MenuRow
 import com.oathly.app.ui.SpeakButton
+import com.oathly.app.ui.rememberActivity
 import com.oathly.app.ui.theme.QuestionStyle
 
 @Composable
@@ -76,6 +77,7 @@ fun StudyMenuScreen(vm: AppViewModel) {
 fun StudyScreen(vm: AppViewModel) {
     val settings by vm.settings.collectAsStateWithLifecycle()
     val deck = vm.deck
+    val activity = rememberActivity()
     Scaffold(
         topBar = { AppBar(deck?.title ?: "Study", onBack = { vm.back() }, close = true) },
         bottomBar = {
@@ -106,7 +108,7 @@ fun StudyScreen(vm: AppViewModel) {
         ) {
             if (deck == null) return@Column
             if (deck.done) {
-                DeckFinished(deck.known, deck.missed, onDone = { vm.back() })
+                DeckFinished(deck.known, deck.missed, onDone = { vm.leaveDeck(activity) })
                 return@Column
             }
             LinearProgressIndicator(

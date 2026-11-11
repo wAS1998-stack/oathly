@@ -181,7 +181,7 @@ private fun FeedbackPanel(f: Feedback, finished: Boolean, vm: AppViewModel) {
     }
     InfoCard(container = MaterialTheme.colorScheme.surfaceVariant) {
         Text(
-            "Tip: at the real interview, the officer asks out loud and you answer out loud. Practise saying the answer.",
+            "Tip: at the real interview, the officer asks out loud and you answer out loud. Practice saying the answer.",
             style = MaterialTheme.typography.bodySmall,
         )
     }

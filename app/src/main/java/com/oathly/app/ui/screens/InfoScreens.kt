@@ -34,6 +34,7 @@ import com.oathly.app.ui.AppViewModel
 import com.oathly.app.ui.InfoCard
 import com.oathly.app.ui.MenuRow
 import com.oathly.app.ui.Screen
+import com.oathly.app.ui.SITE_URL
 import com.oathly.app.ui.SectionTitle
 import com.oathly.app.ui.openUrl
 import com.oathly.app.ui.percent
@@ -211,6 +212,7 @@ fun AboutScreen(vm: AppViewModel) {
                 style = MaterialTheme.typography.bodyMedium,
             )
             TextButton(onClick = { context.openUrl(PRIVACY_URL) }) { Text("Privacy policy") }
+            TextButton(onClick = { context.openUrl(SITE_URL) }) { Text("oathly.pages.dev: study online") }
             Text("Version ${BuildConfig.VERSION_NAME}", style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
             Spacer(Modifier.height(16.dp))
         }
