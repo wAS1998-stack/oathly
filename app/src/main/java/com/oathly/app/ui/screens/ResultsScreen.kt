@@ -40,7 +40,7 @@ fun ResultsScreen(vm: AppViewModel) {
     val r = vm.result
     val activity = rememberActivity()
     val context = LocalContext.current
-    val isPro by vm.isPro.collectAsStateWithLifecycle()
+    val isPro by vm.adFree.collectAsStateWithLifecycle()
     val tests by vm.tests.collectAsStateWithLifecycle()
     // Ask for a rating only once the user has passed more than one practice test.
     val askForRating = tests.count { it.passed } >= 2

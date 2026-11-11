@@ -67,7 +67,7 @@
       store("oathly.state", state.value);
       Promise.all([getJSON("us-" + version.value + ".json"), getJSON("places.json")]).then(function (d) {
         form.hidden = true;
-        usRun(d[0], d[1][state.value] || null, senior.checked, function () { form.hidden = false; show([]); });
+        usRun(d[0], d[1][state.value] || null, senior.checked, function () { form.hidden = false; show([]); form.scrollIntoView(); version.focus(); });
       }).catch(loadError);
     });
   }
@@ -84,7 +84,7 @@
     function answers(q) {
       if (!q.dyn || q.a.length) return q.a;
       if (place && place.answers[q.dyn]) return place.answers[q.dyn];
-      return ["This answer depends on where you live. Choose your state above, or see the list of answers by state."];
+      return ["This answer depends on where you live. Start again and choose your state, or open \u201cBy state\u201d in the menu to look it up."];
     }
     function ask() {
       var q = qs[i];
@@ -149,7 +149,7 @@
     btn.addEventListener("click", function () {
       getJSON("au.json").then(function (bank) {
         btn.parentNode.hidden = true;
-        auRun(bank, function () { btn.parentNode.hidden = false; show([]); });
+        auRun(bank, function () { btn.parentNode.hidden = false; show([]); btn.scrollIntoView(); btn.focus(); });
       }).catch(loadError);
     });
   }
@@ -177,8 +177,8 @@
         if (ok) { score++; if (q.values) valuesRight++; } else missed.push(q);
         buttons.forEach(function (b, k) {
           b.disabled = true;
-          if (order[k] === q.answerIndex) b.className = "choice right";
-          else if (order[k] === idx) b.className = "choice wrong";
+          if (order[k] === q.answerIndex) { b.className = "choice right"; b.textContent = "\u2713 " + b.textContent + " (correct answer)"; }
+          else if (order[k] === idx) { b.className = "choice wrong"; b.textContent = "\u2717 " + b.textContent + " (your answer)"; }
         });
         after.appendChild(el("p", { role: "status", text: (ok ? "Correct. " : "Not quite. ") + q.explanation }));
         after.appendChild(el("div", { class: "btns" }, [

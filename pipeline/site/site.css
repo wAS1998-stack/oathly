@@ -2,7 +2,7 @@
 @media (prefers-color-scheme:dark){:root{--bg:#10151c;--fg:#e3e2e6;--muted:#b4b3ba;--accent:#a9c7f0;--on-accent:#0a1d33;--card:#161c24;--line:#2b3440;--soft:#223b5c;--on-soft:#d6e3f7;--gold:#f1c46b;--ok:#6fd39e;--bad:#f2b8b5;--ok-bg:#16372a;--bad-bg:#4a1f1c}}
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--bg);color:var(--fg);font:17px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+body{margin:0;overflow-wrap:break-word;background:var(--bg);color:var(--fg);font:17px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
 a{color:var(--accent);text-underline-offset:2px}
 a:focus-visible,button:focus-visible,select:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
 .wrap{max-width:820px;margin:0 auto;padding:0 16px}
@@ -70,7 +70,9 @@ th{font-size:.85rem;color:var(--muted)}
 details{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 16px;margin:10px 0}
 summary{font-weight:600;cursor:pointer}
 details p{margin:10px 0 0}
-footer{border-top:1px solid var(--line);padding:24px 0 40px;font-size:.9rem;color:var(--muted)}
+.scroll{overflow-x:auto}
+.scroll table{min-width:340px}
+footer{overflow-wrap:anywhere;border-top:1px solid var(--line);padding:24px 0 40px;font-size:.9rem;color:var(--muted)}
 footer nav{display:flex;flex-wrap:wrap;gap:6px 18px;margin-bottom:12px}
 /* practice */
 .quiz label{display:block;font-weight:600;margin:12px 0 4px}

@@ -102,6 +102,7 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
     val proPrice = graph.billing.price
     val purchaseStatus = graph.billing.status
     val bannersAllowed = graph.ads.bannersAllowed
+    val adFree = graph.ads.adFree
 
     var usBank by mutableStateOf<UsBank?>(null)
         private set
@@ -457,7 +458,7 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
     /** Starting another test is also the end of the last one, so it gets the same (rate-limited) ad break. */
     fun retryFromResults(activity: Activity?) {
         val restart: () -> Unit = {
-            when (result?.retry) {
+            if (current == Screen.Results) when (result?.retry) {
                 Screen.Interview -> startInterview()
                 Screen.AuPractice -> startAuTest()
                 else -> Unit
@@ -469,11 +470,13 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
     /** Leaving a finished deck. A full study session (10+ cards) counts as a natural break for an ad. */
     fun leaveDeck(activity: Activity?) {
         val d = deck
-        if (activity != null && d != null && d.done && d.ids.size >= 10) graph.ads.afterTest(activity) { back() } else back()
+        if (current != Screen.Study) return
+        val close: () -> Unit = { if (current == Screen.Study) back() }
+        if (activity != null && d != null && d.done && d.ids.size >= 10) graph.ads.afterTest(activity, close) else close()
     }
 
     fun leaveResults(activity: Activity) {
-        graph.ads.afterTest(activity) { resetTo(Screen.Home) }
+        graph.ads.afterTest(activity) { if (current == Screen.Results) resetTo(Screen.Home) }
     }
 
     // ---------- store ----------

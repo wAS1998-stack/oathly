@@ -39,9 +39,12 @@ class AdsManager(private val context: Context, private val settings: SettingsSto
     private val _bannersAllowed = MutableStateFlow(false)
     /** True when a banner may be shown right now. */
     val bannersAllowed: StateFlow<Boolean> = _bannersAllowed.asStateFlow()
+    /** True when ads are switched off, so the app should not offer to remove them either. */
+    val adFree: StateFlow<Boolean> = _pro.asStateFlow()
 
     private var interstitial: InterstitialAd? = null
     private var loading = false
+    private var showing = false
     private lateinit var consent: ConsentInformation
 
     val privacyOptionsRequired: Boolean
@@ -106,6 +109,7 @@ class AdsManager(private val context: Context, private val settings: SettingsSto
 
     /** Called at a natural break (a finished test or study deck). [then] always runs, ad or not. */
     fun afterTest(activity: Activity, then: () -> Unit) {
+        if (showing) return // a second tap while the ad is opening; the first call continues when it closes
         val count = settings.testsSinceInterstitial + 1
         settings.testsSinceInterstitial = count
         val now = System.currentTimeMillis()
@@ -113,11 +117,12 @@ class AdsManager(private val context: Context, private val settings: SettingsSto
         val eligible = !_pro.value && ad != null && count >= 2 && now - settings.lastInterstitialAt > 4 * 60_000
         if (!eligible) { then(); preloadInterstitial(); return }
         ad!!.fullScreenContentCallback = object : FullScreenContentCallback() {
-            override fun onAdDismissedFullScreenContent() { interstitial = null; then(); preloadInterstitial() }
-            override fun onAdFailedToShowFullScreenContent(error: AdError) { interstitial = null; then(); preloadInterstitial() }
+            override fun onAdDismissedFullScreenContent() { showing = false; interstitial = null; then(); preloadInterstitial() }
+            override fun onAdFailedToShowFullScreenContent(error: AdError) { showing = false; interstitial = null; then(); preloadInterstitial() }
         }
         settings.lastInterstitialAt = now
         settings.testsSinceInterstitial = 0
+        showing = true
         ad.show(activity)
     }
 }

@@ -117,6 +117,12 @@ def district_label(n: int) -> str:
     return "At-large" if n == 0 else f"District {n}"
 
 
+def district_count(p: dict) -> int:
+    """Seats in the House. Vacant seats are missing from the data, so count by district number."""
+    reps = p["representatives"]
+    return max([r["district"] for r in reps] + [len(reps)]) if reps else 0
+
+
 def place_answers(p: dict) -> dict[str, list[str]]:
     """Answers that depend on where the applicant lives. Mirrors DynamicAnswers.kt."""
     is_state, is_dc = p["type"] == "state", p["type"] == "district"
@@ -131,11 +137,11 @@ def place_answers(p: dict) -> dict[str, list[str]]:
         if p["senators"]:
             out["senators"] = [s["name"] for s in p["senators"]]
         reps = p["representatives"]
-        if len(reps) == 1:
+        if len(reps) == 1 and reps[0]["district"] == 0:
             out["representative"] = [f"{reps[0]['name']} (at-large)"]
         elif reps:
             out["representative"] = [
-                f"It depends on your district. {p['name']} has {len(reps)} representatives; "
+                f"It depends on your district. {p['name']} has {district_count(p)} congressional districts; "
                 "find yours on the state page or at house.gov."]
     if is_dc:
         out["governor"] = ["D.C. does not have a governor."]
@@ -187,6 +193,7 @@ class Site:
             items.append(f'<li aria-current="page">{e(crumbs[-1][0])}</li>')
             crumb_html = f'<nav aria-label="Breadcrumb"><ol class="crumbs">{"".join(items)}</ol></nav>'
         robots = "" if index else '<meta name="robots" content="noindex">\n'
+        canonical = f'<link rel="canonical" href="{url}">' if index else ""
         doc = f"""<!doctype html>
 <html lang="{lang}">
 <head>
@@ -194,12 +201,11 @@ class Site:
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{e(title)}</title>
 <meta name="description" content="{e(desc)}">
-{robots}<link rel="canonical" href="{url}">
+{robots}{canonical}
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Oathly">
 <meta property="og:title" content="{e(title)}">
 <meta property="og:description" content="{e(desc)}">
-<meta property="og:url" content="{url}">
 <meta property="og:image" content="{SITE}/assets/og.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#1f3a5f">
@@ -280,11 +286,16 @@ def q_path(version: str, q: dict) -> str:
     return f"{US}{VERSION_INFO[version]['slug']}/{q['n']}-{slugify(q['q'])}/"
 
 
+UPDATING = "This answer is being updated. Check uscis.gov/citizenship/testupdates."
+
+
 def us_answers(q: dict, federal: dict) -> list[str] | None:
     """Fixed answers, or the current federal answer; None when it depends on the state."""
     if not q.get("dyn"):
         return q["a"]
-    return federal.get(q["dyn"])
+    if q["dyn"] in STATE_KEYS:
+        return None
+    return federal.get(q["dyn"]) or [UPDATING]
 
 
 def answer_label(q: dict, answers: list[str]) -> str:
@@ -434,7 +445,7 @@ def build_us_questions(site: Site, version: str, bank: dict, federal: dict, chec
                 how += (f'<p>This answer changes after elections and appointments. Oathly checks it against public '
                         f'records every day; it was last updated on {checked}. You can confirm it on the '
                         f'<a href="{USCIS_UPDATES}" rel="noopener">USCIS test updates page</a>.</p>')
-            desc_answer = "Answer: " + "; ".join(answers[:3]) + "."
+            desc_answer = "Answer: " + "; ".join(a.rstrip(".") for a in answers[:3]) + "."
 
         why = f'<h2>Why this is the answer</h2><p>{e(q["exp"])}</p>' if q.get("exp") else ""
         senior = ""
@@ -636,7 +647,7 @@ def build_us_states(site: Site, data: dict, federal: dict, checked: str, lastmod
 
         def block(key: str, heading: str, extra: str = "") -> str:
             a = ans.get(key)
-            if key == "representative" and is_state and len(p["representatives"]) > 1:
+            if key == "representative" and many_reps:
                 return ""
             inner = ul(a) if a else f'<p>This answer is being updated. Check the <a href="{USCIS_UPDATES}" rel="noopener">USCIS test updates page</a>.</p>'
             q25 = nums["2025"].get(key)
@@ -644,19 +655,34 @@ def build_us_states(site: Site, data: dict, federal: dict, checked: str, lastmod
                     f'<p><em>{e(q25["q"]) if q25 else ""}</em></p>'
                     f'<div class="answer"><p class="label">Answer for {e(where)}</p>{inner}</div>{extra}')
 
-        sen_extra = "<p>Either senator is a correct answer. You only need to name one.</p>" if is_state else ""
+        many_reps = is_state and not (len(p["representatives"]) == 1 and p["representatives"][0]["district"] == 0) \
+            and bool(p["representatives"])
+        sen_extra = ""
+        if is_state and len(p["senators"]) == 2:
+            sen_extra = "<p>Either senator is a correct answer. You only need to name one.</p>"
+        elif is_state and len(p["senators"]) == 1:
+            sen_extra = (f"<p>{e(name)}'s other Senate seat is vacant right now. Check the "
+                         f'<a href="{USCIS_UPDATES}" rel="noopener">USCIS test updates page</a> before your interview.</p>')
         rep_html = block("representative", f"U.S. representative for {where}")
-        if is_state and len(p["representatives"]) > 1:
-            rows = "".join(
-                f"<tr><td>{district_label(r['district'])}</td><td><strong>{e(r['name'])}</strong></td><td>{e(r.get('party', ''))}</td></tr>"
-                for r in p["representatives"])
+        if many_reps:
+            seated = {r["district"]: r for r in p["representatives"]}
+            total = district_count(p)
+            rows = ""
+            for n in range(1, total + 1):
+                r = seated.get(n)
+                if r:
+                    rows += (f"<tr><td>{district_label(n)}</td><td><strong>{e(r['name'])}</strong></td>"
+                             f"<td>{e(r.get('party', ''))}</td></tr>")
+                else:
+                    rows += (f'<tr><td>{district_label(n)}</td><td colspan="2">Vacant right now. Check '
+                             f'<a href="{FIND_REP}" rel="noopener">house.gov</a> before your interview.</td></tr>')
             q25 = nums["2025"]["representative"]
             rep_html = (f'<h2>U.S. representatives for {e(name)}</h2><p class="muted">{qref("representative")}</p>'
                         f'<p><em>{e(q25["q"])}</em></p>'
-                        f'<p>{e(name)} has {len(p["representatives"])} congressional districts, and the correct answer is the '
+                        f'<p>{e(name)} has {total} congressional districts, and the correct answer is the '
                         f'representative for the district where you live. If you do not know your district, enter your ZIP code at '
                         f'<a href="{FIND_REP}" rel="noopener">house.gov</a>.</p>'
-                        f'<table><tr><th>District</th><th>Representative</th><th>Party</th></tr>{rows}</table>')
+                        f'<div class="scroll"><table><tr><th>District</th><th>Representative</th><th>Party</th></tr>{rows}</table></div>')
 
         fed_rows = ""
         for label, key in (("President", "president"), ("Vice President", "vice_president"),
@@ -667,9 +693,12 @@ def build_us_states(site: Site, data: dict, federal: dict, checked: str, lastmod
                              f'<td><strong>{e(federal[key][0])}</strong></td></tr>')
 
         faqs = []
-        if is_state and p["senators"]:
+        if is_state and len(p["senators"]) == 2:
             faqs.append((f"Who are the U.S. senators for {name}?",
                          f"The U.S. senators for {e(name)} are {e(' and '.join(s['name'] for s in p['senators']))}. On the citizenship test you only need to name one of them."))
+        elif is_state and p["senators"]:
+            faqs.append((f"Who is the U.S. senator for {name}?",
+                         f"{e(p['senators'][0]['name'])} is a U.S. senator for {e(name)}. The state's other Senate seat is vacant right now."))
         elif not is_state:
             faqs.append((f"Who are the U.S. senators for {where}?", e(ans["senators"][0])
                          + " That is the answer to give on the citizenship test."))
@@ -683,9 +712,13 @@ def build_us_states(site: Site, data: dict, federal: dict, checked: str, lastmod
                          else f"The capital of {e(where)} is {e(ans['capital'][0])}."))
         faq_html, faq_ld = faq_block(faqs)
 
-        short = {"state": "Senators, Representatives, Governor and Capital",
-                 "district": "Senators, Delegate, Governor and Capital",
-                 "territory": "Senators, Delegate, Governor and Capital"}[p["type"]]
+        if is_state:
+            short = "Senators, Representatives, Governor and Capital"
+        elif p["type"] == "district":
+            short = "Senators, Delegate, Governor and Capital Questions"
+        else:
+            role = (p.get("delegate") or {}).get("title") or "Delegate"
+            short = f"Senators, {role}, Governor and Capital"
         title = f"{name} Citizenship Test Answers: {short}"
         gov = (ans.get("governor") or [""])[0]
         desc = clip(f"Current civics test answers for {where}"

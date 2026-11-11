@@ -41,7 +41,7 @@ fun HomeScreen(vm: AppViewModel) {
     val stats by vm.stats.collectAsStateWithLifecycle()
     val days by vm.days.collectAsStateWithLifecycle()
     val tests by vm.tests.collectAsStateWithLifecycle()
-    val isPro by vm.isPro.collectAsStateWithLifecycle()
+    val isPro by vm.adFree.collectAsStateWithLifecycle()
     val country = settings.country ?: Country.US
     val today = vm.graph.progress.today()
 

@@ -23,7 +23,7 @@ EXPLANATIONS = ROOT / "content" / "us" / "explanations.json"
 
 # How many distinct answers the officer expects ("Name two ...", "Name three ...").
 NEED_COUNT = {
-    "2025": {10: 2, 48: 2, 65: 3, 67: 2, 69: 2, 126: 3},
+    "2025": {10: 2, 48: 2, 65: 3, 67: 2, 69: 2, 81: 5, 126: 3},
     "2008": {9: 2, 36: 2, 51: 2, 55: 2, 64: 3, 100: 2},
 }
 
