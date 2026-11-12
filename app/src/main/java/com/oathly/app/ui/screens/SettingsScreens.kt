@@ -1,7 +1,11 @@
 package com.oathly.app.ui.screens
 
 import android.Manifest
+import android.content.Context
+import android.content.Intent
 import android.os.Build
+import android.provider.Settings
+import android.text.format.DateFormat
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.Arrangement
@@ -17,6 +21,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
@@ -24,9 +29,12 @@ import androidx.compose.material3.Slider
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
+import androidx.compose.material3.TimePicker
+import androidx.compose.material3.rememberTimePickerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -35,15 +43,19 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.compose.LifecycleEventEffect
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.oathly.app.data.Country
 import com.oathly.app.data.ThemeMode
+import com.oathly.app.platform.Notifier
 import com.oathly.app.ui.AppBar
 import com.oathly.app.ui.AppViewModel
 import com.oathly.app.ui.InfoCard
 import com.oathly.app.ui.MenuRow
 import com.oathly.app.ui.Screen
 import com.oathly.app.ui.SectionTitle
+import com.oathly.app.ui.formatTime
 import com.oathly.app.ui.openStorePage
 import com.oathly.app.ui.openUrl
 import com.oathly.app.ui.rememberActivity
@@ -58,8 +70,12 @@ fun SettingsScreen(vm: AppViewModel) {
     val context = LocalContext.current
     var dialog by rememberSaveable { mutableStateOf<String?>(null) }
 
+    var canNotify by remember { mutableStateOf(Notifier.canNotify(context)) }
+    LifecycleEventEffect(Lifecycle.Event.ON_RESUME) { canNotify = Notifier.canNotify(context) }
     val notifPermission = rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()) { granted ->
+        canNotify = granted
         if (granted) vm.setReminder(true, s.reminderHour, s.reminderMinute)
+        else dialog = "blocked" // Android stops asking after two refusals; offer the system setting.
     }
 
     Scaffold(
@@ -97,16 +113,24 @@ fun SettingsScreen(vm: AppViewModel) {
                     onValueChangeFinished = { vm.speak("This is how fast questions will be read.") },
                 )
             }
+            val reminderTime = context.formatTime(s.reminderHour, s.reminderMinute)
             ToggleRow(
                 "Daily reminder",
-                if (s.reminderOn) "Every day at %d:%02d".format(s.reminderHour, s.reminderMinute) else "Off",
+                if (s.reminderOn) "Every day at $reminderTime" else "Off",
                 s.reminderOn,
             ) { on ->
-                if (on && Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) notifPermission.launch(Manifest.permission.POST_NOTIFICATIONS)
+                if (on && !canNotify && Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) notifPermission.launch(Manifest.permission.POST_NOTIFICATIONS)
                 else vm.setReminder(on, s.reminderHour, s.reminderMinute)
             }
             if (s.reminderOn) {
-                MenuRow("Reminder time", subtitle = "%d:%02d".format(s.reminderHour, s.reminderMinute), trailing = "Change", onClick = { dialog = "time" })
+                MenuRow("Reminder time", subtitle = reminderTime, trailing = "Change", onClick = { dialog = "time" })
+                if (!canNotify) {
+                    MenuRow(
+                        "Notifications are blocked",
+                        subtitle = "Reminders can't appear. Tap to allow them in your phone's settings.",
+                        onClick = { context.openNotificationSettings() },
+                    )
+                }
             }
             MenuRow("Theme", subtitle = s.theme.name.lowercase().replaceFirstChar { it.uppercase() }, trailing = "Change", onClick = { dialog = "theme" })
 
@@ -141,10 +165,16 @@ fun SettingsScreen(vm: AppViewModel) {
             ThemeMode.entries.map { it.name to it.name.lowercase().replaceFirstChar { c -> c.uppercase() } },
             onPick = { vm.setTheme(ThemeMode.valueOf(it)) }, onDismiss = { dialog = null },
         )
-        "time" -> PickDialog(
-            "Reminder time",
-            listOf(7, 9, 12, 17, 19, 21).map { h -> "$h" to "%d:00".format(h) },
-            onPick = { vm.setReminder(true, it.toInt(), 0) }, onDismiss = { dialog = null },
+        "time" -> ReminderTimeDialog(
+            hour = s.reminderHour, minute = s.reminderMinute,
+            onPick = { h, m -> vm.setReminder(true, h, m) }, onDismiss = { dialog = null },
+        )
+        "blocked" -> AlertDialog(
+            onDismissRequest = { dialog = null },
+            title = { Text("Notifications are off") },
+            text = { Text("To get a daily reminder, allow notifications for Oathly in your phone's settings.") },
+            confirmButton = { TextButton(onClick = { dialog = null; context.openNotificationSettings() }) { Text("Open settings") } },
+            dismissButton = { TextButton(onClick = { dialog = null }) { Text("Not now") } },
         )
         "reset" -> AlertDialog(
             onDismissRequest = { dialog = null },
@@ -154,6 +184,27 @@ fun SettingsScreen(vm: AppViewModel) {
             dismissButton = { TextButton(onClick = { dialog = null }) { Text("Cancel") } },
         )
     }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun ReminderTimeDialog(hour: Int, minute: Int, onPick: (Int, Int) -> Unit, onDismiss: () -> Unit) {
+    val context = LocalContext.current
+    val state = rememberTimePickerState(hour, minute, is24Hour = DateFormat.is24HourFormat(context))
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = { Text("Reminder time") },
+        text = { TimePicker(state = state) },
+        confirmButton = { TextButton(onClick = { onPick(state.hour, state.minute); onDismiss() }) { Text("Save") } },
+        dismissButton = { TextButton(onClick = onDismiss) { Text("Cancel") } },
+    )
+}
+
+private fun Context.openNotificationSettings() {
+    val intent = Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS)
+        .putExtra(Settings.EXTRA_APP_PACKAGE, packageName)
+        .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+    runCatching { startActivity(intent) }
 }
 
 @Composable

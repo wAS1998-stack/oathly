@@ -166,6 +166,14 @@ fun Context.openStorePage() {
     runCatching { startActivity(market) }.onFailure { openUrl(STORE_URL) }
 }
 
+/** Google Play's in-app rating sheet. Does nothing when Google decides not to show it. */
+fun Activity.requestInAppReview() {
+    val manager = com.google.android.play.core.review.ReviewManagerFactory.create(this)
+    manager.requestReviewFlow().addOnCompleteListener { task ->
+        if (task.isSuccessful && !isFinishing) manager.launchReviewFlow(this, task.result)
+    }
+}
+
 /** Lets the user send a link to the app to a friend. */
 fun Context.shareApp() {
     val send = Intent(Intent.ACTION_SEND)
@@ -176,5 +184,14 @@ fun Context.shareApp() {
 
 @Composable
 fun rememberActivity(): Activity? = LocalContext.current.findActivity()
+
+/** A time of day in the phone's own format ("7:00 PM" or "19:00"). */
+fun Context.formatTime(hour: Int, minute: Int): String {
+    val cal = java.util.Calendar.getInstance().apply {
+        set(java.util.Calendar.HOUR_OF_DAY, hour)
+        set(java.util.Calendar.MINUTE, minute)
+    }
+    return android.text.format.DateFormat.getTimeFormat(this).format(cal.time)
+}
 
 fun percent(x: Double): String = "${Math.round(x * 100)}%"

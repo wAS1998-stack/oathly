@@ -2,6 +2,7 @@ package com.oathly.app.ui.screens
 
 import android.Manifest
 import android.os.Build
+import androidx.activity.compose.BackHandler
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Image
@@ -11,6 +12,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.foundation.layout.size
@@ -71,23 +73,28 @@ fun OnboardingScreen(vm: AppViewModel) {
         vm.finishOnboarding(Country.from(country) ?: Country.US, version, senior, stateCode, repName, reminder)
     }
 
-    var pendingReminder by remember { mutableStateOf<Pair<Int, Int>?>(null) }
+    // Saved so a rotation or theme change while the permission dialog is open keeps the choice.
+    var pendingHour by rememberSaveable { mutableIntStateOf(-1) }
     val permission = rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()) { granted ->
-        finish(if (granted) pendingReminder else null)
+        finish(if (granted && pendingHour >= 0) pendingHour to 0 else null)
     }
+
+    fun goBack() {
+        step = when (step) {
+            STEP_REMINDER -> if (country == "AU") STEP_COUNTRY else if (hasManyReps(vm, stateCode)) STEP_REP else STEP_STATE
+            STEP_REP -> STEP_STATE
+            else -> step - 1
+        }
+    }
+    // The system back gesture steps back through onboarding instead of closing the app.
+    BackHandler(enabled = step > STEP_WELCOME) { goBack() }
 
     Column(
         Modifier.fillMaxSize().safeDrawingPadding().padding(horizontal = 20.dp, vertical = 16.dp),
         verticalArrangement = Arrangement.spacedBy(12.dp),
     ) {
         if (step > STEP_WELCOME) {
-            TextButton(onClick = {
-                step = when (step) {
-                    STEP_REMINDER -> if (country == "AU") STEP_COUNTRY else if (hasManyReps(vm, stateCode)) STEP_REP else STEP_STATE
-                    STEP_REP -> STEP_STATE
-                    else -> step - 1
-                }
-            }) { Text("Back") }
+            TextButton(onClick = { goBack() }) { Text("Back") }
         }
         when (step) {
             STEP_WELCOME -> Welcome(onStart = { step = STEP_COUNTRY }, onPrivacy = { context.openUrl(PRIVACY_URL) })
@@ -188,7 +195,7 @@ fun OnboardingScreen(vm: AppViewModel) {
                 } else {
                     val reminder = picked.toInt() to 0
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                        pendingReminder = reminder
+                        pendingHour = reminder.first
                         permission.launch(Manifest.permission.POST_NOTIFICATIONS)
                     } else {
                         finish(reminder)
@@ -213,7 +220,7 @@ private fun Welcome(onStart: () -> Unit, onPrivacy: () -> Unit) {
         Image(painterResource(R.drawable.ic_logo), contentDescription = null, modifier = Modifier.size(96.dp))
         Text("Oathly", style = MaterialTheme.typography.displaySmall)
         Text(
-            "Get ready for your citizenship test with the official questions, a realistic mock interview, and answers that stay up to date.",
+            "Get ready for your U.S. or Australian citizenship test with practice questions, practice tests and clear explanations.",
             style = MaterialTheme.typography.bodyLarge,
             textAlign = TextAlign.Center,
         )
@@ -224,7 +231,7 @@ private fun Welcome(onStart: () -> Unit, onPrivacy: () -> Unit) {
             )
         }
         Spacer(Modifier.height(24.dp))
-        Button(onClick = onStart, modifier = Modifier.fillMaxWidth().height(52.dp)) { Text("Get started") }
+        Button(onClick = onStart, modifier = Modifier.fillMaxWidth().heightIn(min = 52.dp)) { Text("Get started") }
         TextButton(onClick = onPrivacy) { Text("Privacy policy") }
     }
 }

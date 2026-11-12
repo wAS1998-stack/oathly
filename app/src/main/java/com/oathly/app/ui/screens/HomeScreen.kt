@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
@@ -112,7 +113,7 @@ fun HomeScreen(vm: AppViewModel) {
 
             Button(
                 onClick = { if (country == Country.US) vm.startInterview() else vm.startAuTest() },
-                modifier = Modifier.fillMaxWidth().height(56.dp),
+                modifier = Modifier.fillMaxWidth().heightIn(min = 56.dp),
             ) {
                 Text(if (country == Country.US) "Start mock interview" else "Take a practice test")
             }

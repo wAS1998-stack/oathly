@@ -16,9 +16,15 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         val graph = (application as OathlyApp).graph
-        graph.billing.connect()
         graph.ads.gatherConsent(this)
         setContent { AppRoot(viewModel) }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        // Also picks up purchases finished outside the app (promo codes, delayed payments).
+        (application as OathlyApp).graph.billing.connect()
+        viewModel.refreshReadiness()
     }
 
     override fun onStop() {

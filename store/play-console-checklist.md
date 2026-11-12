@@ -5,6 +5,7 @@ Everything below is a one-time setup. After launch, answer updates run by themse
 ## 1. Before you start
 - [ ] **Support email.** Create one (for example a new Gmail just for Oathly) and put it in `public/privacy.html` in place of `SUPPORT_EMAIL`.
 - [ ] **AdMob.** Create the Android app in AdMob with two ad units: *Banner* (anchored adaptive) and *Interstitial*. Note the App ID and both unit IDs.
+- [ ] **AdMob privacy messages.** AdMob → Privacy & messaging: create and publish a **U.S. state regulations** message (the "do not sell or share" opt-out). If you ever add the UK or EEA, also publish a **GDPR** message. Without these, Google's consent SDK shows nothing and the app's *Privacy choices* entry never appears, although the privacy policy describes it.
 - [ ] **app-ads.txt.** Replace `pub-0000000000000000` in `public/app-ads.txt` with your publisher ID.
 - [ ] **Cloudflare Pages.** Create a Pages project named `oathly`, connect this GitHub repo, framework preset *None*, build command empty, output directory `public`. The site must answer at `https://oathly.pages.dev` (if that name is taken, use what Cloudflare gives you and set `OATHLY_DATA_BASE_URL` as a repository variable/secret; see README).
 - [ ] **Upload key.** Create it once (`keytool -genkeypair -v -keystore upload.jks -keyalg RSA -keysize 2048 -validity 10000 -alias upload`), keep a backup, and add the GitHub secrets listed in `.github/workflows/release.yml`.

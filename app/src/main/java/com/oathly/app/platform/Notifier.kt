@@ -41,7 +41,8 @@ object Notifier {
     fun show(context: Context, channel: String, id: Int, title: String, text: String) {
         if (!canNotify(context)) return
         val intent = Intent(context, MainActivity::class.java)
-            .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            // SINGLE_TOP brings back the running screen (and a test in progress) instead of recreating it.
+            .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
         val pending = PendingIntent.getActivity(
             context, id, intent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT,
         )

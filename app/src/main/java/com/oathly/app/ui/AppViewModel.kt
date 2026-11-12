@@ -6,7 +6,9 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
+import android.os.Bundle
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import com.oathly.app.OathlyApp
 import com.oathly.app.data.AppSettings
@@ -91,7 +93,7 @@ data class ResultSummary(
 /** Options for a study deck shown on the study menu. */
 data class DeckOption(val title: String, val subtitle: String, val ids: List<String>)
 
-class AppViewModel(app: Application) : AndroidViewModel(app) {
+class AppViewModel(app: Application, private val saved: SavedStateHandle) : AndroidViewModel(app) {
     val graph = (app as OathlyApp).graph
     val settings = graph.settings.state
     val officials = graph.officials.state
@@ -129,8 +131,12 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
     private val rnd = Random(System.nanoTime())
 
     init {
+        saved.setSavedStateProvider(SESSION_KEY) {
+            Bundle().apply { putString(SESSION_KEY, SessionState.encode(backStack.toList(), deck, interview, auTest, result)) }
+        }
         viewModelScope.launch {
             loadBanks(settings.value)
+            restoreSession()
             readiness = computeReadiness(settings.value)
         }
         viewModelScope.launch {
@@ -139,6 +145,22 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
                 readiness = withContext(Dispatchers.Default) { computeReadiness(s) }
             }
         }
+    }
+
+    /** After Android stopped the app in the background: reopen the screens and the test in progress. */
+    private fun restoreSession() {
+        val json = saved.get<Bundle>(SESSION_KEY)?.getString(SESSION_KEY) ?: return
+        saved.remove<Bundle>(SESSION_KEY)
+        if (!settings.value.onboarded || backStack.size > 1) return // the user has already moved on
+        val session = SessionState.decode(json, usBank, auBank) ?: return
+        deck = session.deck
+        interview = session.interview
+        auTest = session.auTest
+        result = session.result
+        backStack.clear()
+        backStack.addAll(session.stack)
+        interview?.let { if (it.finished && current == Screen.Interview) finishInterview(it) }
+        auTest?.let { if (it.finished && current == Screen.AuPractice) finishAuTest(it) }
     }
 
     // ---------- navigation ----------
@@ -174,7 +196,7 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
 
     fun answersToShow(q: UsQuestion): List<String> = dynamicAnswer(q)?.display ?: q.answers
 
-    private fun acceptedAnswers(q: UsQuestion): List<String> = dynamicAnswer(q)?.accepted ?: q.answers
+    private fun acceptedAnswers(q: UsQuestion): List<String> = dynamicAnswer(q)?.accepted ?: (q.answers + q.alternatives)
 
     /** The question pool the user is studying (the 20 starred ones in 65/20 mode). */
     fun usPool(): List<UsQuestion> {
@@ -190,19 +212,24 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
                 val bank = usBank ?: return null
                 val pool = usPool()
                 val r = bank.rules
-                val chances = pool.map { Srs.knowChance(st[it.id], 0.2) }
+                val chances = pool.map { Srs.knowChance(st[it.id], 0.2, seed) }
                 if (s.senior) Readiness.usPassChance(chances, r.seniorAsked, r.seniorPassAt, r.seniorFailAt, seed)
                 else Readiness.usPassChance(chances, r.asked, r.passAt, r.failAt, seed)
             }
             Country.AU -> {
                 val bank = auBank ?: return null
-                val values = bank.questions.filter { it.values }.map { Srs.knowChance(st[it.id], 0.4) }
-                val other = bank.questions.filter { !it.values }.map { Srs.knowChance(st[it.id], 0.4) }
+                val values = bank.questions.filter { it.values }.map { Srs.knowChance(st[it.id], 0.4, seed) }
+                val other = bank.questions.filter { !it.values }.map { Srs.knowChance(st[it.id], 0.4, seed) }
                 val passMark = Math.ceil(bank.questionsPerTest * bank.passPercent / 100.0).toInt()
                 Readiness.auPassChance(values, other, bank.valuesPerTest, bank.questionsPerTest - bank.valuesPerTest, passMark, seed)
             }
             null -> null
         }
+    }
+
+    /** The estimate fades with time, so refresh it whenever the app comes back to the screen. */
+    fun refreshReadiness() {
+        viewModelScope.launch { readiness = withContext(Dispatchers.Default) { computeReadiness(settings.value) } }
     }
 
     // ---------- speech ----------
@@ -484,4 +511,8 @@ class AppViewModel(app: Application) : AndroidViewModel(app) {
     fun restorePurchases() = graph.billing.restore()
     fun privacyOptionsRequired(): Boolean = graph.ads.privacyOptionsRequired
     fun showPrivacyOptions(activity: Activity) = graph.ads.showPrivacyOptions(activity)
+
+    private companion object {
+        const val SESSION_KEY = "oathly.session"
+    }
 }

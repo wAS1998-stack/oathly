@@ -34,6 +34,7 @@ class ContentRepository(private val assets: AssetManager) {
                     subcategory = q.getString("sub"),
                     text = q.getString("q"),
                     answers = q.getJSONArray("a").strings(),
+                    alternatives = q.optJSONArray("alt")?.strings() ?: emptyList(),
                     need = q.optInt("need", 1),
                     senior = q.optBoolean("senior", false),
                     dynamicKey = q.optStringOrNull("dyn"),

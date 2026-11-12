@@ -21,6 +21,14 @@ class Speaker(context: Context) : TextToSpeech.OnInitListener {
     override fun onInit(status: Int) {
         ready = status == TextToSpeech.SUCCESS
         available = ready
+        if (!ready) {
+            // No working engine (none installed, or disabled). Drop this instance so the next tap
+            // tries again, for example after the user installs or enables a speech engine.
+            pending = null
+            tts?.shutdown()
+            tts = null
+            return
+        }
         pending?.let { (text, locale, rate) -> pending = null; speak(text, locale, rate) }
     }
 

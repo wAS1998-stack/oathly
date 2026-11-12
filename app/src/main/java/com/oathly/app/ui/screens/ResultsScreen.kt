@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -19,6 +20,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -29,7 +31,7 @@ import com.oathly.app.ui.AppBar
 import com.oathly.app.ui.AppViewModel
 import com.oathly.app.ui.InfoCard
 import com.oathly.app.ui.Screen
-import com.oathly.app.ui.openStorePage
+import com.oathly.app.ui.requestInAppReview
 import com.oathly.app.ui.rememberActivity
 import com.oathly.app.ui.shareApp
 import com.oathly.app.ui.theme.dangerColor
@@ -43,7 +45,13 @@ fun ResultsScreen(vm: AppViewModel) {
     val isPro by vm.adFree.collectAsStateWithLifecycle()
     val tests by vm.tests.collectAsStateWithLifecycle()
     // Ask for a rating only once the user has passed more than one practice test.
-    val askForRating = tests.count { it.passed } >= 2
+    // Google's own review sheet after the 2nd, 5th and 10th passed test. Google decides whether it
+    // actually appears (it has its own quota), and nothing is asked first, as Play policy requires.
+    val passes = tests.count { it.passed }
+    val askForRating = passes >= 2
+    LaunchedEffect(r?.passed, passes) {
+        if (r?.passed == true && passes in setOf(2, 5, 10)) activity?.requestInAppReview()
+    }
     val leave: () -> Unit = {
         if (activity != null) vm.leaveResults(activity) else vm.back()
     }
@@ -55,8 +63,8 @@ fun ResultsScreen(vm: AppViewModel) {
                 Modifier.fillMaxWidth().navigationBarsPadding().padding(16.dp),
                 horizontalArrangement = Arrangement.spacedBy(12.dp),
             ) {
-                OutlinedButton(onClick = { leave() }, modifier = Modifier.weight(1f).height(52.dp)) { Text("Done") }
-                Button(onClick = { vm.retryFromResults(activity) }, modifier = Modifier.weight(1f).height(52.dp)) { Text("Try again") }
+                OutlinedButton(onClick = { leave() }, modifier = Modifier.weight(1f).heightIn(min = 52.dp)) { Text("Done") }
+                Button(onClick = { vm.retryFromResults(activity) }, modifier = Modifier.weight(1f).heightIn(min = 52.dp)) { Text("Try again") }
             }
         },
         containerColor = MaterialTheme.colorScheme.background,
@@ -77,15 +85,9 @@ fun ResultsScreen(vm: AppViewModel) {
             if (r.passed && askForRating) {
                 item {
                     InfoCard {
-                        Text("Is Oathly helping you?", style = MaterialTheme.typography.titleMedium)
-                        Text(
-                            "A rating on Google Play helps other people preparing for their test find the app.",
-                            style = MaterialTheme.typography.bodyMedium,
-                        )
-                        Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                            TextButton(onClick = { context.openStorePage() }) { Text("Rate Oathly") }
-                            TextButton(onClick = { context.shareApp() }) { Text("Share with a friend") }
-                        }
+                        Text("Know someone studying for the test?", style = MaterialTheme.typography.titleMedium)
+                        Text("Oathly is free. Send them a link.", style = MaterialTheme.typography.bodyMedium)
+                        TextButton(onClick = { context.shareApp() }) { Text("Share with a friend") }
                     }
                 }
             }

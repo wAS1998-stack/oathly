@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
@@ -136,14 +137,14 @@ fun InterviewScreen(vm: AppViewModel) {
                                 }
                                 runCatching { recognizer.launch(intent) }
                             },
-                            modifier = Modifier.weight(1f).height(52.dp),
+                            modifier = Modifier.weight(1f).heightIn(min = 52.dp),
                         ) {
                             Icon(painterResource(R.drawable.ic_mic), contentDescription = null, modifier = Modifier.size(20.dp))
                             Spacer(Modifier.width(8.dp))
                             Text("Say it")
                         }
                     }
-                    Button(onClick = { submit() }, modifier = Modifier.weight(1f).height(52.dp)) {
+                    Button(onClick = { submit() }, modifier = Modifier.weight(1f).heightIn(min = 52.dp)) {
                         Text(if (typed.isBlank()) "Show answer" else "Check")
                     }
                 }
@@ -197,8 +198,8 @@ private fun FeedbackActions(f: Feedback, finished: Boolean, vm: AppViewModel) {
         ) {
             if (f.correct == null) {
                 Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-                    OutlinedButton(onClick = { vm.selfGrade(false) }, modifier = Modifier.weight(1f).height(52.dp)) { Text("No") }
-                    FilledTonalButton(onClick = { vm.selfGrade(true) }, modifier = Modifier.weight(1f).height(52.dp)) { Text("Yes, I knew it") }
+                    OutlinedButton(onClick = { vm.selfGrade(false) }, modifier = Modifier.weight(1f).heightIn(min = 52.dp)) { Text("No") }
+                    FilledTonalButton(onClick = { vm.selfGrade(true) }, modifier = Modifier.weight(1f).heightIn(min = 52.dp)) { Text("Yes, I knew it") }
                 }
             } else {
                 if (f.canOverride) {
@@ -206,7 +207,7 @@ private fun FeedbackActions(f: Feedback, finished: Boolean, vm: AppViewModel) {
                         Text("My answer means the same, count it as right")
                     }
                 }
-                Button(onClick = { vm.nextInterviewQuestion() }, modifier = Modifier.fillMaxWidth().height(52.dp)) {
+                Button(onClick = { vm.nextInterviewQuestion() }, modifier = Modifier.fillMaxWidth().heightIn(min = 52.dp)) {
                     Text(if (finished) "See your result" else "Next question")
                 }
             }

@@ -46,6 +46,7 @@ class BillingManager(context: Context, private val settings: SettingsStore) : Pu
     private val client: BillingClient = BillingClient.newBuilder(context.applicationContext)
         .setListener(this)
         .enablePendingPurchases(PendingPurchasesParams.newBuilder().enableOneTimeProducts().build())
+        .enableAutoServiceReconnection()
         .build()
 
     fun connect() {
@@ -86,6 +87,7 @@ class BillingManager(context: Context, private val settings: SettingsStore) : Pu
 
     /** Returns false if the store isn't ready (no product loaded yet). */
     fun buy(activity: Activity): Boolean {
+        if (!client.isReady) { connect(); return false }
         val d = details ?: run { connect(); return false }
         val params = BillingFlowParams.newBuilder()
             .setProductDetailsParamsList(listOf(BillingFlowParams.ProductDetailsParams.newBuilder().setProductDetails(d).build()))

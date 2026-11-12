@@ -66,7 +66,7 @@ object DynamicAnswers {
             val who = if (place.isDistrict) "D.C." else place.name
             return DynamicAnswer(
                 display = listOf("$who has no U.S. senators."),
-                accepted = listOf("$who has no (U.S.) senators", "no (U.S.) senators", "none"),
+                accepted = listOf("$who has no (U.S.) senators", "no (U.S.) senators", "doesn't have (U.S.) senators", "none"),
             )
         }
         if (place.senators.isEmpty()) return unknown("Senators for ${place.name} could not be loaded.")
@@ -109,7 +109,7 @@ object DynamicAnswers {
         if (place.isDistrict) {
             return DynamicAnswer(
                 display = listOf("D.C. does not have a governor."),
-                accepted = listOf("D.C. does not have a governor", "does not have a governor", "no governor"),
+                accepted = listOf("D.C. does not have a governor", "does not have a governor", "doesn't have a governor", "no governor"),
             )
         }
         val g = place.governor ?: return unknown("The governor of ${place.name} is being updated. Check your state's official website.")
@@ -121,7 +121,7 @@ object DynamicAnswers {
         if (place.isDistrict || place.capital == null) {
             return DynamicAnswer(
                 display = listOf("D.C. is not a state and does not have a capital."),
-                accepted = listOf("not a state", "does not have a capital", "no capital"),
+                accepted = listOf("not a state", "does not have a capital", "doesn't have a capital", "no capital"),
             )
         }
         return DynamicAnswer(listOf(place.capital), listOf(place.capital) + place.capitalAlt)

@@ -1,5 +1,6 @@
 package com.oathly.app.domain
 
+import kotlin.math.exp
 import kotlin.math.max
 import kotlin.math.min
 import kotlin.math.roundToInt
@@ -45,13 +46,21 @@ object Srs {
 
     fun isDue(stat: QuestionStat?, today: Long): Boolean = stat != null && stat.seen && stat.dueDay <= today
 
-    /** Estimated chance of answering correctly right now. */
-    fun knowChance(stat: QuestionStat?, unseenGuess: Double): Double {
+    /**
+     * Estimated chance of answering correctly on [today]. Memory fades: once a question is past
+     * its review day the estimate slides back toward [unseenGuess], faster for questions that
+     * were only just learned (short interval) than for well-known ones.
+     */
+    fun knowChance(stat: QuestionStat?, unseenGuess: Double, today: Long? = null): Double {
         if (stat == null || !stat.seen) return unseenGuess
         val base = (stat.correct + 1.0) / (stat.attempts + 2.0)
         val recent = if (stat.lastCorrect) 0.08 else -0.15
         val streakBonus = min(stat.streak, 4) * 0.05
-        return (base + recent + streakBonus).coerceIn(0.05, 0.98)
+        val fresh = (base + recent + streakBonus).coerceIn(0.05, 0.98)
+        val overdue = if (today == null) 0L else today - stat.dueDay
+        if (overdue <= 0 || fresh <= unseenGuess) return fresh
+        val keep = exp(-overdue.toDouble() / max(3, stat.intervalDays * 2))
+        return unseenGuess + (fresh - unseenGuess) * keep
     }
 }
 

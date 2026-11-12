@@ -374,6 +374,9 @@
    ],
    "need": 1,
    "senior": false,
+   "alt": [
+    "People of the state"
+   ],
    "exp": "A senator represents everyone in their whole state, not just one district. That is why senators are chosen in statewide elections."
   },
   {
@@ -390,6 +393,11 @@
    ],
    "need": 1,
    "senior": false,
+   "alt": [
+    "the state’s population",
+    "they have more people",
+    "some states have more people"
+   ],
    "exp": "The census counts the population every 10 years. After each count, the 435 House seats are divided again, so a state that grows faster than others can gain seats."
   },
   {
@@ -653,6 +661,10 @@
    ],
    "need": 1,
    "senior": false,
+   "alt": [
+    "Police",
+    "Fire departments"
+   ],
    "exp": "Sharing power between the national government and the states is called federalism. It is why rules for schools and driver's licenses can differ from state to state."
   },
   {
@@ -695,6 +707,9 @@
    ],
    "need": 1,
    "senior": true,
+   "alt": [
+    "Democrats and Republicans"
+   ],
    "exp": "The Democratic Party is the older of the two, and the Republican Party was founded in 1854. Smaller parties exist too, but these two have been the largest for more than 150 years."
   },
   {
@@ -740,6 +755,11 @@
    ],
    "need": 1,
    "senior": false,
+   "alt": [
+    "Women can vote",
+    "Women and men can vote",
+    "No poll tax"
+   ],
    "exp": "The 15th Amendment protects voting for citizens of any race, the 19th for women, and the 26th for citizens 18 and older. The 24th bans poll taxes (fees to vote) in federal elections."
   },
   {
@@ -823,6 +843,11 @@
    ],
    "need": 1,
    "senior": false,
+   "alt": [
+    "Defend the Constitution",
+    "defend the Constitution and laws",
+    "obey the laws"
+   ],
    "exp": "New citizens make these promises when they say the Oath of Allegiance at a naturalization ceremony. Taking the oath is the final step to becoming a U.S. citizen."
   },
   {
@@ -837,6 +862,9 @@
    ],
    "need": 1,
    "senior": true,
+   "alt": [
+    "Eighteen (18)"
+   ],
    "exp": "The 26th Amendment, added in 1971, lowered the voting age to 18 across the country. Before that, most states required voters to be 21."
   },
   {
@@ -889,6 +917,9 @@
    ],
    "need": 1,
    "senior": false,
+   "alt": [
+    "Eighteen (18)"
+   ],
    "exp": "Men must register within 30 days of turning 18, and they can still register until their 26th birthday. Most immigrant men who live in the U.S. must register too."
   },
   {
@@ -954,6 +985,14 @@
    ],
    "need": 1,
    "senior": false,
+   "alt": [
+    "Taxation without representation",
+    "Quartering",
+    "Boarding",
+    "high taxes (taxation without representation)",
+    "the British army stayed in their houses (boarding, quartering)",
+    "they didn’t have self-government"
+   ],
    "exp": "Colonists had no representatives in the British Parliament, yet Parliament taxed them anyway. Fighting began in 1775, and the colonies declared independence the next year."
   },
   {
@@ -1072,6 +1111,9 @@
    ],
    "need": 1,
    "senior": false,
+   "alt": [
+    "first Postmaster General"
+   ],
    "exp": "At 81, Franklin was the oldest delegate at the Constitutional Convention in 1787. Earlier, as a U.S. diplomat in France, he helped win French support during the Revolutionary War."
   },
   {
@@ -1179,6 +1221,10 @@
    ],
    "need": 1,
    "senior": true,
+   "alt": [
+    "Emancipation Proclamation",
+    "Preserved the Union"
+   ],
    "exp": "Lincoln was President during the Civil War and worked to keep the country united. In 1863 he issued the Emancipation Proclamation, which declared enslaved people in the Confederate states free."
   },
   {
@@ -1257,6 +1303,9 @@
    ],
    "need": 1,
    "senior": false,
+   "alt": [
+    "FDR"
+   ],
    "exp": "Franklin D. Roosevelt (FDR) was elected four times, more than any other president, and served from 1933 until his death in 1945. His New Deal programs were created to fight the Depression."
   },
   {
@@ -1528,6 +1577,12 @@
    ],
    "need": 1,
    "senior": false,
+   "alt": [
+    "13 colonies",
+    "Original 13 colonies",
+    "13 original colonies",
+    "represent the original colonies"
+   ],
    "exp": "The 13 red and white stripes stand for the 13 colonies that declared independence in 1776. The stripes stay at 13, but a star is added for each new state."
   },
   {
@@ -1544,6 +1599,12 @@
    ],
    "need": 1,
    "senior": true,
+   "alt": [
+    "One for each state",
+    "one star for each state",
+    "each star represents a state",
+    "50 states"
+   ],
    "exp": "Each of the 50 stars stands for one state. The 50-star flag has been used since 1960, after Hawaii became the 50th state in 1959."
   },
   {
@@ -1572,6 +1633,11 @@
    ],
    "need": 1,
    "senior": true,
+   "alt": [
+    "Fourth of July",
+    "July Fourth",
+    "July 4th"
+   ],
    "exp": "On July 4, 1776, the Continental Congress adopted the Declaration of Independence. Americans celebrate the nation's birthday with parades, picnics, and fireworks."
   },
   {
@@ -1595,6 +1661,15 @@
    ],
    "need": 2,
    "senior": false,
+   "alt": [
+    "Christmas Day",
+    "Thanksgiving Day",
+    "Martin Luther King Day",
+    "MLK Day",
+    "Fourth of July",
+    "July Fourth",
+    "New Year"
+   ],
    "exp": "These are federal holidays, when most federal offices close. Some fall on a fixed date, like Independence Day on July 4, while others fall on a set Monday, like Labor Day in September."
   }
  ]

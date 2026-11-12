@@ -18,7 +18,10 @@ from __future__ import annotations
 
 import datetime as dt
 import json
+import re
 import sys
+import time
+import urllib.error
 import urllib.parse
 import urllib.request
 from pathlib import Path
@@ -69,14 +72,28 @@ PLACES = [
 TERRITORY_QIDS = "wd:Q1183 wd:Q16635 wd:Q11703 wd:Q16641 wd:Q16644"
 
 GOV_QUERY = f"""
-SELECT ?iso ?govLabel ?start ?family WHERE {{
+SELECT ?iso ?govLabel ?start WHERE {{
   {{ ?place wdt:P31 wd:Q35657 . }} UNION {{ VALUES ?place {{ {TERRITORY_QIDS} }} }}
   ?place wdt:P300 ?iso .
   ?place p:P6 ?st . ?st ps:P6 ?gov .
   FILTER NOT EXISTS {{ ?st pq:P582 ?end . }}
   FILTER NOT EXISTS {{ ?st wikibase:rank wikibase:DeprecatedRank . }}
   OPTIONAL {{ ?st pq:P580 ?start . }}
-  OPTIONAL {{ ?gov wdt:P734 ?fam . ?fam rdfs:label ?family . FILTER(LANG(?family) = "en") }}
+  SERVICE wikibase:label {{ bd:serviceParam wikibase:language "en". }}
+}}
+"""
+# Governors from "position held" statements on the people. These are kept up to date more
+# reliably than the "head of government" statements on the state items (GOV_QUERY), which
+# still listed several governors who left office in 2024/2025.
+GOV_HELD_QUERY = f"""
+SELECT ?iso ?pLabel ?start WHERE {{
+  {{ ?place wdt:P31 wd:Q35657 . }} UNION {{ VALUES ?place {{ {TERRITORY_QIDS} }} }}
+  ?place wdt:P300 ?iso .
+  ?place wdt:P1313 ?office .
+  ?p p:P39 ?st . ?st ps:P39 ?office .
+  ?st pq:P580 ?start .
+  FILTER NOT EXISTS {{ ?st pq:P582 ?end . FILTER(?end <= NOW()) }}
+  FILTER NOT EXISTS {{ ?st wikibase:rank wikibase:DeprecatedRank . }}
   SERVICE wikibase:label {{ bd:serviceParam wikibase:language "en". }}
 }}
 """
@@ -96,14 +113,33 @@ def http_json(url: str, timeout: int = 60):
         return json.load(resp)
 
 
-def sparql(query: str):
+def sparql(query: str, tries: int = 4):
+    """Wikidata sometimes rate-limits to one query a minute; wait and retry instead of failing."""
     url = WIKIDATA + "?" + urllib.parse.urlencode({"query": query, "format": "json"})
-    return http_json(url, timeout=90)["results"]["bindings"]
+    for attempt in range(tries):
+        try:
+            return http_json(url, timeout=90)["results"]["bindings"]
+        except urllib.error.HTTPError as exc:
+            if exc.code not in (429, 502, 503, 504) or attempt == tries - 1:
+                raise
+            time.sleep(65)
+    raise RuntimeError("unreachable")
+
+
+SUFFIXES = {"jr", "sr", "ii", "iii", "iv"}
+
+
+def name_words(name: str) -> list[str]:
+    return [w for w in re.split(r"[\s,]+", name) if w and w.strip(".").lower() not in SUFFIXES]
 
 
 def person(name: str, last: str | None = None, **extra) -> dict:
+    """[short] is the surname people say. It must be made of words of the displayed name: upstream
+    surnames can be a different legal or maiden name (e.g. "Graham Nordone" for "Darline Graham")."""
     name = " ".join(name.split())
-    short = last or name.replace(", Jr.", "").replace(" Jr.", "").split()[-1]
+    words = name_words(name)
+    lowered = {w.lower() for w in words}
+    short = last if last and all(w.lower() in lowered for w in last.split()) else words[-1]
     out = {"name": name, "short": short}
     out.update({k: v for k, v in extra.items() if v is not None})
     return out
@@ -157,22 +193,40 @@ def congress() -> tuple[dict, dict]:
     return federal, by_place
 
 
-def governors() -> dict:
-    rows = sparql(GOV_QUERY)
-    today = dt.date.today().isoformat()
+def pick_governors(rows: list[dict], name_key: str, today: str) -> dict:
+    """{code: (start, name)} keeping, per place, the officeholder who started most recently
+    and is already in office (governors-elect have a future start date)."""
     best: dict = {}
     for r in rows:
         code = r["iso"]["value"].replace("US-", "")
         start = r.get("start", {}).get("value", "")[:10]
-        if start and start > today:  # governor-elect, not in office yet
+        if start and start > today:
             continue
-        name = r["govLabel"]["value"]
-        if name.startswith("Q") and name[1:].isdigit():  # no English label
+        name = r[name_key]["value"]
+        if re.fullmatch(r"Q\d+", name):  # no English label
             continue
-        cand = (start, person(name, r.get("family", {}).get("value")))
-        if code not in best or cand[0] > best[code][0]:
-            best[code] = cand
-    return {code: v[1] for code, v in best.items()}
+        if code not in best or start > best[code][0]:
+            best[code] = (start, name)
+    return best
+
+
+def governors(warnings: list[str]) -> dict:
+    today = dt.date.today().isoformat()
+    held = pick_governors(sparql(GOV_HELD_QUERY), "pLabel", today)
+    try:
+        head = pick_governors(sparql(GOV_QUERY), "govLabel", today)
+    except Exception as exc:  # the second source is only a cross-check
+        head = {}
+        warnings.append(f"Wikidata head-of-government query failed: {exc}")
+    out = {}
+    for code in set(held) | set(head):
+        a, b = held.get(code), head.get(code)
+        chosen = max((x for x in (a, b) if x), key=lambda x: x[0])
+        if a and b and a[1] != b[1]:
+            warnings.append(f"{code} governor: sources disagree ({a[1]} since {a[0] or '?'} vs "
+                            f"{b[1]} since {b[0] or '?'}); using {chosen[1]}")
+        out[code] = person(chosen[1])
+    return out
 
 
 def chief_justice() -> dict | None:
@@ -214,7 +268,7 @@ def main() -> int:
             warnings.append("Speaker unknown")
 
     try:
-        govs = governors()
+        govs = governors(warnings)
     except Exception as exc:  # network or query failure: keep previous values
         govs = {}
         warnings.append(f"Wikidata governors query failed: {exc}")
@@ -232,6 +286,8 @@ def main() -> int:
         gov = govs.get(code)
         if gov is None and kind != "district":
             gov = prev_places.get(code, {}).get("governor")
+            if gov:
+                gov = person(gov["name"])  # re-derive the short name with today's rules
             stale_govs.append(code)
         places.append({
             "code": code, "name": name, "type": kind,

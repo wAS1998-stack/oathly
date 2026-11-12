@@ -38,6 +38,81 @@ DYNAMIC_KEY = {
 
 EXPECTED = {"2025": (128, 20), "2008": (100, 20)}  # (questions, 65/20 questions)
 
+# Extra ways of giving an official answer that the answer checker accepts but the app never
+# shows as an official answer: synonyms USCIS lists in parentheses, common short forms and
+# the names people actually use ("Christmas", "Fourth of July", "FDR").
+EXTRA_ACCEPTED = {
+    "2025": {
+        8: ["All men are created equal"],
+        13: ["Nobody is above the law", "Everyone must obey the law"],
+        28: ["Connecticut Compromise"],
+        48: ["Secretary of Defense"],
+        51: ["Resolves disagreements about the law", "Resolves disputes", "Resolves disagreements"],
+        59: ["Police", "Fire departments"],
+        63: ["Women can vote", "Women and men can vote", "No poll tax"],
+        71: ["16th Amendment"],
+        76: ["War of Independence", "Revolution"],
+        77: ["Quartering", "Boarding", "Tea Act", "Coercive Acts"],
+        80: ["Battle of Trenton", "British surrender at Yorktown"],
+        87: ["Louisiana Purchase"],
+        94: ["Emancipation Proclamation", "Preserved the Union"],
+        104: ["1929", "Stock market crash", "Crash of 1929"],
+        105: ["FDR"],
+        107: ["President during the Korean War", "Created the Interstate System"],
+        115: ["Terrorist attack", "Terrorists attacked", "Attack on the World Trade Center"],
+        116: ["Iraq War", "Afghanistan War"],
+        118: ["Lightbulb", "Cars", "Internal combustion engine", "Moon landing"],
+        121: ["13 colonies", "Original 13 colonies"],
+        122: ["One for each state"],
+        126: ["Christmas", "Thanksgiving", "Martin Luther King Day", "MLK Day", "Fourth of July",
+              "July Fourth", "New Year"],
+    },
+    "2008": {
+        24: ["People of the state"],
+        42: ["Police", "Fire departments"],
+        45: ["Democrats and Republicans"],
+        48: ["Women can vote", "Women and men can vote", "No poll tax"],
+        53: ["Defend the Constitution"],
+        54: ["Eighteen (18)"],
+        57: ["Eighteen (18)"],
+        61: ["Taxation without representation", "Quartering", "Boarding"],
+        75: ["Emancipation Proclamation", "Preserved the Union"],
+        80: ["FDR"],
+        96: ["13 colonies", "Original 13 colonies"],
+        97: ["One for each state"],
+        99: ["Fourth of July", "July Fourth", "July 4th"],
+        100: ["Christmas Day", "Thanksgiving Day", "Martin Luther King Day", "MLK Day",
+              "Fourth of July", "July Fourth", "New Year"],
+    },
+}
+
+
+def derived_alternatives(answer: str) -> list[str]:
+    """Shorter forms that every answer of a given shape may also be given in."""
+    out = []
+    # "(Battle of) Antietam/Sharpsburg": either name on its own
+    m = re.search(r"(\w+)/(\w+)", answer)
+    if m:
+        out += [answer[:m.start()] + m.group(1) + answer[m.end():],
+                answer[:m.start()] + m.group(2) + answer[m.end():]]
+    # "because there were 13 original colonies" -> "13 original colonies"
+    m = re.match(r"(?i)\(?because( of| there (is|are|were)| the stripes)?\)?\s+(.+)", answer)
+    if m:
+        out.append(m.group(3))
+    # "It says all people are created equal." -> "all people are created equal"
+    m = re.match(r"(?i)(it says|it identifies|they) (.+)", answer)
+    if m and len(m.group(2).split()) >= 2:
+        out.append(m.group(2))
+    # "First president of the United States" -> "First president"
+    m = re.match(r"(?i)(.+?) of the United States\.?$", answer)
+    if m and "(" not in m.group(1) and len(m.group(1).split()) >= 2:
+        out.append(m.group(1))
+    # "Executive branch" -> "Executive", "Six (6) years" -> "Six (6)", "eighteen (18) and older" -> "eighteen (18)"
+    m = re.match(r"(?i)(.+?) (branch|years|and older)$", answer)
+    if m:
+        out.append(m.group(1))
+    return [x.strip() for x in out if x.strip() and x.strip().lower() != answer.lower()]
+
 
 def short_category(cat: str) -> str:
     return {"American Government": "government", "American History": "history",
@@ -72,6 +147,15 @@ def build(version: str, explanations: dict) -> dict:
             "need": NEED_COUNT[version].get(num, 1),
             "senior": bool(q["senior"]),
         }
+        if not dyn_key:
+            alt = list(EXTRA_ACCEPTED[version].get(num, []))
+            for answer in q["acceptableAnswers"]:
+                alt += derived_alternatives(answer)
+            official = {a.lower() for a in q["acceptableAnswers"]}
+            seen: set[str] = set()
+            alt = [a for a in alt if a.lower() not in official and not (a.lower() in seen or seen.add(a.lower()))]
+            if alt:
+                item["alt"] = alt
         if dyn_key:
             item["dyn"] = dyn_key
             item["dynNote"] = q["dynamicNote"]
@@ -151,6 +235,10 @@ def main() -> None:
     explanations = {}
     if EXPLANATIONS.exists():
         explanations = json.loads(EXPLANATIONS.read_text(encoding="utf-8"))
+    for version, extra in EXTRA_ACCEPTED.items():
+        bad = set(extra) - set(range(1, EXPECTED[version][0] + 1))
+        if bad:
+            sys.exit(f"{version}: EXTRA_ACCEPTED has unknown questions {sorted(bad)}")
     for version in ("2025", "2008"):
         data = build(version, explanations)
         path = OUT / f"us_{version}.json"

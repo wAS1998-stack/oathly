@@ -15,7 +15,8 @@ import com.oathly.app.data.Country
 import com.oathly.app.data.OfficialsRepository
 import com.oathly.app.domain.DynamicAnswers
 import java.time.Duration
-import java.time.LocalDateTime
+import java.time.LocalTime
+import java.time.ZonedDateTime
 import java.util.concurrent.TimeUnit
 
 /**
@@ -79,22 +80,28 @@ class ReminderWorker(context: Context, params: WorkerParameters) : CoroutineWork
             else "A few questions a day is the easiest way to pass."
             Notifier.show(applicationContext, Notifier.CHANNEL_REMINDERS, Notifier.ID_REMINDER, "Time to study", text)
         }
-        schedule(applicationContext, s.reminderHour, s.reminderMinute)
+        // Queue tomorrow's reminder behind this run. REPLACE here would cancel the running work.
+        schedule(applicationContext, s.reminderHour, s.reminderMinute, ExistingWorkPolicy.APPEND_OR_REPLACE)
         return Result.success()
     }
 
     companion object {
         private const val NAME = "study-reminder"
 
-        fun schedule(context: Context, hour: Int, minute: Int) {
-            val now = LocalDateTime.now()
-            var next = now.withHour(hour).withMinute(minute).withSecond(0).withNano(0)
-            if (!next.isAfter(now.plusMinutes(1))) next = next.plusDays(1)
+        /**
+         * [policy]: REPLACE when the user picks a new time, KEEP at app start (so starting the app,
+         * including when Android starts it to deliver this very reminder, never cancels a pending
+         * reminder), APPEND_OR_REPLACE from inside the worker.
+         */
+        fun schedule(context: Context, hour: Int, minute: Int, policy: ExistingWorkPolicy = ExistingWorkPolicy.REPLACE) {
+            val now = ZonedDateTime.now()
+            var next = now.with(LocalTime.of(hour, minute))
+            if (!next.isAfter(now.plusMinutes(1))) next = next.plusDays(1).with(LocalTime.of(hour, minute))
             val delay = Duration.between(now, next).toMillis()
             val request = OneTimeWorkRequestBuilder<ReminderWorker>()
                 .setInitialDelay(delay, TimeUnit.MILLISECONDS)
                 .build()
-            WorkManager.getInstance(context).enqueueUniqueWork(NAME, ExistingWorkPolicy.REPLACE, request)
+            WorkManager.getInstance(context).enqueueUniqueWork(NAME, policy, request)
         }
 
         fun cancel(context: Context) {

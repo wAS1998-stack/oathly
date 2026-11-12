@@ -24,6 +24,8 @@ data class UsQuestion(
     val dynamicKey: String? = null,
     val dynamicNote: String? = null,
     val explanation: String? = null,
+    /** Other ways of giving an official answer that the checker accepts; never shown as answers. */
+    val alternatives: List<String> = emptyList(),
 )
 
 data class UsRules(

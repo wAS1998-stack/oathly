@@ -141,6 +141,13 @@
    ],
    "need": 1,
    "senior": false,
+   "alt": [
+    "All men are created equal",
+    "America is free from British control.",
+    "all people are created equal.",
+    "inherent rights.",
+    "individual freedoms."
+   ],
    "exp": "Adopted on July 4, 1776, the Declaration told the world the colonies were free from Britain. It also said all people are created equal and have rights like liberty."
   },
   {
@@ -220,6 +227,10 @@
    ],
    "need": 1,
    "senior": false,
+   "alt": [
+    "Nobody is above the law",
+    "Everyone must obey the law"
+   ],
    "exp": "The rule of law means the same laws apply to everyone equally. Even presidents, members of Congress, and judges can be held responsible if they break the law."
   },
   {
@@ -286,6 +297,9 @@
    ],
    "need": 1,
    "senior": false,
+   "alt": [
+    "Executive"
+   ],
    "exp": "The executive branch carries out and enforces the laws. The president leads it, with help from the vice president, the Cabinet, and federal agencies."
   },
   {
@@ -302,6 +316,9 @@
    ],
    "need": 1,
    "senior": false,
+   "alt": [
+    "Legislative"
+   ],
    "exp": "Congress is the legislative branch. A bill must pass both the Senate and the House of Representatives before it goes to the president to sign."
   },
   {
@@ -360,6 +377,9 @@
    ],
    "need": 1,
    "senior": false,
+   "alt": [
+    "Six (6)"
+   ],
    "exp": "Senators serve six-year terms. Their elections are spread out, so only about one-third of Senate seats are up for election every two years."
   },
   {
@@ -402,6 +422,9 @@
    ],
    "need": 1,
    "senior": false,
+   "alt": [
+    "Two (2)"
+   ],
    "exp": "Representatives serve two-year terms, so every House seat is up for election every two years, in even-numbered years."
   },
   {
@@ -445,6 +468,9 @@
    ],
    "need": 1,
    "senior": false,
+   "alt": [
+    "Connecticut Compromise"
+   ],
    "exp": "At the 1787 Constitutional Convention, the Great Compromise gave states equal representation in the Senate and seats by population in the House. This balanced the interests of small and large states."
   },
   {
@@ -549,6 +575,11 @@
    ],
    "need": 1,
    "senior": false,
+   "alt": [
+    "the state’s population",
+    "they have more people",
+    "some states have more people"
+   ],
    "exp": "The census counts the population every 10 years. After each count, the 435 House seats are divided again, so a state that grows faster than others can gain seats."
   },
   {
@@ -563,6 +594,9 @@
    ],
    "need": 1,
    "senior": true,
+   "alt": [
+    "Four (4)"
+   ],
    "exp": "Presidential elections are held every four years in November. The new term begins on January 20 of the next year."
   },
   {
@@ -578,6 +612,9 @@
    ],
    "need": 1,
    "senior": false,
+   "alt": [
+    "the 22nd Amendment"
+   ],
    "exp": "No president served more than two terms until Franklin Roosevelt won four elections. To keep any president from holding power too long, the 22nd Amendment (1951) set a two-term limit."
   },
   {
@@ -760,6 +797,9 @@
    ],
    "need": 2,
    "senior": false,
+   "alt": [
+    "Secretary of Defense"
+   ],
    "exp": "Most Cabinet members lead a federal department and have the title Secretary, like the Secretary of State. The head of the Justice Department is called the Attorney General instead."
   },
   {
@@ -807,6 +847,11 @@
    ],
    "need": 1,
    "senior": false,
+   "alt": [
+    "Resolves disagreements about the law",
+    "Resolves disputes",
+    "Resolves disagreements"
+   ],
    "exp": "Courts decide what laws mean and settle disagreements about them. The power to decide that a law goes against the Constitution is called judicial review."
   },
   {
@@ -931,6 +976,10 @@
    ],
    "need": 1,
    "senior": false,
+   "alt": [
+    "Police",
+    "Fire departments"
+   ],
    "exp": "Sharing power between the national government and the states is called federalism. It is why rules for schools and driver's licenses can differ from state to state."
   },
   {
@@ -990,6 +1039,11 @@
    ],
    "need": 1,
    "senior": false,
+   "alt": [
+    "Women can vote",
+    "Women and men can vote",
+    "No poll tax"
+   ],
    "exp": "The 15th Amendment protects voting for citizens of any race, the 19th for women, and the 26th for citizens 18 and older. The 24th bans poll taxes (fees to vote) in federal elections."
   },
   {
@@ -1059,6 +1113,9 @@
    ],
    "need": 2,
    "senior": false,
+   "alt": [
+    "Obey the laws"
+   ],
    "exp": "New citizens say the Oath of Allegiance out loud at a naturalization ceremony. Taking the oath is the final step to becoming a U.S. citizen."
   },
   {
@@ -1134,6 +1191,9 @@
    ],
    "need": 1,
    "senior": false,
+   "alt": [
+    "16th Amendment"
+   ],
    "exp": "Federal taxes pay for things the national government does, such as the military, highways, and federal courts. The 16th Amendment, added in 1913, lets Congress collect an income tax."
   },
   {
@@ -1214,6 +1274,10 @@
    ],
    "need": 1,
    "senior": false,
+   "alt": [
+    "War of Independence",
+    "Revolution"
+   ],
    "exp": "The American Revolution was fought from 1775 to 1783. The Americans won with help from France, and Britain recognized American independence in the Treaty of Paris in 1783."
   },
   {
@@ -1237,6 +1301,13 @@
    ],
    "need": 1,
    "senior": false,
+   "alt": [
+    "Quartering",
+    "Boarding",
+    "Tea Act",
+    "Coercive Acts",
+    "did not have self-government"
+   ],
    "exp": "Britain passed new taxes on the colonies, like the Stamp Act of 1765, but colonists had no representatives in the British Parliament. A popular protest slogan was 'No taxation without representation.'"
   },
   {
@@ -1284,6 +1355,10 @@
    ],
    "need": 1,
    "senior": false,
+   "alt": [
+    "Battle of Trenton",
+    "British surrender at Yorktown"
+   ],
    "exp": "Bunker Hill (1775) was an early battle. The win at Saratoga (1777) helped bring France in as an ally, and the British surrender at Yorktown (1781) ended the major fighting."
   },
   {
@@ -1356,6 +1431,10 @@
    ],
    "need": 1,
    "senior": false,
+   "alt": [
+    "helped people understand the (U.S.) Constitution.",
+    "supported passing the (U.S.) Constitution."
+   ],
    "exp": "The essays explained how the new government would work and argued that it would protect people's liberty. Today, judges and students still read them to understand the ideas behind the Constitution."
   },
   {
@@ -1374,6 +1453,9 @@
    ],
    "need": 1,
    "senior": false,
+   "alt": [
+    "First Postmaster General"
+   ],
    "exp": "Franklin's inventions include the lightning rod and the Franklin stove. As a U.S. diplomat in France, he helped win French support during the Revolutionary War."
   },
   {
@@ -1391,6 +1473,9 @@
    ],
    "need": 1,
    "senior": true,
+   "alt": [
+    "First president"
+   ],
    "exp": "Washington led the army that won independence, then became the first president in 1789. Because of his role in creating the nation, he is called the 'Father of Our Country.'"
   },
   {
@@ -1410,6 +1495,10 @@
    ],
    "need": 1,
    "senior": false,
+   "alt": [
+    "Louisiana Purchase",
+    "Third president"
+   ],
    "exp": "Jefferson's face is on the nickel and the $2 bill. As the third president, he made the Louisiana Purchase from France in 1803, which doubled the size of the country."
   },
   {
@@ -1427,6 +1516,9 @@
    ],
    "need": 1,
    "senior": false,
+   "alt": [
+    "Fourth president"
+   ],
    "exp": "Madison is called the 'Father of the Constitution' because his ideas shaped its plan of government. Later, as the fourth president, he led the country during the War of 1812."
   },
   {
@@ -1445,6 +1537,9 @@
    ],
    "need": 1,
    "senior": false,
+   "alt": [
+    "Helped establish the First Bank"
+   ],
    "exp": "Hamilton was an immigrant, born in the Caribbean, who became Washington's aide and the first Secretary of the Treasury. He helped set up the nation's financial system, including a national bank."
   },
   {
@@ -1512,6 +1607,10 @@
    ],
    "need": 1,
    "senior": false,
+   "alt": [
+    "(Battle of) Antietam",
+    "(Battle of) Sharpsburg"
+   ],
    "exp": "The war began when Confederate forces fired on Fort Sumter in 1861. Gettysburg (1863) was one of its largest battles, and the war ended soon after General Lee surrendered at Appomattox in 1865."
   },
   {
@@ -1530,6 +1629,11 @@
    ],
    "need": 1,
    "senior": true,
+   "alt": [
+    "Emancipation Proclamation",
+    "Preserved the Union",
+    "16th president"
+   ],
    "exp": "Lincoln was president during the Civil War and worked to keep the country united. In his 1863 Gettysburg Address, he described government 'of the people, by the people, for the people.'"
   },
   {
@@ -1645,6 +1749,9 @@
    ],
    "need": 1,
    "senior": false,
+   "alt": [
+    "Germany attacked U.S. (civilian) ships"
+   ],
    "exp": "After German submarines sank American ships, President Woodrow Wilson asked Congress to declare war on Germany in April 1917. The U.S. then fought on the side of the Allied Powers."
   },
   {
@@ -1690,6 +1797,11 @@
    ],
    "need": 1,
    "senior": false,
+   "alt": [
+    "1929",
+    "Stock market crash",
+    "Crash of 1929"
+   ],
    "exp": "Stock prices crashed in October 1929, and many investors lost large amounts of money. In the years that followed, thousands of banks failed and millions of people lost their jobs."
   },
   {
@@ -1704,6 +1816,9 @@
    ],
    "need": 1,
    "senior": false,
+   "alt": [
+    "FDR"
+   ],
    "exp": "Franklin D. Roosevelt (FDR) was elected four times, more than any other president, and served from 1933 until his death in 1945. His New Deal programs were created to fight the Depression."
   },
   {
@@ -1738,6 +1853,11 @@
    ],
    "need": 1,
    "senior": false,
+   "alt": [
+    "President during the Korean War",
+    "Created the Interstate System",
+    "34th president"
+   ],
    "exp": "As a general in World War II, Eisenhower led the D-Day invasion of France in 1944. As president from 1953 to 1961, he signed the law that created the Interstate Highway System."
   },
   {
@@ -1858,6 +1978,11 @@
    ],
    "need": 1,
    "senior": true,
+   "alt": [
+    "Terrorist attack",
+    "Terrorists attacked",
+    "Attack on the World Trade Center"
+   ],
    "exp": "On September 11, 2001, terrorists took over four airplanes. Nearly 3,000 people were killed, making it the deadliest terrorist attack in U.S. history."
   },
   {
@@ -1874,6 +1999,10 @@
    ],
    "need": 1,
    "senior": false,
+   "alt": [
+    "Iraq War",
+    "Afghanistan War"
+   ],
    "exp": "The U.S. went to war in Afghanistan in October 2001 against al-Qaeda, the group behind the attacks, and the Taliban, who protected it. The Iraq War began in 2003."
   },
   {
@@ -1932,6 +2061,12 @@
    ],
    "need": 1,
    "senior": false,
+   "alt": [
+    "Lightbulb",
+    "Cars",
+    "Internal combustion engine",
+    "Moon landing"
+   ],
    "exp": "The Wright brothers made the first successful powered airplane flight in 1903, and Henry Ford's assembly line made cars cheaper. In 1969, American astronauts became the first people to walk on the moon."
   },
   {
@@ -1979,6 +2114,12 @@
    ],
    "need": 1,
    "senior": true,
+   "alt": [
+    "13 colonies",
+    "Original 13 colonies",
+    "13 original colonies",
+    "represent the original colonies"
+   ],
    "exp": "The 13 red and white stripes stand for the 13 colonies that declared independence in 1776. The stripes stay at 13, but a star is added for each new state."
   },
   {
@@ -1995,6 +2136,12 @@
    ],
    "need": 1,
    "senior": false,
+   "alt": [
+    "One for each state",
+    "one star for each state",
+    "each star represents a state",
+    "50 states"
+   ],
    "exp": "Each of the 50 stars stands for one state. The 50-star flag has been used since 1960, after Hawaii became the 50th state in 1959."
   },
   {
@@ -2063,6 +2210,15 @@
    ],
    "need": 3,
    "senior": true,
+   "alt": [
+    "Christmas",
+    "Thanksgiving",
+    "Martin Luther King Day",
+    "MLK Day",
+    "Fourth of July",
+    "July Fourth",
+    "New Year"
+   ],
    "exp": "These are federal holidays, when most federal offices close. Juneteenth, on June 19, became a federal holiday in 2021 and celebrates the end of slavery in the United States."
   },
   {

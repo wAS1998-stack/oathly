@@ -49,7 +49,7 @@ fun AuPracticeScreen(vm: AppViewModel) {
                 Surface(color = MaterialTheme.colorScheme.background, tonalElevation = 3.dp, shadowElevation = 6.dp) {
                     Button(
                         onClick = { vm.nextAu() },
-                        modifier = Modifier.fillMaxWidth().navigationBarsPadding().padding(horizontal = 16.dp, vertical = 10.dp).height(52.dp),
+                        modifier = Modifier.fillMaxWidth().navigationBarsPadding().padding(horizontal = 16.dp, vertical = 10.dp).heightIn(min = 52.dp),
                     ) {
                         Text(if (t.index + 1 >= t.questions.size) "See your result" else "Next question")
                     }

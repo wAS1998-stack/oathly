@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -88,12 +89,12 @@ fun StudyScreen(vm: AppViewModel) {
                         verticalArrangement = Arrangement.spacedBy(6.dp),
                     ) {
                         if (!deck.revealed) {
-                            Button(onClick = { vm.revealCard() }, modifier = Modifier.fillMaxWidth().height(52.dp)) { Text("Show answer") }
+                            Button(onClick = { vm.revealCard() }, modifier = Modifier.fillMaxWidth().heightIn(min = 52.dp)) { Text("Show answer") }
                         } else {
                             Text("Did you know it?", style = MaterialTheme.typography.titleMedium)
                             Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-                                OutlinedButton(onClick = { vm.gradeCard(false) }, modifier = Modifier.weight(1f).height(52.dp)) { Text("Not yet") }
-                                FilledTonalButton(onClick = { vm.gradeCard(true) }, modifier = Modifier.weight(1f).height(52.dp)) { Text("I knew it") }
+                                OutlinedButton(onClick = { vm.gradeCard(false) }, modifier = Modifier.weight(1f).heightIn(min = 52.dp)) { Text("Not yet") }
+                                FilledTonalButton(onClick = { vm.gradeCard(true) }, modifier = Modifier.weight(1f).heightIn(min = 52.dp)) { Text("I knew it") }
                             }
                         }
                     }
@@ -188,5 +189,5 @@ private fun DeckFinished(known: Int, missed: Int, onDone: () -> Unit) {
     if (missed > 0) {
         Text("The ones you missed will come back in \"Due for review\".", style = MaterialTheme.typography.bodyMedium)
     }
-    Button(onClick = onDone, modifier = Modifier.fillMaxWidth().height(52.dp)) { Text("Done") }
+    Button(onClick = onDone, modifier = Modifier.fillMaxWidth().heightIn(min = 52.dp)) { Text("Done") }
 }

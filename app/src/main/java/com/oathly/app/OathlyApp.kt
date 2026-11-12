@@ -1,6 +1,7 @@
 package com.oathly.app
 
 import android.app.Application
+import androidx.work.ExistingWorkPolicy
 import com.oathly.app.ads.AdsManager
 import com.oathly.app.billing.BillingManager
 import com.oathly.app.data.ContentRepository
@@ -42,6 +43,6 @@ class OathlyApp : Application() {
         Notifier.createChannels(this)
         UpdateWorker.schedule(this)
         val s = graph.settings.state.value
-        if (s.reminderOn) ReminderWorker.schedule(this, s.reminderHour, s.reminderMinute)
+        if (s.reminderOn) ReminderWorker.schedule(this, s.reminderHour, s.reminderMinute, ExistingWorkPolicy.KEEP)
     }
 }

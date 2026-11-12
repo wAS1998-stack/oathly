@@ -2,15 +2,15 @@
 
 Play Console → Grow users → Store presence → Custom store listings → Create → Target by country/region → Australia.
 
-**App name** (30/30)
-Oathly: Australian Citizenship
+**App name** (28/30)
+Oathly: Aus Citizenship Test
 
-**Short description** (80/80)
-Practise for the Australian citizenship test, including all the values questions
+**Short description** (79/80)
+Australian citizenship practice test: mock tests, values practice, explanations
 
 **Full description**
 
-Get ready for the Australian citizenship test with Oathly.
+Practise for the Australian citizenship test with Oathly: 213 original practice questions written from Our Common Bond, full 20-question practice tests with the real pass rule, and clear explanations.
 
 Oathly's practice questions are written from the official resource book, "Australian Citizenship: Our Common Bond", covering all four testable parts:
 • Australia and its people

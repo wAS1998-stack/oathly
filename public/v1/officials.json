@@ -1,6 +1,6 @@
 {
  "schema": 1,
- "generatedAt": "2026-11-02T15:44:56+00:00",
+ "generatedAt": "2026-11-12T17:01:02+00:00",
  "federal": {
   "president": {
    "name": "Donald Trump",
@@ -210,7 +210,7 @@
    "capitalAlt": [],
    "governor": {
     "name": "Sarah Huckabee Sanders",
-    "short": "Huckabee"
+    "short": "Sanders"
    },
    "senators": [
     {
@@ -1261,8 +1261,8 @@
    "capital": "Indianapolis",
    "capitalAlt": [],
    "governor": {
-    "name": "Eric Holcomb",
-    "short": "Holcomb"
+    "name": "Mike Braun",
+    "short": "Braun"
    },
    "senators": [
     {
@@ -2193,8 +2193,8 @@
    "capital": "Concord",
    "capitalAlt": [],
    "governor": {
-    "name": "Chris Sununu",
-    "short": "Sununu"
+    "name": "Kelly Ayotte",
+    "short": "Ayotte"
    },
    "senators": [
     {
@@ -2374,7 +2374,7 @@
    "capitalAlt": [],
    "governor": {
     "name": "Kathy Hochul",
-    "short": "Courtney"
+    "short": "Hochul"
    },
    "senators": [
     {
@@ -2665,8 +2665,8 @@
    "capital": "Bismarck",
    "capitalAlt": [],
    "governor": {
-    "name": "Doug Burgum",
-    "short": "Burgum"
+    "name": "Kelly M. Armstrong",
+    "short": "Armstrong"
    },
    "senators": [
     {
@@ -3103,7 +3103,7 @@
    "senators": [
     {
      "name": "Darline Graham",
-     "short": "Graham Nordone",
+     "short": "Graham",
      "party": "Republican"
     },
     {
@@ -3608,7 +3608,7 @@
    "capitalAlt": [],
    "governor": {
     "name": "Abigail Spanberger",
-    "short": "Davis"
+    "short": "Spanberger"
    },
    "senators": [
     {
@@ -3946,13 +3946,13 @@
    "capitalAlt": [],
    "governor": {
     "name": "Jenniffer González",
-    "short": "Gonzalez"
+    "short": "González"
    },
    "senators": [],
    "representatives": [],
    "delegate": {
     "name": "Pablo José Hernández",
-    "short": "Hernández Rivera",
+    "short": "Hernández",
     "party": "Democrat",
     "title": "Resident Commissioner"
    }
@@ -3968,7 +3968,7 @@
    ],
    "governor": {
     "name": "Lou Leon Guerrero",
-    "short": "Leon"
+    "short": "Guerrero"
    },
    "senators": [],
    "representatives": [],
@@ -4053,5 +4053,10 @@
    "url": "https://www.uscis.gov/citizenship/testupdates"
   }
  ],
- "warnings": []
+ "warnings": [
+  "IN governor: sources disagree (Mike Braun since 2025-01-13 vs Eric Holcomb since 2017-01-09); using Mike Braun",
+  "NH governor: sources disagree (Kelly Ayotte since 2025-01-09 vs Chris Sununu since 2017-01-05); using Kelly Ayotte",
+  "ND governor: sources disagree (Kelly M. Armstrong since 2024-12-15 vs Doug Burgum since 2016-12-15); using Kelly M. Armstrong",
+  "governors not refreshed (kept last known value): AR"
+ ]
 }
