@@ -1,6 +1,6 @@
 {
  "schema": 1,
- "generatedAt": "2026-11-02T15:44:56+00:00",
+ "generatedAt": "2026-11-13T14:31:47+00:00",
  "federal": {
   "president": {
    "name": "Donald Trump",
@@ -2374,7 +2374,7 @@
    "capitalAlt": [],
    "governor": {
     "name": "Kathy Hochul",
-    "short": "Courtney"
+    "short": "Hochul"
    },
    "senators": [
     {
@@ -4053,5 +4053,7 @@
    "url": "https://www.uscis.gov/citizenship/testupdates"
   }
  ],
- "warnings": []
+ "warnings": [
+  "governors not refreshed (kept last known value): AR"
+ ]
 }
